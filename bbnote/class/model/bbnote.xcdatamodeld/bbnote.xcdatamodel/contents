@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="BBAudio" representedClassName="BBAudio" syncable="YES">
+        <attribute name="create_date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="data_path" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="openupload" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="size" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="times" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="update" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="record" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="BBRecord" inverseName="audioInRecord" inverseEntity="BBRecord" syncable="YES"/>
+    </entity>
+    <entity name="BBImage" representedClassName="BBImage" syncable="YES">
+        <attribute name="create_date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="data_path" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="data_small_path" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="height" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="iscontent" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="openupload" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="size" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="update" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="vertical" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="width" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="record" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="BBRecord" inverseName="imageInRecord" inverseEntity="BBRecord" syncable="YES"/>
+    </entity>
+    <entity name="BBRecord" representedClassName="BBRecord" syncable="YES">
+        <attribute name="bg_color" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bg_image" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bg_music" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="create_date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="isDemo" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isopen_music" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isVideo" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="lookup" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="mood" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="mood_count" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="shared_type" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="title_color" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="year_month" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="audioInRecord" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BBAudio" inverseName="record" inverseEntity="BBAudio" syncable="YES"/>
+        <relationship name="contentInRecord" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="BBText" inverseName="record" inverseEntity="BBText" syncable="YES"/>
+        <relationship name="imageInRecord" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BBImage" inverseName="record" inverseEntity="BBImage" syncable="YES"/>
+        <relationship name="videoInRecord" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BBVideo" inverseName="record" inverseEntity="BBVideo" syncable="YES"/>
+    </entity>
+    <entity name="BBText" representedClassName="BBText" syncable="YES">
+        <attribute name="create_date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="font" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fontsize" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="modify_date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="text_color" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="record" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="BBRecord" inverseName="contentInRecord" inverseEntity="BBRecord" syncable="YES"/>
+    </entity>
+    <entity name="BBVideo" representedClassName="BBVideo" syncable="YES">
+        <attribute name="create_date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="data_path" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="key" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="openupload" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="size" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="times" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="update" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="record" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="BBRecord" inverseName="videoInRecord" inverseEntity="BBRecord" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="BBAudio" positionX="160" positionY="192" width="128" height="163"/>
+        <element name="BBImage" positionX="-198" positionY="-144" width="128" height="223"/>
+        <element name="BBRecord" positionX="18" positionY="-360" width="128" height="345"/>
+        <element name="BBText" positionX="178" positionY="-99" width="128" height="148"/>
+        <element name="BBVideo" positionX="-144" positionY="126" width="128" height="163"/>
+    </elements>
+</model>
