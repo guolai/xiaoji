@@ -1,0 +1,66 @@
+/*
+ Localizable.strings
+ helpevernote
+ 
+ Created by bob on 4/8/14.
+ Copyright (c) 2014 bob. All rights reserved.
+ */
+
+//home bar
+"ENTRIES"="ENTRIES";
+"DAYS"="DAYS";
+"THIS WEEK"="THIS WEEK";
+"TODAY"="TODAY";
+
+"Timeline"="Timeline";
+"Photos"="Photos";
+"Tags"="Tags";
+"Calendar"="Calendar";
+"Starred"="Starred";
+"Setting"="Setting";
+"iClound"="QQGroup:419563911";
+
+"The best assistant for evernote!"="The best assistant for note!";
+"Are you sure to delete the whole note?"="Are you sure to delete the whole note?";
+
+"Please set your email account"="Please set your email account";
+"Mail send failed"="Mail send failed";
+"Mail send success"="Mail send success";
+"Like it or not , please rate us!"="Like it or not , please rate us!";
+"Rate Us"="Rate Us";
+
+/* Common word */
+"Back"="Back";
+"Delete"="Delete";
+"Done"="Done";
+"Cancle"="Cancel";
+"Post"="Post";
+"OK"="OK";
+"Submit"="Submit";
+"Edit"="Edit";
+"Confrim"="Confrim";
+"More"="More";
+
+"Yesterday"="Yesterday";
+"Today"="Today";
+
+"Save to Ablums"="Save to Ablums";
+"Reedit"="Reedit";
+"Home"="Home";
+"skin"="Skin";
+"text"="Text";
+"Lock Screen"="Lock Screen";
+"new version"="New Version";
+"give it a good mark"="Give it a good mark";
+"invidital"="Invidital";
+"private"="Private";
+"abount bbnote"="abount Micro diary";
+"Saving..."="Saving...";
+"Fead back"="Fead back";
+"More apps"="More apps";
+
+
+
+
+
+

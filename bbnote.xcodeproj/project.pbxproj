@@ -483,6 +483,8 @@
 		1809FFFD1AF923EB00F8A0C8 /* BBMisc.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FEAD1AF923EA00F8A0C8 /* BBMisc.m */; };
 		1809FFFE1AF923EB00F8A0C8 /* BBUserDefault.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FEAF1AF923EA00F8A0C8 /* BBUserDefault.m */; };
 		1809FFFF1AF923EB00F8A0C8 /* FileManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FEB11AF923EA00F8A0C8 /* FileManagerController.m */; };
+		182B20031AFEBB5C00412EF2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 182B20051AFEBB5C00412EF2 /* Localizable.strings */; };
+		182B200B1AFEBC0C00412EF2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 182B200D1AFEBC0C00412EF2 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1145,6 +1147,12 @@
 		1809FFDD1AF923EB00F8A0C8 /* TimeLineViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimeLineViewController.m; sourceTree = "<group>"; };
 		1809FFDE1AF923EB00F8A0C8 /* VersionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VersionViewController.h; sourceTree = "<group>"; };
 		1809FFDF1AF923EB00F8A0C8 /* VersionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VersionViewController.m; sourceTree = "<group>"; };
+		182B20061AFEBB6100412EF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		182B20071AFEBB9B00412EF2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		182B20081AFEBB9F00412EF2 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/Localizable.strings"; sourceTree = "<group>"; };
+		182B200C1AFEBC0C00412EF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		182B200E1AFEBC4400412EF2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		182B200F1AFEBC4500412EF2 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1615,6 +1623,8 @@
 				1809FE211AF91B9200F8A0C8 /* Info.plist */,
 				1809FE221AF91B9200F8A0C8 /* main.m */,
 				180902D51AF925E500F8A0C8 /* bbnote-Prefix.pch */,
+				182B20051AFEBB5C00412EF2 /* Localizable.strings */,
+				182B200D1AFEBC0C00412EF2 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -2375,6 +2385,8 @@
 			knownRegions = (
 				en,
 				Base,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = 1809FE141AF91B9200F8A0C8;
 			productRefGroup = 1809FE1E1AF91B9200F8A0C8 /* Products */;
@@ -2493,6 +2505,7 @@
 				180900271AF923EB00F8A0C8 /* LICENSE in Resources */,
 				180902841AF9240700F8A0C8 /* skin_2@2x.png in Resources */,
 				180901BC1AF9240700F8A0C8 /* browser_location@2x.png in Resources */,
+				182B20031AFEBB5C00412EF2 /* Localizable.strings in Resources */,
 				180901E71AF9240700F8A0C8 /* historySmallPictureMask@2x.png in Resources */,
 				180901FE1AF9240700F8A0C8 /* 001@2x.png in Resources */,
 				180902831AF9240700F8A0C8 /* skin_1@2x.png in Resources */,
@@ -2533,6 +2546,7 @@
 				180902441AF9240700F8A0C8 /* 071@2x.png in Resources */,
 				1809004D1AF923EB00F8A0C8 /* index.php in Resources */,
 				180900591AF923EB00F8A0C8 /* EvernoteSDK.strings in Resources */,
+				182B200B1AFEBC0C00412EF2 /* InfoPlist.strings in Resources */,
 				180902791AF9240700F8A0C8 /* navbar_bg_light7_os7@2x.png in Resources */,
 				180901E61AF9240700F8A0C8 /* historySmallPictureMask.png in Resources */,
 				180902561AF9240700F8A0C8 /* 089@2x.png in Resources */,
@@ -2891,6 +2905,29 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		182B20051AFEBB5C00412EF2 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				182B20061AFEBB6100412EF2 /* en */,
+				182B20071AFEBB9B00412EF2 /* zh-Hans */,
+				182B20081AFEBB9F00412EF2 /* zh-Hant */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		182B200D1AFEBC0C00412EF2 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				182B200C1AFEBC0C00412EF2 /* en */,
+				182B200E1AFEBC4400412EF2 /* zh-Hans */,
+				182B200F1AFEBC4500412EF2 /* zh-Hant */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
 		1809FE3E1AF91B9200F8A0C8 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -2978,8 +3015,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = bbnote/bbnote.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: caiguo huang (RKQM86PXNB)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: caiguo huang (RKQM86PXNB)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: caiguo huang (ZYURUDAF3A)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: caiguo huang (ZYURUDAF3A)";
 				GCC_PREFIX_HEADER = "bbnote/bbnote-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -2993,7 +3030,7 @@
 					"$(PROJECT_DIR)/bbnote/class/thirdlib/Umeng",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "20929b5e-df8a-4efa-8330-8722d22e3240";
+				PROVISIONING_PROFILE = "5dc6487c-4a1b-4a20-af06-c8ee049d0a24";
 			};
 			name = Debug;
 		};
@@ -3003,8 +3040,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = bbnote/bbnote.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Distribution: caiguo huang (RKQM86PXNB)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: caiguo huang (RKQM86PXNB)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: caiguo huang (ZYURUDAF3A)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: caiguo huang (ZYURUDAF3A)";
 				GCC_PREFIX_HEADER = "bbnote/bbnote-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3018,7 +3055,7 @@
 					"$(PROJECT_DIR)/bbnote/class/thirdlib/Umeng",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "20929b5e-df8a-4efa-8330-8722d22e3240";
+				PROVISIONING_PROFILE = "5dc6487c-4a1b-4a20-af06-c8ee049d0a24";
 			};
 			name = Release;
 		};

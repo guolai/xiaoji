@@ -1,0 +1,61 @@
+/*
+ Localizable.strings
+ helpevernote
+ 
+ Created by bob on 4/8/14.
+ Copyright (c) 2014 bob. All rights reserved.
+ */
+
+//home bar
+"ENTRIES"="篇";
+"DAYS"="天";
+"THIS WEEK"="本周";
+"TODAY"="今天";
+
+"Timeline"="时光轴";
+"Photos"="图片";
+"Tags"="标签";
+"Calendar"="日历";
+"Starred"="标星";
+"Setting"="设置";
+"iClound"="QQ群:419563911";
+
+"The best assistant for evernote!"="微日记，最适合你的个人日记软件";
+"Are you sure to delete the whole note?"="你确定删除整条记录吗";
+"Please set your email account"="請設置妳的郵箱賬號";
+"Mail send failed"="郵件發送失敗";
+"Mail send success"="郵件發送成功";
+"Like it or not , please rate us!"="喜歡不喜歡，來評論壹下吧";
+"Rate Us"="評價我們";
+
+
+/* Common word */
+"Back"="返回";
+"Delete"="删除";
+"Done"="完成";
+"Cancle"="取消";
+"Post"="發送";
+"OK"="確定";
+"Submit"="提交";
+"Edit"="編輯";
+"Confrim"="提交";
+"More"="更多";
+
+"Yesterday"="昨天";
+"Today"="今天";
+
+"Save to Ablums"="保存到相册";
+"Reedit"="重新编辑";
+"Home"="首页";
+"skin"="皮肤";
+"text"="文本";
+"Lock Screen"="锁屏";
+"new version"="新版本";
+"give it a good mark"="喜欢就支持一下，亲";
+"invidital"="个人";
+"private"="隐私";
+"abount bbnote"="关于微日记";
+"Saving..."="正在保存...";
+"Fead back"="反馈";
+"More apps"="更多应用";
+
