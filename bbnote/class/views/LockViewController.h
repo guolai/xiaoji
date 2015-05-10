@@ -20,5 +20,7 @@
 
 @property (nonatomic, assign) BOOL bPresented;
 @property(nonatomic, weak)id<LockViewDelegate> lockViewDelegate;
+- (void)getFocus:(BOOL)bvalue;
+- (void)dismissCurrentView;
 
 @end

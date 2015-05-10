@@ -92,6 +92,7 @@
         
         [self.window.rootViewController  presentViewController:self.lockViewController animated:NO completion:Nil];
     }
+    _bShouldLockScreenGetFocus = YES;
     return YES;
 }
 
@@ -99,7 +100,7 @@
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
-    
+    _bShouldLockScreenGetFocus = NO;
     if([BBUserDefault isOpenedProtect])
     {
         if(!self.lockViewController)
@@ -119,14 +120,32 @@
             }
             [uiviewcontontoller presentViewController:self.lockViewController animated:NO completion:Nil];
         }
-      
     }
+    
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
+    _bShouldLockScreenGetFocus = YES;
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+   
+//        _bgTask = [application beginBackgroundTaskWithExpirationHandler:^{ //如果没有task，立即调用handler，否则10分钟后调用
+//            if (_bgTask != UIBackgroundTaskInvalid)
+//            {
+//                @try {
+//                    [application endBackgroundTask:_bgTask];
+//                    //bgTask = UIBackgroundTaskInvalid;
+//                    BBINFO(@"QQMusic在后台运行被杀掉了。剩余可运行时间=%.1f", application.backgroundTimeRemaining);
+//                }
+//                @catch (NSException * e) {
+//                    BBINFO(@"EndBackgroundTask excepton:%@",[e reason]);
+//                }
+//            };}];
+//        if (_bgTask != UIBackgroundTaskInvalid) {
+//            BBINFO(@"background task began");
+//        }
+//    }
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
@@ -137,6 +156,12 @@
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
+    
+    [self.lockViewController getFocus:_bShouldLockScreenGetFocus];
+    if(!_bShouldLockScreenGetFocus)
+    {
+        [self lockViewControllerDidEnter:self.lockViewController];
+    }
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
 }

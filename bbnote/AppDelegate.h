@@ -9,6 +9,10 @@
 #import <UIKit/UIKit.h>
 #import "LockViewController.h"
 @interface AppDelegate : UIResponder <UIApplicationDelegate, LockViewDelegate>
+{
+//    UIBackgroundTaskIdentifier _bgTask;
+    BOOL _bShouldLockScreenGetFocus;
+}
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) LockViewController *lockViewController;

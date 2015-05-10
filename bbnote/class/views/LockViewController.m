@@ -41,12 +41,23 @@
     }
 }
 
+- (void)getFocus:(BOOL)bvalue
+{
+    if(bvalue)
+    {
+        [_passwrodTextField becomeFirstResponder];
+    }
+    else
+    {
+        [_passwrodTextField resignFirstResponder];
+    }
+}
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     _passwrodTextField.text = @"";
-    [_passwrodTextField becomeFirstResponder];
+//    [_passwrodTextField becomeFirstResponder];
     _iTry = 0;
     [self resetAllStatus];
     [_contentView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"skin%d", (int)(arc4random() % 3) + 1]]];
