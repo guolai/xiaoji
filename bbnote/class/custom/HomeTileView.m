@@ -8,6 +8,7 @@
 
 #import "HomeTileView.h"
 #import "UIImage+ImageEffects.h"
+#import "NSDate+String.h"
 
 @interface HomeTileView ()
 @property (nonatomic, strong)UILabel *lblEntr;
@@ -38,6 +39,13 @@
         {
             bgImg = [UIImage imageNamed:@"profile_cover_bg"];
         }
+        NSDate *date = [NSDate date];
+        NSInteger fNumber = [date getIntNumOfYearMonthDay];
+        if(fNumber < 20150626)
+        {
+            bgImg = [UIImage imageNamed:@"profile_cover_bg_6"];
+        }
+        
         [self setImage:bgImg];
         float fLeftSpace = 20 * fScr_Scale;
         float fTitileHeight = 10 * fScr_Scale;

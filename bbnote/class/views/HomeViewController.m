@@ -71,7 +71,7 @@ typedef enum{
     self.homeObject = [[HomeObject alloc] init];
     self.arrayCount = @[@"0", @"0", @"0", @"", @"0", @"", @"", @""];
     [self reloadAllViews];
-    self.arrayData = @[NSLocalizedString(@"Timeline", nil), NSLocalizedString(@"Photos", Nil), NSLocalizedString(@"Tags", Nil), NSLocalizedString(@"Calendar", Nil), NSLocalizedString(@"Starred", Nil), NSLocalizedString(@"Setting", Nil), NSLocalizedString(@"iClound", Nil)];
+    self.arrayData = @[NSLocalizedString(@"Timeline", nil), NSLocalizedString(@"Photos", Nil), NSLocalizedString(@"Tags", Nil), NSLocalizedString(@"Calendar", Nil), NSLocalizedString(@"Starred", Nil), NSLocalizedString(@"Setting", Nil), NSLocalizedString(@"QQGroup", Nil)];
     
     self.arrayIcons = @[@(FAIconTh), @(FAIconPicture), @(FAIconTags), @(FAIconCalendar), @(FAIconStar), @(FAIconCog), @(FAIconCloud)];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(skinDidChanged) name:kSkinDidChanged object:nil];
@@ -357,7 +357,7 @@ typedef enum{
         SettinViewController *vc = [[SettinViewController alloc] init];
         [self.navigationController pushViewController:vc animated:YES];
     }
-    else if([strTitle isEqualToString:NSLocalizedString(@"iClound", nil)])
+    else if([strTitle isEqualToString:NSLocalizedString(@"QQGroup", nil)])
     {
         
     }

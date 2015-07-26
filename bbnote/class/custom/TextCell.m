@@ -129,7 +129,7 @@
         int iFontSize = 14 * fScr_Scale;
         int iTopsapce = 10;
         
-        UIImage *everimg = [UIImage imageNamed:@"evernote"];
+        UIImage *everimg = [UIImage imageNamed:@"Icon"];
         UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(iSpace, 5, everimg.size.width, everimg.size.height)];
         [imgView setImage:everimg];
         [self addSubview:imgView];

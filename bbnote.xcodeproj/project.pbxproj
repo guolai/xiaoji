@@ -3015,8 +3015,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = bbnote/bbnote.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: caiguo huang (ZYURUDAF3A)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: caiguo huang (ZYURUDAF3A)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: caiguo huang (RKQM86PXNB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: caiguo huang (RKQM86PXNB)";
 				GCC_PREFIX_HEADER = "bbnote/bbnote-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3030,7 +3030,7 @@
 					"$(PROJECT_DIR)/bbnote/class/thirdlib/Umeng",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5dc6487c-4a1b-4a20-af06-c8ee049d0a24";
+				PROVISIONING_PROFILE = "20929b5e-df8a-4efa-8330-8722d22e3240";
 			};
 			name = Debug;
 		};
@@ -3040,8 +3040,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = bbnote/bbnote.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer: caiguo huang (ZYURUDAF3A)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: caiguo huang (ZYURUDAF3A)";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: caiguo huang (RKQM86PXNB)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: caiguo huang (RKQM86PXNB)";
 				GCC_PREFIX_HEADER = "bbnote/bbnote-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3055,7 +3055,7 @@
 					"$(PROJECT_DIR)/bbnote/class/thirdlib/Umeng",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "5dc6487c-4a1b-4a20-af06-c8ee049d0a24";
+				PROVISIONING_PROFILE = "20929b5e-df8a-4efa-8330-8722d22e3240";
 			};
 			name = Release;
 		};
