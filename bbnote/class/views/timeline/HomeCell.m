@@ -300,7 +300,7 @@
     }
         
     [imgeViewBg_ setFrame:CGRectMake(CELL_LEFT_SPACE, 0, SCR_WIDTH - CELL_LEFT_SPACE, fTop)];
-    [imgeViewBg_ setImage:[[UIImage imageNamed:@"home_cell_bg.png"] stretchableImageWithLeftCapWidth:44 * fScr_Scale topCapHeight:79 * fScr_Scale]];
+    [imgeViewBg_ setImage:[[UIImage imageNamed:@"home_cell_bg.png"] stretchableImageWithLeftCapWidth:44 topCapHeight:79]];
     CGRect rct = [BBMisc getRect:CELL_LEFT_SPACE withPosY:0.0 withwidth:3.0 withHeight:fTop];
 //    if(self.isLast)
 //        [imgViewTimes_ setImage:[UIImage imageNamed:@"endOfHistory.png"]];
@@ -435,12 +435,20 @@
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
         [self setSelectionStyle:UITableViewCellSelectionStyleNone];
-        UIImageView *imgViewTimes_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"historyVerticalLine.png"]];
-        CGRect rct = [BBMisc getRect:CELL_LEFT_SPACE withPosY:0.0 withwidth:3.0 withHeight:CELL_TITLE_BG_HEIGHT];
-        [imgViewTimes_ setFrame:rct];
-        [self addSubview:imgViewTimes_];
-        
-        bgImgView_ = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, CELL_TITLE_BG_MAGRIN, SCR_WIDTH, CELL_TITLE_BG_HEIGHT)];
+
+        CGFloat fMargin = CELL_TITLE_BG_MAGRIN;
+        if(SCR_WIDTH > CELL_TITLE_BG_CELL_HEIGHT)
+        {
+            fMargin = CELL_TITLE_BG_CELL_HEIGHT - CELL_TITLE_BG_HEIGHT;
+        }
+        else
+        {
+            UIImageView *imgViewTimes_ = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"historyVerticalLine.png"]];
+            CGRect rct = [BBMisc getRect:CELL_LEFT_SPACE withPosY:0.0 withwidth:3.0 withHeight:CELL_TITLE_BG_HEIGHT];
+            [imgViewTimes_ setFrame:rct];
+            [self addSubview:imgViewTimes_];
+        }
+        bgImgView_ = [[UIImageView alloc] initWithFrame:CGRectMake(0.0f, fMargin, SCR_WIDTH, CELL_TITLE_BG_HEIGHT)];
         CALayer *layer = [bgImgView_ layer];
 //        layer.borderColor = [CELLIMAGEBORER_COLOR CGColor];
 //        layer.borderWidth = 2.0f;

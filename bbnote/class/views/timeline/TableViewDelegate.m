@@ -32,7 +32,7 @@
     if(self = [super init])
     {
         type_ = eType;
-        fHeader_ = 320.0f;
+        fHeader_ = CELL_TITLE_BG_CELL_HEIGHT;
         self.numberOfSections = 2;
         self.arrayDataList = [[NSMutableArray alloc] initWithCapacity:18];
     }

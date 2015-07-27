@@ -89,6 +89,7 @@ __LINE__, \
 //cell
 #define CELL_TITLE_BG_HEIGHT ([BBAutoSize screenWidth])
 #define CELL_TITLE_BG_MAGRIN (-60.0f)
+#define CELL_TITLE_BG_CELL_HEIGHT (320.0f)
 
 #define CELL_MIN_HEIGHT (90.0f * fScr_Scale)
 #define CELL_LEFT_SPACE 26.0f //内容与下边的间距
