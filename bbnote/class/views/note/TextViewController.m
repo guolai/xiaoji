@@ -372,7 +372,7 @@
     bbContent.record = bbRecord;
     
     UIImage *img = [BBMisc createImageForBigWeibo:bbRecord];
-    NSData *data = UIImageJPEGRepresentation(img, 1.0);
+    NSData *data = UIImageJPEGRepresentation(img, 0.8);
     BImage *bimg = [BBMisc saveAssetImageToSand:data smlImag:nil path:[self getNotePath] isContent:YES];
     BBImage *bbimage = [BBImage BBImageWithBImage:bimg];
 //    if([bbimage isKindOfClass:[BBImage class]])

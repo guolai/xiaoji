@@ -203,7 +203,7 @@
  
         { // save text to image
             UIImage *img = [BBMisc createImageForBigWeibo:bbrecord];
-            NSData *data = UIImageJPEGRepresentation(img, 1.0);
+            NSData *data = UIImageJPEGRepresentation(img, 0.8);
             BImage *bimg = [BBMisc saveAssetImageToSand:data smlImag:nil path:strFloder isContent:YES];
             BBImage *bbimage = [BBImage BBImageWithBImage:bimg];
             

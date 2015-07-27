@@ -353,7 +353,7 @@
     int iTitleHeight = 40 * contextScale;
     float fSpace = 10.0f * contextScale;
     float fTextWidth = SCR_WIDTH * contextScale - fSpace * 2; //文字前后留宽10像素
-    CGSize size = [bbcontent.text sizeWithFont:txtFont constrainedToSize:CGSizeMake(fTextWidth, 10000) lineBreakMode:NSLineBreakByTruncatingTail];
+    CGSize size = [bbcontent.text sizeWithFont:txtFont constrainedToSize:CGSizeMake(fTextWidth, 15000) lineBreakMode:NSLineBreakByTruncatingTail];
 //    size = [bbcontent.text boundingRectWithSize:CGSizeMake(fTextWidth, 10000) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName: txtFont} context:nil].size;
     {
         size.height = size.height + [bbcontent.fontsize integerValue] * contextScale;
