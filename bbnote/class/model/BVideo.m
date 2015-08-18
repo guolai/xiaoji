@@ -7,7 +7,7 @@
 //
 
 #import "BVideo.h"
-#import "BBVideo.h"
+#import "BB_BBVideo.h"
 #import "NSString+UUID.h"
 
 @implementation BVideo
@@ -46,7 +46,7 @@
     return self;
 }
 
-- (instancetype)initWithBBVideo:(BBVideo *)bbvideo
+- (instancetype)initWithBBVideo:(BB_BBVideo *)bbvideo
 {
     if(self = [super init])
     {

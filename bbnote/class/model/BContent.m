@@ -8,7 +8,7 @@
 
 #import "BContent.h"
 #import "DataManager.h"
-#import "BBContent.h"
+#import "BB_BBContent.h"
 
 @implementation BContent
 
@@ -55,7 +55,7 @@
     }
     return self;
 }
-- (instancetype)initWithBBText:(BBText *)bbtext
+- (instancetype)initWithBBText:(BB_BBText *)bbtext
 {
     if(self = [super init])
     {

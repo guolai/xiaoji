@@ -7,16 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BBRecord.h"
+#import "BB_BBRecord.h"
 
 
 @interface DataModel : NSObject
 
 + (BOOL)deleteRecordByUUID:(NSString *)strUUid;
 
-+ (BBRecord *)getRecordByUUid:(NSString *)strUUid;
++ (BB_BBRecord *)getRecordByUUid:(NSString *)strUUid;
 
-+ (NSString *)getUUidFromRecord:(BBRecord *)record;
++ (NSString *)getUUidFromRecord:(BB_BBRecord *)record;
 
 + (NSArray *)BBimageArrayGetImagelist:(NSArray *)array;
 

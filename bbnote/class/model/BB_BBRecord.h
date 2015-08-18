@@ -10,9 +10,9 @@
 #import <CoreData/CoreData.h>
 
 @class BRecord, BContent;
-@class BBAudio, BBText, BBImage, BBVideo;
+@class BB_BBAudio, BB_BBText, BB_BBImage, BB_BBVideo;
 
-@interface BBRecord : NSManagedObject
+@interface BB_BBRecord : NSManagedObject
 
 @property (nonatomic, retain) NSString * bg_color;
 @property (nonatomic, retain) NSString * bg_image;
@@ -32,30 +32,30 @@
 @property (nonatomic, retain) NSNumber * year_month;
 @property (nonatomic, strong) NSNumber * isDemo;
 @property (nonatomic, retain) NSSet *audioInRecord;
-@property (nonatomic, retain) BBText *contentInRecord;
+@property (nonatomic, retain) BB_BBText *contentInRecord;
 @property (nonatomic, retain) NSSet *imageInRecord;
 @property (nonatomic, retain) NSSet *videoInRecord;
 
 //+ (void)saveBBRecordWithBRecord:(BRecord *)brecord content:(BContent *)bContent imageArray:(NSArray *)imgArray audioArray:(NSArray *)audioArry videoArray:(NSArray *)videoArry;
-+ (BBRecord *)initWithBRecord:(BRecord *)brecord;
-+ (NSString *)getRecordMoodStr:(BBRecord *)recd;
++ (BB_BBRecord *)initWithBRecord:(BRecord *)brecord;
++ (NSString *)getRecordMoodStr:(BB_BBRecord *)recd;
 - (NSDictionary *)covertDictionary;
 - (void)saveToSandBoxPath:(NSString *)strFolder;
 
 @end
 
-@interface BBRecord (CoreDataGeneratedAccessors)
+@interface BB_BBRecord (CoreDataGeneratedAccessors)
 
-- (void)addAudioInRecordObject:(BBAudio *)value;
-- (void)removeAudioInRecordObject:(BBAudio *)value;
+- (void)addAudioInRecordObject:(BB_BBAudio *)value;
+- (void)removeAudioInRecordObject:(BB_BBAudio *)value;
 - (void)addAudioInRecord:(NSSet *)values;
 - (void)removeAudioInRecord:(NSSet *)values;
-- (void)addImageInRecordObject:(BBImage *)value;
-- (void)removeImageInRecordObject:(BBImage *)value;
+- (void)addImageInRecordObject:(BB_BBImage *)value;
+- (void)removeImageInRecordObject:(BB_BBImage *)value;
 - (void)addImageInRecord:(NSSet *)values;
 - (void)removeImageInRecord:(NSSet *)values;
-- (void)addVideoInRecordObject:(BBVideo *)value;
-- (void)removeVideoInRecordObject:(BBVideo *)value;
+- (void)addVideoInRecordObject:(BB_BBVideo *)value;
+- (void)removeVideoInRecordObject:(BB_BBVideo *)value;
 - (void)addVideoInRecord:(NSSet *)values;
 - (void)removeVideoInRecord:(NSSet *)values;
 @end

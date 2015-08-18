@@ -11,7 +11,7 @@
 
 @implementation NSNumber (Sort)
 
-NSComparisonResult compareRecords(BBRecord *firstRecrd, BBRecord *secondRecrd, void *context)
+NSComparisonResult compareRecords(BB_BBRecord *firstRecrd, BB_BBRecord *secondRecrd, void *context)
 {
     NSDate *firstDate = firstRecrd.create_date;
     NSDate *secDate = secondRecrd.create_date;
@@ -29,7 +29,7 @@ NSComparisonResult compareRecords(BBRecord *firstRecrd, BBRecord *secondRecrd, v
     return  result;
 }
 
-NSComparisonResult compareImages(BBImage *firstRecrd, BBImage *secondRecrd, void *context)
+NSComparisonResult compareImages(BB_BBImage *firstRecrd, BB_BBImage *secondRecrd, void *context)
 {
     NSDate *firstDate = firstRecrd.create_date;
     NSDate *secDate = secondRecrd.create_date;
@@ -48,7 +48,7 @@ NSComparisonResult compareImages(BBImage *firstRecrd, BBImage *secondRecrd, void
 }
 
 
-NSComparisonResult compareAudios(BBAudio *firstRecrd, BBAudio *secondRecrd, void *context)
+NSComparisonResult compareAudios(BB_BBAudio *firstRecrd, BB_BBAudio *secondRecrd, void *context)
 {
     NSDate *firstDate = firstRecrd.create_date;
     NSDate *secDate = secondRecrd.create_date;

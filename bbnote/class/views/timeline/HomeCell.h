@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import <QuartzCore/QuartzCore.h>
-#import "BBRecord.h"
-#import "BBImage.h"
-#import "BBAudio.h"
-#import "BBContent.h"
+#import "BB_BBRecord.h"
+#import "BB_BBImage.h"
+#import "BB_BBAudio.h"
+#import "BB_BBContent.h"
 
 @interface HomeCell : UITableViewCell
 {
@@ -35,10 +35,10 @@
     
 }
 
-@property (nonatomic, retain)BBRecord *brecord;
+@property (nonatomic, retain)BB_BBRecord *brecord;
 @property (nonatomic, retain)NSArray *arrayImages;
 @property (nonatomic, retain)NSArray *arrayAudios;
-@property (nonatomic, retain)BBText *bcontent;
+@property (nonatomic, retain)BB_BBText *bcontent;
 @property (nonatomic, assign)BOOL isLast;
 
 

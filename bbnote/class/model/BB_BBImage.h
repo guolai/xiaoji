@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class BBRecord;
+@class BB_BBRecord;
 @class BImage;
-@interface BBImage : NSManagedObject
+@interface BB_BBImage : NSManagedObject
 
 @property (nonatomic, retain) NSDate * create_date;
 @property (nonatomic, retain) NSString * data_path;
@@ -25,8 +25,8 @@
 @property (nonatomic, retain) NSString * update;
 @property (nonatomic, retain) NSNumber * vertical;
 @property (nonatomic, retain) NSNumber * width;
-@property (nonatomic, retain) BBRecord *record;
+@property (nonatomic, retain) BB_BBRecord *record;
 
-+(BBImage *)BBImageWithBImage:(BImage *)bimg;
++(BB_BBImage *)BBImageWithBImage:(BImage *)bimg;
 - (NSDictionary *)covertDictionary;
 @end

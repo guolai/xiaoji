@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Constant.h"
-#import "BBRecord.h"
+#import "BB_BBRecord.h"
 typedef enum{
     e_PlayState_Pause,
     e_PlayState_Playing,
@@ -36,7 +36,7 @@ typedef enum{
 }
 @property (nonatomic, retain) NSArray *mulArray;
 
-- (void)setrecord:(BBRecord *)record;
+- (void)setrecord:(BB_BBRecord *)record;
 - (void)setMood:(NSString *)strMood andCount:(int)icout;
 
 - (void)setpageOrder:(NSString *)strOrder;

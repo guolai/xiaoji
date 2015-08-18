@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class BBRecord;
+@class BB_BBRecord;
 @class BVideo;
-@interface BBVideo : NSManagedObject
+@interface BB_BBVideo : NSManagedObject
 
 @property (nonatomic, retain) NSDate * create_date;
 @property (nonatomic, retain) NSString * data_path;
@@ -20,7 +20,7 @@
 @property (nonatomic, retain) NSNumber * size;
 @property (nonatomic, retain) NSNumber * times;
 @property (nonatomic, retain) NSString * update;
-@property (nonatomic, retain) BBRecord *record;
-+ (BBVideo *)BBVideoWithBVideo:(BVideo *)bvideo;
+@property (nonatomic, retain) BB_BBRecord *record;
++ (BB_BBVideo *)BBVideoWithBVideo:(BVideo *)bvideo;
 - (NSDictionary *)covertDictionary;
 @end

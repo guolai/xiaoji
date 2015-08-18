@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 
 
-@class BBRecord;
+@class BB_BBRecord;
 @interface BRecord : NSObject<NSCoding>
 
 @property (nonatomic, retain) NSDate * create_date;
@@ -30,6 +30,6 @@
 @property (nonatomic, retain) NSString * key;
 @property (nonatomic, strong) NSNumber *isDemo;
 
-- (instancetype)initWithBBrecord:(BBRecord *)bbrecord;
+- (instancetype)initWithBBrecord:(BB_BBRecord *)bbrecord;
 @end
 

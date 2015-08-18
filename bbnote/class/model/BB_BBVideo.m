@@ -6,12 +6,12 @@
 //  Copyright (c) 2013年 bob. All rights reserved.
 //
 
-#import "BBVideo.h"
-#import "BBRecord.h"
+#import "BB_BBVideo.h"
+#import "BB_BBRecord.h"
 #import "BVideo.h"
 #import "NSString+UUID.h"
 
-@implementation BBVideo
+@implementation BB_BBVideo
 
 @dynamic create_date;
 @dynamic data_path;
@@ -22,17 +22,17 @@
 @dynamic update;
 @dynamic record;
 
-+ (BBVideo *)BBVideoWithBVideo:(BVideo *)bvideo
++ (BB_BBVideo *)BBVideoWithBVideo:(BVideo *)bvideo
 {
-    BBVideo *bbvideo = nil;
-    NSArray *array = [BBVideo whereFormat:@"key == '%@'", bvideo.key];
+    BB_BBVideo *bbvideo = nil;
+    NSArray *array = [BB_BBVideo whereFormat:@"key == '%@'", bvideo.key];
     if(array && array.count > 0)
     {
         bbvideo = array.first;
     }
     else
     {
-        bbvideo = [BBVideo create];
+        bbvideo = [BB_BBVideo create];
     }
     bbvideo.create_date = bvideo.create_date;
     bbvideo.data_path = bvideo.data_path;

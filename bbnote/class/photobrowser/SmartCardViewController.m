@@ -150,7 +150,7 @@
     [self.arrayData removeAllObjects];
     [self.mulDic removeAllObjects];
     [self.keySet removeAllObjects];
-    NSArray *array = [BBImage where:@"iscontent == NO" startFrom:0 limit:_iStartIndex + _iLimit sortby:@"create_date^0"];
+    NSArray *array = [BB_BBImage where:@"iscontent == NO" startFrom:0 limit:_iStartIndex + _iLimit sortby:@"create_date^0"];
     if(!array || array.count < 1)
     {
         _bReachEnd = YES;
@@ -161,7 +161,7 @@
             _bReachEnd = YES;
         else
             _bReachEnd = NO;
-        for (BBImage *bbime in array) {
+        for (BB_BBImage *bbime in array) {
             if([self.keySet containsObject:bbime.key])
             {
                 
@@ -183,7 +183,7 @@
 {
     if(_bRefreshing)
         return;
-    NSArray *array = [BBImage where:@"iscontent == NO" startFrom:_iStartIndex limit:_iLimit sortby:@"create_date^0"];
+    NSArray *array = [BB_BBImage where:@"iscontent == NO" startFrom:_iStartIndex limit:_iLimit sortby:@"create_date^0"];
 
     if(!array || array.count < 1)
     {
@@ -197,7 +197,7 @@
         else
             _bReachEnd = NO;
         _iStartIndex += array.count;
-        for (BBImage *bbime in array) {
+        for (BB_BBImage *bbime in array) {
       
             if([self.keySet containsObject:bbime.key])
             {
@@ -214,7 +214,7 @@
     [self tableviewReloadData];
 }
 
-- (void)fetchSection:(BBImage *)bbimg
+- (void)fetchSection:(BB_BBImage *)bbimg
 {
     NSString *strYearMonth = [bbimg.create_date getNumOfYearMonth];
     if(ISEMPTY(strYearMonth))
@@ -229,7 +229,7 @@
         tempArray = [NSMutableArray arrayWithCapacity:10];
     }
     SmartObject *smartObject = [[SmartObject alloc] init];
-    BBRecord *record = bbimg.record;
+    BB_BBRecord *record = bbimg.record;
     smartObject.strNotePath = [DataModel getNotePath:record];
     smartObject.strFileName = bbimg.data_path;
 //    smartObject.strSmlFileName = bbimg.data_small_path;

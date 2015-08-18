@@ -17,7 +17,7 @@
 #import "TimeLineViewController.h"
 #import "MediaViewController.h"
 #import "NSDate+String.h"
-#import "BBImage.h"
+#import "BB_BBImage.h"
 #import "KTPhotoScrollViewController2.h"
 #import "DataModel.h"
 #import "SmartObject.h"
@@ -167,12 +167,12 @@ typedef enum{
 
 - (void)rebulidMenu
 {
-    NSArray *array = [BBRecord where:nil startFrom:0 limit:99999 sortby:@"create_date^0"];
+    NSArray *array = [BB_BBRecord where:nil startFrom:0 limit:99999 sortby:@"create_date^0"];
     NSMutableSet *mulSet = [NSMutableSet setWithCapacity:array.count];
     NSMutableDictionary *mulDic = [NSMutableDictionary dictionaryWithCapacity:10];
     if(array.count < 1)
         return;
-    for (BBRecord *record in array) {
+    for (BB_BBRecord *record in array) {
         if ([mulSet containsObject:record.key]) {
             
         }
@@ -211,7 +211,7 @@ typedef enum{
     NSMutableArray *tempArray = [mulDic objectForKey:strYearMonth];
     self.homeObject.nTheDayCount = tempArray.count;
     
-    array = [BBImage where:@"iscontent == NO" startFrom:0 limit:99999 sortby:@"create_date^0"];
+    array = [BB_BBImage where:@"iscontent == NO" startFrom:0 limit:99999 sortby:@"create_date^0"];
     self.homeObject.nPhotosCount = array.count;
     [self.homeTitleView setEntriesCount:self.homeObject.nTotoal];
     [self.homeTitleView setDaysCount:self.homeObject.nDayCount];

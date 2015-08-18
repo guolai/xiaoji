@@ -11,8 +11,8 @@
 #import "BVideo.h"
 #import "BAudio.h"
 //#import "BRecord.h"
-#import "BBRecord.h"
-#import "BBContent.h"
+#import "BB_BBRecord.h"
+#import "BB_BBContent.h"
 
 
 @interface BBMisc : NSObject
@@ -30,12 +30,12 @@
 + (BImage *)saveAssetImageToSand:(NSData *)bigData smlImag:(UIImage *)smlImage path:(NSString *)strPath isContent:(BOOL)bContent;
 + (CGRect)getRect:(float)fX withPosY:(float)fY withwidth:(float)fW withHeight:(float)fH;
 
-+ (UIImage *)createImageForBigWeibo:(BBRecord *)record;
-+ (UIImage *)createImageForRecord:(BBRecord *)record;
++ (UIImage *)createImageForBigWeibo:(BB_BBRecord *)record;
++ (UIImage *)createImageForRecord:(BB_BBRecord *)record;
 
 //delete image of coredata file
 + (void)deleteImageFileOfCoredata:(BImage *)bimg;
-+ (void)deleteRecordFileOfCoredata:(BBRecord *)brecord;
++ (void)deleteRecordFileOfCoredata:(BB_BBRecord *)brecord;
 
 
 + (void)addToolBar:(NSString *)strTitle normalImg:(NSString *)strNormal hlImg:(NSString *)strHl rect:(CGRect)rct titleHeight:(float)fH inView:(UIView *)view withTag:(int)iTag action:(SEL)action target:(id)controler;

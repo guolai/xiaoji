@@ -6,8 +6,8 @@
 //  Copyright (c) 2013年 bob. All rights reserved.
 //
 
-#import "BBContent.h"
-#import "BBRecord.h"
+#import "BB_BBContent.h"
+#import "BB_BBRecord.h"
 #import "BContent.h"
 
 
@@ -39,7 +39,7 @@
 //}
 //@end
 
-@implementation BBText
+@implementation BB_BBText
 
 @dynamic create_date;
 @dynamic font;
@@ -50,12 +50,12 @@
 @dynamic text_color;
 @dynamic record;
 
-+ (BBText *)BBContentWithBContent:(BContent *)bContent
++ (BB_BBText *)BBContentWithBContent:(BContent *)bContent
 {
     NSLog(@"%@", NSStringFromClass(self));
 //    if(!bContent)
 //        return nil;
-    BBText *bbContent = [BBText create];
+    BB_BBText *bbContent = [BB_BBText create];
     bbContent.text = bContent.text;
     bbContent.create_date = bContent.create_date;
     bbContent.modify_date = bContent.modify_date;

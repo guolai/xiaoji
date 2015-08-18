@@ -7,10 +7,10 @@
 //
 
 #import "DataModel.h"
-#import "BBImage.h"
-#import "BBAudio.h"
-#import "BBVideo.h"
-#import "BBContent.h"
+#import "BB_BBImage.h"
+#import "BB_BBAudio.h"
+#import "BB_BBVideo.h"
+#import "BB_BBContent.h"
 #import "BContent.h"
 #import "BRecord.h"
 #import "Constant.h"
@@ -25,10 +25,10 @@
     return YES;
 }
 
-+ (BBRecord *)getRecordByUUid:(NSString *)strUUid
++ (BB_BBRecord *)getRecordByUUid:(NSString *)strUUid
 {
-    BBRecord *bbrecord = nil;
-    NSArray *array = [BBRecord where:[NSString stringWithFormat:@"user_id == '%@'", strUUid]];
+    BB_BBRecord *bbrecord = nil;
+    NSArray *array = [BB_BBRecord where:[NSString stringWithFormat:@"user_id == '%@'", strUUid]];
     if(array && array.count > 0)
     {
         bbrecord = array.first;
@@ -36,7 +36,7 @@
     return bbrecord;
 }
 
-+ (NSString *)getUUidFromRecord:(BBRecord *)record
++ (NSString *)getUUidFromRecord:(BB_BBRecord *)record
 {
     return record.key;
 }
@@ -46,7 +46,7 @@
     NSMutableArray *mularry = [NSMutableArray arrayWithCapacity:4];
     if(array && array.count > 0)
     {
-        for (BBImage *bbimage in array) {
+        for (BB_BBImage *bbimage in array) {
             if(![bbimage.iscontent boolValue])
             {
                 [mularry addObject:bbimage];
@@ -111,8 +111,8 @@
 
 + (void)deleteBBimageFromKey:(NSString *)strKey
 {
-    BBImage *bbimg = nil;
-    NSArray *array = [BBImage where:[NSString stringWithFormat:@"key == '%@'", strKey]];
+    BB_BBImage *bbimg = nil;
+    NSArray *array = [BB_BBImage where:[NSString stringWithFormat:@"key == '%@'", strKey]];
     if (array && array.count > 0) {
         bbimg = array.first;
         [bbimg delete];
@@ -121,8 +121,8 @@
 
 + (void)deleteBBAudioFromKey:(NSString *)strKey
 {
-    BBAudio *bbimg = nil;
-    NSArray *array = [BBAudio where:[NSString stringWithFormat:@"key == '%@'", strKey]];
+    BB_BBAudio *bbimg = nil;
+    NSArray *array = [BB_BBAudio where:[NSString stringWithFormat:@"key == '%@'", strKey]];
     if (array && array.count > 0) {
         bbimg = array.first;
         [bbimg delete];
@@ -131,8 +131,8 @@
 
 + (void)deleteBBVideoFromKey:(NSString *)strKey
 {
-    BBVideo *bbimg = nil;
-    NSArray *array = [BBVideo where:[NSString stringWithFormat:@"key == '%@'", strKey]];
+    BB_BBVideo *bbimg = nil;
+    NSArray *array = [BB_BBVideo where:[NSString stringWithFormat:@"key == '%@'", strKey]];
     if (array && array.count > 0) {
         bbimg = array.first;
         [bbimg delete];
@@ -152,8 +152,8 @@
     {
         [FileManagerController createDirectoryAtPath:strFloder];
     }
-    if ([bbrecord isKindOfClass:[BBRecord class]]) {
-        strFloder = [strFloder stringByAppendingPathComponent:((BBRecord *)bbrecord).key];
+    if ([bbrecord isKindOfClass:[BB_BBRecord class]]) {
+        strFloder = [strFloder stringByAppendingPathComponent:((BB_BBRecord *)bbrecord).key];
     }
     else if([bbrecord isKindOfClass:[BRecord class]])
     {
@@ -286,13 +286,13 @@
     if(noteDic)
     {
        
-        BBRecord *bbRecord = nil;
+        BB_BBRecord *bbRecord = nil;
         
         BRecord *bRecord =[NSKeyedUnarchiver unarchiveObjectWithData:[noteDic objectForKey:@"record"]];
         BContent *bContent = [NSKeyedUnarchiver unarchiveObjectWithData:[noteDic objectForKey:@"content"]];
         if(!bRecord || !bContent)
         {
-            NSArray *array = [BBRecord whereFormat:@"key == '%@'", bRecord.key];
+            NSArray *array = [BB_BBRecord whereFormat:@"key == '%@'", bRecord.key];
             if(array && array.count > 0)
             {
                 bbRecord = array.first;
@@ -303,15 +303,15 @@
             //            bContent = [[BContent alloc] init];
         }
         @try {
-            bbRecord = [BBRecord initWithBRecord:bRecord];
+            bbRecord = [BB_BBRecord initWithBRecord:bRecord];
             
-            BBText *bbContent = [BBText BBContentWithBContent:bContent];
+            BB_BBText *bbContent = [BB_BBText BBContentWithBContent:bContent];
             bbContent.record = bbRecord;
             
             UIImage *img = [BBMisc createImageForBigWeibo:bbRecord];
             NSData *data = UIImageJPEGRepresentation(img, 0.8);
             BImage *bimg = [BBMisc saveAssetImageToSand:data smlImag:nil path:[DataModel getNotePath:bRecord] isContent:YES];
-            BBImage *bbimage = [BBImage BBImageWithBImage:bimg];
+            BB_BBImage *bbimage = [BB_BBImage BBImageWithBImage:bimg];
             //    if([bbimage isKindOfClass:[BBImage class]])
             //    {
             //        BBLOG();
@@ -331,15 +331,15 @@
             NSArray *arrayVideo_ = [NSKeyedUnarchiver unarchiveObjectWithData:[noteDic objectForKey:@"video"]];
             for (BAudio *bAud in arrayAudio_)
             {
-                BBAudio *bbAudio = [BBAudio BBAudioWithBAudio:bAud];
+                BB_BBAudio *bbAudio = [BB_BBAudio BBAudioWithBAudio:bAud];
                 bbAudio.record = bbRecord;
             }
             for (BImage *bimg in arrayImage_) {
-                BBImage *bbimage = [BBImage BBImageWithBImage:bimg];
+                BB_BBImage *bbimage = [BB_BBImage BBImageWithBImage:bimg];
                 bbimage.record = bbRecord;
             }
             for (BVideo *bvideo in arrayVideo_) {
-                BBVideo *bbvideo = [BBVideo BBVideoWithBVideo:bvideo];
+                BB_BBVideo *bbvideo = [BB_BBVideo BBVideoWithBVideo:bvideo];
                 bbvideo.record = bbRecord;
             }
             [bbRecord save];

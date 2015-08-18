@@ -7,12 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BBRecord.h"
-#import "BBImage.h"
-#import "BBAudio.h"
+#import "BB_BBRecord.h"
+#import "BB_BBImage.h"
+#import "BB_BBAudio.h"
 
 @interface NSNumber (Sort)
-NSComparisonResult compareRecords(BBRecord *firstRecrd, BBRecord *secondRecrd, void *context);
-NSComparisonResult compareImages(BBImage *firstRecrd, BBImage *secondRecrd, void *context);
-NSComparisonResult compareAudios(BBAudio *firstRecrd, BBAudio *secondRecrd, void *context);
+NSComparisonResult compareRecords(BB_BBRecord *firstRecrd, BB_BBRecord *secondRecrd, void *context);
+NSComparisonResult compareImages(BB_BBImage *firstRecrd, BB_BBImage *secondRecrd, void *context);
+NSComparisonResult compareAudios(BB_BBAudio *firstRecrd, BB_BBAudio *secondRecrd, void *context);
 @end

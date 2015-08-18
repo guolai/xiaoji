@@ -9,11 +9,11 @@
 #import "TimeLineViewController.h"
 #import "AppDelegate.h"
 #import "BBSkin.h"
-#import "BBRecord.h"
+#import "BB_BBRecord.h"
 #import "BContent.h"
-#import "BBContent.h"
-#import "BBImage.h"
-#import "BBAudio.h"
+#import "BB_BBContent.h"
+#import "BB_BBImage.h"
+#import "BB_BBAudio.h"
 #import "FileManagerController.h"  
 #import "BBMisc.h"
 #import "NSNumber+Sort.h"
@@ -141,7 +141,7 @@
             brecord.bg_image = nil;
             brecord.bg_color = noteset.strBgColor;
         }
-        BBRecord *bbrecord = [BBRecord initWithBRecord:brecord];
+        BB_BBRecord *bbrecord = [BB_BBRecord initWithBRecord:brecord];
         bbrecord.create_date = [NSDate getNoteBirthDay];
         BContent *bcontent = [[BContent alloc] init];
         bcontent.text_color = noteset.strTextColor;
@@ -153,7 +153,7 @@
         
 //        bcontent.text = @"心怀温暖，直面残酷 \n是的，青春终将散场，现实远比电影更加残酷无情，有着更多的失望甚至绝望，有着更加浓重的黑色，曾经的爱情、梦想、信仰可能会被击得粉碎。但不妨为心保留一块温柔的地方，心怀温暖，直面残酷。";
         bcontent.text = @"用美妙的文字记录下此刻感想，用生动的图片定格青春的每一个精彩的瞬间，用声音缅怀那些曾经的青涩，用视频见证我们共同的欢笑。我准备好了，你呢";
-        BBText *bbcontent = [BBText BBContentWithBContent:bcontent];
+        BB_BBText *bbcontent = [BB_BBText BBContentWithBContent:bcontent];
         bbcontent.create_date = [NSDate getNoteBirthDay];
         bbcontent.modify_date = [NSDate getNoteBirthDay];
         [bbcontent save];
@@ -165,7 +165,7 @@
                 UIImage *img = [UIImage imageNamed:strPath];
 //                UIImage *smlImg = [img imageAutoScale];
                 BBINFO(@"%@", strPath);
-                BBImage *bbimg = [BBImage create];
+                BB_BBImage *bbimg = [BB_BBImage create];
                 bbimg.create_date = [NSDate getNoteBirthDay];
                 bbimg.width = [NSNumber numberWithFloat:img.size.width];
                 bbimg.height = [NSNumber numberWithFloat:img.size.height];
@@ -188,7 +188,7 @@
         {
             NSString *strPath = [[FileManagerController resourcesPath] stringByAppendingPathComponent:@"Relax.caf"];
             NSData *data = [NSData dataWithContentsOfFile:strPath];
-            BBAudio *audio = [BBAudio create];
+            BB_BBAudio *audio = [BB_BBAudio create];
             audio.record = bbrecord;
             audio.create_date = [NSDate getNoteBirthDay];
             audio.key = [NSString generateKey];
@@ -205,7 +205,7 @@
             UIImage *img = [BBMisc createImageForBigWeibo:bbrecord];
             NSData *data = UIImageJPEGRepresentation(img, 0.8);
             BImage *bimg = [BBMisc saveAssetImageToSand:data smlImag:nil path:strFloder isContent:YES];
-            BBImage *bbimage = [BBImage BBImageWithBImage:bimg];
+            BB_BBImage *bbimage = [BB_BBImage BBImageWithBImage:bimg];
             
             bbimage.record = bbrecord;
             [bbimage save];
@@ -230,12 +230,12 @@
 {
     BOOL bShouldReload = NO;
     
-    NSArray *array = [BBRecord where:nil startFrom:iStartIndex_ limit:iLimit_ sortby:@"create_date^0"];
+    NSArray *array = [BB_BBRecord where:nil startFrom:iStartIndex_ limit:iLimit_ sortby:@"create_date^0"];
     //BBINFO(@"1111 %@", self.datalistArray);
     if(array.count > 0)
     {
         for (id record  in array) {
-            BBRecord *bbrecord = (BBRecord *)record;
+            BB_BBRecord *bbrecord = (BB_BBRecord *)record;
             //BBINFO(@"%@, ----%@", bbrecord, bbrecord.create_date);
            [self.datalistArray addObject:bbrecord];
         }

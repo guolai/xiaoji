@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class BBRecord;
+@class BB_BBRecord;
 @class BAudio;
-@interface BBAudio : NSManagedObject
+@interface BB_BBAudio : NSManagedObject
 
 @property (nonatomic, retain) NSDate * create_date;
 @property (nonatomic, retain) NSString * data_path;
@@ -20,8 +20,8 @@
 @property (nonatomic, retain) NSNumber * size;
 @property (nonatomic, retain) NSNumber * times;
 @property (nonatomic, retain) NSString * update;
-@property (nonatomic, retain) BBRecord *record;
+@property (nonatomic, retain) BB_BBRecord *record;
 
-+ (BBAudio *)BBAudioWithBAudio:(BAudio *)baudio;
++ (BB_BBAudio *)BBAudioWithBAudio:(BAudio *)baudio;
 - (NSDictionary *)covertDictionary;
 @end

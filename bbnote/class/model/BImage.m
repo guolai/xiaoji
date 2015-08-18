@@ -7,7 +7,7 @@
 //
 
 #import "BImage.h"
-#import "BBImage.h"
+#import "BB_BBImage.h"
 #import "NSString+UUID.h"
 
 @implementation BImage
@@ -61,7 +61,7 @@
     return self;
 }
 
-- (instancetype)initWithBBImage:(BBImage *)bbimage
+- (instancetype)initWithBBImage:(BB_BBImage *)bbimage
 {
     if (self = [super init]) {
         self.create_date = bbimage.create_date;

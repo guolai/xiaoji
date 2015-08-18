@@ -12,7 +12,7 @@
 #import "BBUserDefault.h"
 #import "FileManagerController.h"
 #import "BBNavigationViewController.h"
-#import "BBImage.h"
+#import "BB_BBImage.h"
 #import "DataModel.h"
 #import "SmartObject.h"
 

@@ -6,12 +6,12 @@
 //  Copyright (c) 2013年 bob. All rights reserved.
 //
 
-#import "BBImage.h"
-#import "BBRecord.h"
+#import "BB_BBImage.h"
+#import "BB_BBRecord.h"
 #import "BImage.h"
 #import "NSString+UUID.h"
 
-@implementation BBImage
+@implementation BB_BBImage
 
 @dynamic create_date;
 @dynamic data_path;
@@ -27,17 +27,17 @@
 @dynamic width;
 @dynamic record;
 
-+(BBImage *)BBImageWithBImage:(BImage *)bimg
++(BB_BBImage *)BBImageWithBImage:(BImage *)bimg
 {
-    BBImage *bbimage = nil;
-    NSArray *array = [BBImage whereFormat:@"key == '%@'", bimg.key];
+    BB_BBImage *bbimage = nil;
+    NSArray *array = [BB_BBImage whereFormat:@"key == '%@'", bimg.key];
     if(array && array.count > 0)
     {
         bbimage = array.first;
     }
     else
     {
-        bbimage = [BBImage create];
+        bbimage = [BB_BBImage create];
     }
     bbimage.create_date = bimg.create_date;
     bbimage.data_path = bimg.data_path;

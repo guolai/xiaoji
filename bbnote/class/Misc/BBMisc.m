@@ -208,7 +208,7 @@
     return CGRectMake(fx, fY, fW, fH);
 }
 
-+(void)drawText:(BBText *)content Incontext:(CGContextRef)context withRect:(CGRect)rct scale:(float)fScale
++(void)drawText:(BB_BBText *)content Incontext:(CGContextRef)context withRect:(CGRect)rct scale:(float)fScale
 {
     NoteSetting *noteset = [[DataManager ShareInstance] noteSetting];
     CGContextSaveGState(context);
@@ -238,7 +238,7 @@
     CGContextRestoreGState(context);
 }
 
-+(void)drawTitle:(BBRecord *)record Incontext:(CGContextRef)context withRect:(CGRect)rct scale:(float)fScale
++(void)drawTitle:(BB_BBRecord *)record Incontext:(CGContextRef)context withRect:(CGRect)rct scale:(float)fScale
 {
     int iWeekWidth_ = 120 * fScale;
     float iHeight = rct.size.height * 0.5;
@@ -327,10 +327,10 @@
     CGContextRestoreGState(context);
 }
 
-+ (UIImage *)createImageForBigWeibo:(BBRecord *)record
++ (UIImage *)createImageForBigWeibo:(BB_BBRecord *)record
 {
     NoteSetting *noteset = [[DataManager ShareInstance] noteSetting];
-    BBText *bbcontent = record.contentInRecord;
+    BB_BBText *bbcontent = record.contentInRecord;
     if(ISEMPTY(bbcontent.text))
     {
 //        assert(false);
@@ -469,7 +469,7 @@
     [FileManagerController removeFile:bimg.data_path];
 //    [FileManagerController removeFile:bimg.data_small_path];
 }
-+ (void)deleteRecordFileOfCoredata:(BBRecord *)brecord
++ (void)deleteRecordFileOfCoredata:(BB_BBRecord *)brecord
 {
     //    if(brecord.reserve1 && [brecord.reserve1 isEqualToString:@"YES"])
     //    {
@@ -477,7 +477,7 @@
     //    }
     //    else
     //    {
-    for (BBImage *bbimg in [brecord.imageInRecord allObjects]) {
+    for (BB_BBImage *bbimg in [brecord.imageInRecord allObjects]) {
         [self deleteImageFileOfCoredata:bbimg];
     }
     

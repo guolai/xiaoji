@@ -310,7 +310,7 @@
     
 }
 
-- (void)setBrecord:(BBRecord *)brecord
+- (void)setBrecord:(BB_BBRecord *)brecord
 {
     if(_brecord != brecord)
     {
@@ -410,7 +410,7 @@
     }
 }
 
-- (void)setBcontent:(BBText *)bcontent
+- (void)setBcontent:(BB_BBText *)bcontent
 {
     if(_bcontent != bcontent)
     {

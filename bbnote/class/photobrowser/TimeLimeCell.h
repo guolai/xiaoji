@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BBRecord.h"
+#import "BB_BBRecord.h"
 #import "SmartObject.h"
 #define TIMELINE_SELECT_RECT CGRectMake(0, 0, 137, 155)
 #define TIMELINE_IMAGE_HEIGHT  103

@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 
 
-@class BBVideo;
+@class BB_BBVideo;
 @interface BVideo : NSObject<NSCoding>
 
 @property (nonatomic, retain) NSDate * create_date;
@@ -20,5 +20,5 @@
 @property (nonatomic, retain) NSString * update;
 @property (nonatomic, retain) NSNumber * openupload;
 @property (nonatomic, strong) NSString * key;
-- (instancetype)initWithBBVideo:(BBVideo *)bbvideo;
+- (instancetype)initWithBBVideo:(BB_BBVideo *)bbvideo;
 @end

@@ -8,7 +8,7 @@
 
 #import "BRecord.h"
 #import "NSString+UUID.h"
-#import "BBRecord.h"
+#import "BB_BBRecord.h"
 
 @implementation BRecord
 
@@ -89,7 +89,7 @@
     return self;
 }
 
-- (instancetype)initWithBBrecord:(BBRecord *)bbrecord
+- (instancetype)initWithBBrecord:(BB_BBRecord *)bbrecord
 {
     if(self = [super init])
     {

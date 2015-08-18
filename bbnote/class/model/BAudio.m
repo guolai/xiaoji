@@ -7,7 +7,7 @@
 //
 
 #import "BAudio.h"
-#import "BBAudio.h"
+#import "BB_BBAudio.h"
 #import "NSString+UUID.h"
 
 @implementation BAudio
@@ -46,7 +46,7 @@
     return self;
 }
 
-- (instancetype)initWithBBAudio:(BBAudio *)bbaudio
+- (instancetype)initWithBBAudio:(BB_BBAudio *)bbaudio
 {
     if(self = [super init])
     {

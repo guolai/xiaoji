@@ -7,7 +7,7 @@
 //
 
 #import "BBTitleView.h"
-#import "BBAudio.h"
+#import "BB_BBAudio.h"
 #import "BBPlayer.h"
 #import "BBSkin.h"
 #import "BBUserDefault.h"
@@ -91,10 +91,10 @@
     return self;
 }
 
-- (void)setrecord:(BBRecord *)record
+- (void)setrecord:(BB_BBRecord *)record
 {
 
-    NSString *strMood = [BBRecord getRecordMoodStr:record];
+    NSString *strMood = [BB_BBRecord getRecordMoodStr:record];
     [self setMood:strMood andCount:[record.mood_count integerValue]];
     [self setLocation:record.location];
     [self setShareType:[record.shared_type unsignedIntegerValue]];
@@ -105,7 +105,7 @@
     {
         imgviewPlayState_.hidden = NO;
         lblTimes_.hidden = NO;
-        BBAudio *audio = [self.mulArray objectAtIndex:0];
+        BB_BBAudio *audio = [self.mulArray objectAtIndex:0];
         int iValue = [audio.times integerValue];
         [self setPlayTimes:iValue];
         [[BBPlayer ShareInstance] setPlayList:self.mulArray];

@@ -89,7 +89,12 @@
 
 + (id)createInContext:(NSManagedObjectContext *)context {
     
-    return [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(self)
+    NSString *strClass = NSStringFromClass(self);
+    if([strClass hasPrefix:@"BB_"])
+    {
+        strClass = [strClass substringFromIndex:3];
+    }
+    return [NSEntityDescription insertNewObjectForEntityForName:strClass
                                          inManagedObjectContext:context];
 }
 
@@ -142,8 +147,13 @@
 
 + (NSFetchRequest *)createFetchRequestInContext:(NSManagedObjectContext *)context {
     
+    NSString *strClass = NSStringFromClass(self);
+    if([strClass hasPrefix:@"BB_"])
+    {
+        strClass = [strClass substringFromIndex:3];
+    }
     NSFetchRequest *request = [NSFetchRequest new];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:NSStringFromClass(self)
+    NSEntityDescription *entity = [NSEntityDescription entityForName:strClass
                                               inManagedObjectContext:context];
     [request setEntity:entity];
     return request;

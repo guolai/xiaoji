@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		180900001AF923EB00F8A0C8 /* BAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FEB41AF923EA00F8A0C8 /* BAudio.m */; };
-		180900011AF923EB00F8A0C8 /* BBAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FEB61AF923EA00F8A0C8 /* BBAudio.m */; };
-		180900021AF923EB00F8A0C8 /* BBContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FEB81AF923EA00F8A0C8 /* BBContent.m */; };
-		180900031AF923EB00F8A0C8 /* BBImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FEBA1AF923EA00F8A0C8 /* BBImage.m */; };
+		180900011AF923EB00F8A0C8 /* BB_BBAudio.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FEB61AF923EA00F8A0C8 /* BB_BBAudio.m */; };
+		180900021AF923EB00F8A0C8 /* BB_BBContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FEB81AF923EA00F8A0C8 /* BB_BBContent.m */; };
+		180900031AF923EB00F8A0C8 /* BB_BBImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FEBA1AF923EA00F8A0C8 /* BB_BBImage.m */; };
 		180900041AF923EB00F8A0C8 /* bbnote.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1809FEBB1AF923EA00F8A0C8 /* bbnote.xcdatamodeld */; };
-		180900051AF923EB00F8A0C8 /* BBRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FEBE1AF923EA00F8A0C8 /* BBRecord.m */; };
-		180900061AF923EB00F8A0C8 /* BBVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FEC01AF923EA00F8A0C8 /* BBVideo.m */; };
+		180900051AF923EB00F8A0C8 /* BB_BBRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FEBE1AF923EA00F8A0C8 /* BB_BBRecord.m */; };
+		180900061AF923EB00F8A0C8 /* BB_BBVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FEC01AF923EA00F8A0C8 /* BB_BBVideo.m */; };
 		180900071AF923EB00F8A0C8 /* BContent.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FEC21AF923EA00F8A0C8 /* BContent.m */; };
 		180900081AF923EB00F8A0C8 /* BImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FEC41AF923EA00F8A0C8 /* BImage.m */; };
 		180900091AF923EB00F8A0C8 /* BRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FEC61AF923EA00F8A0C8 /* BRecord.m */; };
@@ -877,17 +877,17 @@
 		1809FEB11AF923EA00F8A0C8 /* FileManagerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileManagerController.m; sourceTree = "<group>"; };
 		1809FEB31AF923EA00F8A0C8 /* BAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BAudio.h; sourceTree = "<group>"; };
 		1809FEB41AF923EA00F8A0C8 /* BAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BAudio.m; sourceTree = "<group>"; };
-		1809FEB51AF923EA00F8A0C8 /* BBAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAudio.h; sourceTree = "<group>"; };
-		1809FEB61AF923EA00F8A0C8 /* BBAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAudio.m; sourceTree = "<group>"; };
-		1809FEB71AF923EA00F8A0C8 /* BBContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBContent.h; sourceTree = "<group>"; };
-		1809FEB81AF923EA00F8A0C8 /* BBContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBContent.m; sourceTree = "<group>"; };
-		1809FEB91AF923EA00F8A0C8 /* BBImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBImage.h; sourceTree = "<group>"; };
-		1809FEBA1AF923EA00F8A0C8 /* BBImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBImage.m; sourceTree = "<group>"; };
+		1809FEB51AF923EA00F8A0C8 /* BB_BBAudio.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BB_BBAudio.h; sourceTree = "<group>"; };
+		1809FEB61AF923EA00F8A0C8 /* BB_BBAudio.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BB_BBAudio.m; sourceTree = "<group>"; };
+		1809FEB71AF923EA00F8A0C8 /* BB_BBContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BB_BBContent.h; sourceTree = "<group>"; };
+		1809FEB81AF923EA00F8A0C8 /* BB_BBContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BB_BBContent.m; sourceTree = "<group>"; };
+		1809FEB91AF923EA00F8A0C8 /* BB_BBImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BB_BBImage.h; sourceTree = "<group>"; };
+		1809FEBA1AF923EA00F8A0C8 /* BB_BBImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BB_BBImage.m; sourceTree = "<group>"; };
 		1809FEBC1AF923EA00F8A0C8 /* bbnote.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = bbnote.xcdatamodel; sourceTree = "<group>"; };
-		1809FEBD1AF923EA00F8A0C8 /* BBRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBRecord.h; sourceTree = "<group>"; };
-		1809FEBE1AF923EA00F8A0C8 /* BBRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBRecord.m; sourceTree = "<group>"; };
-		1809FEBF1AF923EA00F8A0C8 /* BBVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBVideo.h; sourceTree = "<group>"; };
-		1809FEC01AF923EA00F8A0C8 /* BBVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBVideo.m; sourceTree = "<group>"; };
+		1809FEBD1AF923EA00F8A0C8 /* BB_BBRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BB_BBRecord.h; sourceTree = "<group>"; };
+		1809FEBE1AF923EA00F8A0C8 /* BB_BBRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BB_BBRecord.m; sourceTree = "<group>"; };
+		1809FEBF1AF923EA00F8A0C8 /* BB_BBVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BB_BBVideo.h; sourceTree = "<group>"; };
+		1809FEC01AF923EA00F8A0C8 /* BB_BBVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BB_BBVideo.m; sourceTree = "<group>"; };
 		1809FEC11AF923EA00F8A0C8 /* BContent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BContent.h; sourceTree = "<group>"; };
 		1809FEC21AF923EA00F8A0C8 /* BContent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BContent.m; sourceTree = "<group>"; };
 		1809FEC31AF923EA00F8A0C8 /* BImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BImage.h; sourceTree = "<group>"; };
@@ -1829,17 +1829,17 @@
 			children = (
 				1809FEB31AF923EA00F8A0C8 /* BAudio.h */,
 				1809FEB41AF923EA00F8A0C8 /* BAudio.m */,
-				1809FEB51AF923EA00F8A0C8 /* BBAudio.h */,
-				1809FEB61AF923EA00F8A0C8 /* BBAudio.m */,
-				1809FEB71AF923EA00F8A0C8 /* BBContent.h */,
-				1809FEB81AF923EA00F8A0C8 /* BBContent.m */,
-				1809FEB91AF923EA00F8A0C8 /* BBImage.h */,
-				1809FEBA1AF923EA00F8A0C8 /* BBImage.m */,
+				1809FEB51AF923EA00F8A0C8 /* BB_BBAudio.h */,
+				1809FEB61AF923EA00F8A0C8 /* BB_BBAudio.m */,
+				1809FEB71AF923EA00F8A0C8 /* BB_BBContent.h */,
+				1809FEB81AF923EA00F8A0C8 /* BB_BBContent.m */,
+				1809FEB91AF923EA00F8A0C8 /* BB_BBImage.h */,
+				1809FEBA1AF923EA00F8A0C8 /* BB_BBImage.m */,
 				1809FEBB1AF923EA00F8A0C8 /* bbnote.xcdatamodeld */,
-				1809FEBD1AF923EA00F8A0C8 /* BBRecord.h */,
-				1809FEBE1AF923EA00F8A0C8 /* BBRecord.m */,
-				1809FEBF1AF923EA00F8A0C8 /* BBVideo.h */,
-				1809FEC01AF923EA00F8A0C8 /* BBVideo.m */,
+				1809FEBD1AF923EA00F8A0C8 /* BB_BBRecord.h */,
+				1809FEBE1AF923EA00F8A0C8 /* BB_BBRecord.m */,
+				1809FEBF1AF923EA00F8A0C8 /* BB_BBVideo.h */,
+				1809FEC01AF923EA00F8A0C8 /* BB_BBVideo.m */,
 				1809FEC11AF923EA00F8A0C8 /* BContent.h */,
 				1809FEC21AF923EA00F8A0C8 /* BContent.m */,
 				1809FEC31AF923EA00F8A0C8 /* BImage.h */,
@@ -2779,7 +2779,7 @@
 				1809FFED1AF923EB00F8A0C8 /* NSString+Help.m in Sources */,
 				1809006F1AF923EB00F8A0C8 /* LockViewController.m in Sources */,
 				1809FFEB1AF923EB00F8A0C8 /* NSDate+String.m in Sources */,
-				180900011AF923EB00F8A0C8 /* BBAudio.m in Sources */,
+				180900011AF923EB00F8A0C8 /* BB_BBAudio.m in Sources */,
 				180900431AF923EB00F8A0C8 /* ENLinkNotebookRequest.m in Sources */,
 				180900771AF923EB00F8A0C8 /* TextViewController.m in Sources */,
 				180900661AF923EB00F8A0C8 /* FontImge.m in Sources */,
@@ -2787,11 +2787,11 @@
 				180900551AF923EB00F8A0C8 /* ENAPI.m in Sources */,
 				1809003E1AF923EB00F8A0C8 /* EvernoteSession.m in Sources */,
 				1809FFE91AF923EB00F8A0C8 /* BSKeyboardControls.m in Sources */,
-				180900051AF923EB00F8A0C8 /* BBRecord.m in Sources */,
+				180900051AF923EB00F8A0C8 /* BB_BBRecord.m in Sources */,
 				1809000B1AF923EB00F8A0C8 /* DataModel.m in Sources */,
 				1809FE231AF91B9200F8A0C8 /* main.m in Sources */,
 				180900341AF923EB00F8A0C8 /* EDAMErrors.m in Sources */,
-				180900031AF923EB00F8A0C8 /* BBImage.m in Sources */,
+				180900031AF923EB00F8A0C8 /* BB_BBImage.m in Sources */,
 				1809FFE51AF923EB00F8A0C8 /* NSObject+AssociativeObject.m in Sources */,
 				180900071AF923EB00F8A0C8 /* BContent.m in Sources */,
 				1809001A1AF923EB00F8A0C8 /* SmartObject.m in Sources */,
@@ -2802,7 +2802,7 @@
 				1809001D1AF923EB00F8A0C8 /* ENGCOAuth.m in Sources */,
 				1809001F1AF923EB00F8A0C8 /* NSData+ENBase64.m in Sources */,
 				180900711AF923EB00F8A0C8 /* AudiosBtnView.m in Sources */,
-				180900061AF923EB00F8A0C8 /* BBVideo.m in Sources */,
+				180900061AF923EB00F8A0C8 /* BB_BBVideo.m in Sources */,
 				180900871AF923EB00F8A0C8 /* HomeCell.m in Sources */,
 				1809FFE41AF923EB00F8A0C8 /* BBSwipeNavigationController.m in Sources */,
 				1809005B1AF923EB00F8A0C8 /* ENEncryptedContentInfo.m in Sources */,
@@ -2824,7 +2824,7 @@
 				1809FFFD1AF923EB00F8A0C8 /* BBMisc.m in Sources */,
 				180900201AF923EB00F8A0C8 /* KSForwardingWriter.m in Sources */,
 				1809FFFF1AF923EB00F8A0C8 /* FileManagerController.m in Sources */,
-				180900021AF923EB00F8A0C8 /* BBContent.m in Sources */,
+				180900021AF923EB00F8A0C8 /* BB_BBContent.m in Sources */,
 				1809FFF11AF923EB00F8A0C8 /* UIImage+SCaleImage.m in Sources */,
 				1809006A1AF923EB00F8A0C8 /* AboutMeViewController.m in Sources */,
 				180900751AF923EB00F8A0C8 /* ImagesBtnView.m in Sources */,

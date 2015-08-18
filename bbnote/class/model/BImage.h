@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class BBImage;
+@class BB_BBImage;
 @interface BImage : NSObject<NSCoding>
 
 @property (nonatomic, retain) NSDate * create_date;
@@ -25,5 +25,5 @@
 @property (nonatomic, retain) NSNumber * openupload;
 @property (nonatomic, strong) NSString * key;
 
-- (instancetype)initWithBBImage:(BBImage *)bbimage;
+- (instancetype)initWithBBImage:(BB_BBImage *)bbimage;
 @end

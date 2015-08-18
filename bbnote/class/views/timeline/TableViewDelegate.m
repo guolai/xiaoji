@@ -9,8 +9,8 @@
 #import "TableViewDelegate.h"
 #import "Constant.h"
 #import "HomeCell.h"
-#import "BBRecord.h"
-#import "BBContent.h"
+#import "BB_BBRecord.h"
+#import "BB_BBContent.h"
 #import "UIImage+SCaleImage.h"
 #import "FileManagerController.h"
 #import "BBMisc.h"
@@ -48,10 +48,10 @@
     }
     if(indexPath.row == 0)
         return fHeader_;
-    BBRecord *bbrecord = [self.arrayDataList objectAtIndex:indexPath.row - 1];
+    BB_BBRecord *bbrecord = [self.arrayDataList objectAtIndex:indexPath.row - 1];
     NSArray *arrimages = [DataModel BBimageArrayGetImagelist:[[bbrecord imageInRecord] allObjects]];
   
-    BBText *bbcontent = bbrecord.contentInRecord;
+    BB_BBText *bbcontent = bbrecord.contentInRecord;
     float fTop = CELL_TOP_SPACE;
     if(arrimages.count > 0)
     {
@@ -249,7 +249,7 @@
         cell = [[HomeCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
         [cell setBackgroundColor:[UIColor clearColor]];
     }
-    BBRecord *bbrecord = [self.arrayDataList objectAtIndex:indexPath.row - 1];
+    BB_BBRecord *bbrecord = [self.arrayDataList objectAtIndex:indexPath.row - 1];
     cell.brecord = bbrecord;
     cell.arrayAudios = [[bbrecord audioInRecord] allObjects];
     cell.arrayImages = [DataModel BBimageArrayGetImagelist:[[bbrecord imageInRecord] allObjects]];

@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class BBAudio;
+@class BB_BBAudio;
 @interface BAudio : NSObject<NSCoding>
 
 @property (nonatomic, retain) NSDate * create_date;
@@ -20,5 +20,5 @@
 @property (nonatomic, retain) NSNumber * openupload;
 @property (nonatomic, strong) NSString * key;
 
-- (instancetype)initWithBBAudio:(BBAudio *)bbaudio;
+- (instancetype)initWithBBAudio:(BB_BBAudio *)bbaudio;
 @end

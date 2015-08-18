@@ -16,7 +16,7 @@
 #import "BBViewController.h"
 #import "TileView.h"
 
-@class BBRecord;
+@class BB_BBRecord;
 @interface TextViewController : BBViewController<UIScrollViewDelegate, BBDateViewDelegate,UIActionSheetDelegate,CLLocationManagerDelegate>
 {
     NSString *strBackTitle_;
@@ -37,7 +37,7 @@
 - (void)backButtonPressed:(id)sender;
 - (instancetype)initWithNewNote;
 - (void)createNewRecord;
-- (instancetype)initWithNote:(BBRecord *)bbrecord;
-- (BBRecord *)saveNoteData;
+- (instancetype)initWithNote:(BB_BBRecord *)bbrecord;
+- (BB_BBRecord *)saveNoteData;
 - (NSString *)getNotePath;
 @end

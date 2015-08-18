@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class BBRecord;
+@class BB_BBRecord;
 @class BContent;
 //@interface BBContent : NSManagedObject
 //
@@ -26,7 +26,7 @@
 //+ (BBContent *)BBContentWithBContent:(BContent *)bContent;
 //@end
 
-@interface BBText : NSManagedObject
+@interface BB_BBText : NSManagedObject
 
 @property (nonatomic, retain) NSDate * create_date;
 @property (nonatomic, retain) NSString * font;
@@ -34,9 +34,9 @@
 @property (nonatomic, retain) NSDate * modify_date;
 @property (nonatomic, retain) NSString * text;
 @property (nonatomic, retain) NSString * text_color;
-@property (nonatomic, retain) BBRecord *record;
+@property (nonatomic, retain) BB_BBRecord *record;
 
 - (void)updateWithBContent:(BContent *)bcontent;
-+ (BBText *)BBContentWithBContent:(BContent *)bContent;
++ (BB_BBText *)BBContentWithBContent:(BContent *)bContent;
 - (NSDictionary *)covertDictionary;
 @end

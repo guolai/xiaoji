@@ -10,11 +10,11 @@
 #import <CoreAudio/CoreAudioTypes.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "BBAssetPickerNavigationViewController.h"
-#import "BBImage.h"
-#import "BBRecord.h"
-#import "BBAudio.h"
-#import "BBVideo.h"
-#import "BBContent.h"
+#import "BB_BBImage.h"
+#import "BB_BBRecord.h"
+#import "BB_BBAudio.h"
+#import "BB_BBVideo.h"
+#import "BB_BBContent.h"
 #import "BBMisc.h"
 #import "BBUserDefault.h"
 #import "FileManagerController.h"
@@ -116,7 +116,7 @@
     
 }
 
-- (instancetype)initWithNote:(BBRecord *)bbrecord
+- (instancetype)initWithNote:(BB_BBRecord *)bbrecord
 {
     if(self = [super init])
     {
@@ -126,11 +126,11 @@
         arrayBtnViewVideo_ = [[NSMutableArray alloc] initWithCapacity:4];
         arrayBtnViewAudio_ = [[NSMutableArray alloc] initWithCapacity:4];
         
-        BBText *bbtext = bbrecord.contentInRecord;
+        BB_BBText *bbtext = bbrecord.contentInRecord;
         self.bRecord = [[BRecord alloc] initWithBBrecord:bbrecord];
         self.bContent = [[BContent alloc] initWithBBText:bbtext];
         NSArray *array = [bbrecord.imageInRecord allObjects];
-        for (BBImage *bbimg in array) {
+        for (BB_BBImage *bbimg in array) {
             if([bbimg.iscontent boolValue] && bbimg.data_path)
             {
                 NSString *strPath = [[self getNotePath] stringByAppendingPathComponent:bbimg.data_path];
@@ -144,14 +144,14 @@
             [bbimg delete];
         }
         array = [bbrecord.audioInRecord allObjects];
-        for (BBAudio *bbaudio in array) {
+        for (BB_BBAudio *bbaudio in array) {
             BAudio *baudio = [[BAudio alloc] initWithBBAudio:bbaudio];
             [arrayAudio_ addObject:baudio];
             [bbaudio delete];
         }
         
         array = [bbrecord.videoInRecord allObjects];
-        for (BBVideo *bbvideo in array) {
+        for (BB_BBVideo *bbvideo in array) {
             BVideo *bvideo = [[BVideo alloc] initWithBBVideo:bbvideo];
             [arrayVideo_ addObject:bvideo];
             [bbvideo delete];
@@ -230,20 +230,20 @@
 
 
 #pragma mark ---event
-- (BBRecord *)saveNoteData
+- (BB_BBRecord *)saveNoteData
 {
-    BBRecord *bbRecord = [super saveNoteData];
+    BB_BBRecord *bbRecord = [super saveNoteData];
     for (BAudio *bAud in arrayAudio_)
     {
-        BBAudio *bbAudio = [BBAudio BBAudioWithBAudio:bAud];
+        BB_BBAudio *bbAudio = [BB_BBAudio BBAudioWithBAudio:bAud];
         bbAudio.record = bbRecord;
     }
     for (BImage *bimg in arrayImage_) {
-        BBImage *bbimage = [BBImage BBImageWithBImage:bimg];
+        BB_BBImage *bbimage = [BB_BBImage BBImageWithBImage:bimg];
         bbimage.record = bbRecord;
     }
     for (BVideo *bvideo in arrayVideo_) {
-        BBVideo *bbvideo = [BBVideo BBVideoWithBVideo:bvideo];
+        BB_BBVideo *bbvideo = [BB_BBVideo BBVideoWithBVideo:bvideo];
         bbvideo.record = bbRecord;
     }
     [bbRecord save];

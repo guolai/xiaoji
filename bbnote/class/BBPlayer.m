@@ -7,7 +7,7 @@
 //
 
 #import "BBPlayer.h"
-#import "BBAudio.h"
+#import "BB_BBAudio.h"
 
 @interface BBPlayer()
 {
@@ -95,7 +95,7 @@ static BBPlayer *bbPlayer;
 
 - (NSString *)getStrUrl
 {
-    BBAudio *audio = [self.arryLst objectAtIndex:iCurIndex_];
+    BB_BBAudio *audio = [self.arryLst objectAtIndex:iCurIndex_];
     return audio.data_path;
 }
 

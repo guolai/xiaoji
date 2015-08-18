@@ -6,12 +6,12 @@
 //  Copyright (c) 2013年 bob. All rights reserved.
 //
 
-#import "BBAudio.h"
-#import "BBRecord.h"
+#import "BB_BBAudio.h"
+#import "BB_BBRecord.h"
 #import "BAudio.h"
 #import "NSString+UUID.h"
 
-@implementation BBAudio
+@implementation BB_BBAudio
 
 @dynamic create_date;
 @dynamic data_path;
@@ -22,17 +22,17 @@
 @dynamic update;
 @dynamic record;
 
-+ (BBAudio *)BBAudioWithBAudio:(BAudio *)baudio
++ (BB_BBAudio *)BBAudioWithBAudio:(BAudio *)baudio
 {
-    BBAudio *bbaudio = nil;
-    NSArray *array = [BBAudio whereFormat:@"key == '%@'", baudio.key];
+    BB_BBAudio *bbaudio = nil;
+    NSArray *array = [BB_BBAudio whereFormat:@"key == '%@'", baudio.key];
     if(array && array.count > 0)
     {
         bbaudio = array.first;
     }
     else
     {
-        bbaudio = [BBAudio create];
+        bbaudio = [BB_BBAudio create];
     }
     
     bbaudio.create_date = baudio.create_date;

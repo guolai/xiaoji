@@ -10,8 +10,8 @@
 #import "KTPhotoView.h"
 #import "Constant.h"
 #import "UIViewController+BackButton.h"
-#import "BBImage.h"
-#import "BBRecord.h"
+#import "BB_BBImage.h"
+#import "BB_BBRecord.h"
 #import "NSNumber+Sort.h"
 #import "NSDate+String.h"
 #import "BBUserDefault.h"
@@ -90,11 +90,11 @@ const CGFloat ktkDefaultToolbarHeight = 40 + 24;
 //           for (BBRecord *bbrecord in array_)
            for (int i = 0; i < array_.count;)
            {
-               BBRecord *bbrecord = [array_ objectAtIndex:i];
+               BB_BBRecord *bbrecord = [array_ objectAtIndex:i];
                NSArray *arrayImg = [bbrecord.imageInRecord allObjects];
                if(arrayImg.count < 1)
                {
-                   BBText *bbtext = bbrecord.contentInRecord;
+                   BB_BBText *bbtext = bbrecord.contentInRecord;
                    BBINFO(@"%@", bbtext);
                    BBINFO(@"%@", bbtext.text);
                    [array_ removeObjectAtIndex:i];
@@ -107,18 +107,18 @@ const CGFloat ktkDefaultToolbarHeight = 40 + 24;
                photoCount_ += arrayImg.count;
            }
            for (int i = 0;  i < index; i++) {
-               BBRecord *rcd = [array_ objectAtIndex:i];
+               BB_BBRecord *rcd = [array_ objectAtIndex:i];
                NSArray *arimg = [rcd.imageInRecord allObjects];
                iTotalIndex += arimg.count;
            }
            curRecord_.iTotalIndex = iTotalIndex;
            curRecord_.index = index;
-           BBRecord *record = [array_ objectAtIndex:index];           
+           BB_BBRecord *record = [array_ objectAtIndex:index];
            curRecord_.arrayData = [self getImgArrayatIndex:index];
            curRecord_.iMoodCount = [record.mood_count intValue];
            curRecord_.date = record.create_date;
            curRecord_.strUUid = record.key;
-           curRecord_.strMood = [BBRecord getRecordMoodStr:record];
+           curRecord_.strMood = [BB_BBRecord getRecordMoodStr:record];
            curRecord_.iArrayIndex = 0;
            curRecord_.iTotalCout = curRecord_.arrayData.count;
        }
@@ -169,7 +169,7 @@ const CGFloat ktkDefaultToolbarHeight = 40 + 24;
                                 ktkDefaultToolbarHeight);
     toolbar_ = [[BBTitleView alloc] initWithFrame:toolbarFrame];
     [[self view] addSubview:toolbar_];
-    BBRecord *record = [array_ objectAtIndex:curRecord_.index];
+    BB_BBRecord *record = [array_ objectAtIndex:curRecord_.index];
     [toolbar_ setrecord:record];
 
 }
@@ -178,11 +178,11 @@ const CGFloat ktkDefaultToolbarHeight = 40 + 24;
 
 - (NSMutableArray *)getImgArrayatIndex:(int)index
 {
-    BBRecord *record = [array_ objectAtIndex:index];
+    BB_BBRecord *record = [array_ objectAtIndex:index];
     NSMutableArray *arryImg = [NSMutableArray arrayWithArray:[record.imageInRecord allObjects]];
     [arryImg sortedArrayUsingFunction:compareImages context:nil];
     NSMutableArray *tmpArray = [NSMutableArray arrayWithCapacity:arryImg.count];
-    for (BBImage *img  in arryImg) {
+    for (BB_BBImage *img  in arryImg) {
        
         if([img.iscontent boolValue])
         {
@@ -214,24 +214,24 @@ const CGFloat ktkDefaultToolbarHeight = 40 + 24;
             return strImg;
         priRecord_.index = curRecord_.index - 1;
         priRecord_.arrayData = [self getImgArrayatIndex:priRecord_.index];
-        BBRecord *record = [array_ objectAtIndex:priRecord_.index];
+        BB_BBRecord *record = [array_ objectAtIndex:priRecord_.index];
         priRecord_.iMoodCount = [record.mood_count intValue];
         priRecord_.date = record.create_date;
         priRecord_.strUUid = record.key;
-        priRecord_.strMood = [BBRecord getRecordMoodStr:record];
+        priRecord_.strMood = [BB_BBRecord getRecordMoodStr:record];
         priRecord_.iTotalCout = priRecord_.arrayData.count;
         priRecord_.iTotalIndex = curRecord_.iTotalIndex - priRecord_.iTotalCout;
         priRecord_.iArrayIndex = priRecord_.iTotalCout - 1;
-        BBImage *imge = [priRecord_.arrayData objectAtIndex:priRecord_.iArrayIndex];
+        BB_BBImage *imge = [priRecord_.arrayData objectAtIndex:priRecord_.iArrayIndex];
         strImg = imge.data_path;
         NSString *strFolder = [DataModel getNotePath:record];
         strImg = [strFolder stringByAppendingPathComponent:strImg];
     }
     else
     {
-        BBImage *imge = [curRecord_.arrayData objectAtIndex:iIndex];
+        BB_BBImage *imge = [curRecord_.arrayData objectAtIndex:iIndex];
         strImg = imge.data_path;
-        BBRecord *record = [array_ objectAtIndex:curRecord_.index];
+        BB_BBRecord *record = [array_ objectAtIndex:curRecord_.index];
         NSString *strFolder = [DataModel getNotePath:record];
         strImg = [strFolder stringByAppendingPathComponent:strImg];
     }
@@ -241,9 +241,9 @@ const CGFloat ktkDefaultToolbarHeight = 40 + 24;
 - (NSString *)getCurImage
 {
     NSString *strImg = nil;
-    BBImage *imge = [curRecord_.arrayData objectAtIndex:curRecord_.iArrayIndex];
+    BB_BBImage *imge = [curRecord_.arrayData objectAtIndex:curRecord_.iArrayIndex];
     strImg = imge.data_path;
-    BBRecord *record = [array_ objectAtIndex:curRecord_.index];
+    BB_BBRecord *record = [array_ objectAtIndex:curRecord_.index];
     NSString *strFolder = [DataModel getNotePath:record];
     strImg = [strFolder stringByAppendingPathComponent:strImg];
     return strImg;
@@ -259,15 +259,15 @@ const CGFloat ktkDefaultToolbarHeight = 40 + 24;
             return strImg;
         nextRecord_.index = curRecord_.index + 1;
         nextRecord_.arrayData = [self getImgArrayatIndex:nextRecord_.index];
-        BBRecord *record = [array_ objectAtIndex:nextRecord_.index];
+        BB_BBRecord *record = [array_ objectAtIndex:nextRecord_.index];
         nextRecord_.iMoodCount = [record.mood_count intValue];
         nextRecord_.date = record.create_date;
         nextRecord_.strUUid = record.key;
-        nextRecord_.strMood = [BBRecord getRecordMoodStr:record];
+        nextRecord_.strMood = [BB_BBRecord getRecordMoodStr:record];
         nextRecord_.iTotalCout = nextRecord_.arrayData.count;
         nextRecord_.iTotalIndex = curRecord_.iTotalIndex + curRecord_.iTotalCout;
         nextRecord_.iArrayIndex = 0;
-        BBImage *imge = [nextRecord_.arrayData objectAtIndex:nextRecord_.iArrayIndex];
+        BB_BBImage *imge = [nextRecord_.arrayData objectAtIndex:nextRecord_.iArrayIndex];
         BBINFO(@"%@, %@", imge.data_path, imge.data_small_path);
         strImg = imge.data_path;
         NSString *strFolder = [DataModel getNotePath:record];
@@ -275,9 +275,9 @@ const CGFloat ktkDefaultToolbarHeight = 40 + 24;
     }
     else
     {
-        BBImage *imge = [curRecord_.arrayData objectAtIndex:iIndex];
+        BB_BBImage *imge = [curRecord_.arrayData objectAtIndex:iIndex];
         strImg = imge.data_path;
-        BBRecord *record = [array_ objectAtIndex:curRecord_.index];
+        BB_BBRecord *record = [array_ objectAtIndex:curRecord_.index];
         NSString *strFolder = [DataModel getNotePath:record];
         strImg = [strFolder stringByAppendingPathComponent:strImg];
     }
@@ -629,7 +629,7 @@ const CGFloat ktkDefaultToolbarHeight = 40 + 24;
                 [self copyRecord:priRecord_ to:curRecord_];
                 curRecord_.iArrayIndex = page - curRecord_.iTotalIndex;
                 [self checkCurentRecord];
-                BBRecord *record = [array_ objectAtIndex:curRecord_.index];
+                BB_BBRecord *record = [array_ objectAtIndex:curRecord_.index];
                 [toolbar_ setrecord:record];
                 [self setTitleWithCurrentPhotoIndex];
             }
@@ -642,7 +642,7 @@ const CGFloat ktkDefaultToolbarHeight = 40 + 24;
                 [self copyRecord:nextRecord_ to:curRecord_];
                 curRecord_.iArrayIndex = page - curRecord_.iTotalIndex;
                 [self checkCurentRecord];
-                BBRecord *record = [array_ objectAtIndex:curRecord_.index];
+                BB_BBRecord *record = [array_ objectAtIndex:curRecord_.index];
                 [toolbar_ setrecord:record];
                 [self setTitleWithCurrentPhotoIndex];
             }
@@ -736,7 +736,7 @@ const CGFloat ktkDefaultToolbarHeight = 40 + 24;
     [self unloadPhoto:photoIndexToDelete];
     [self unloadPhoto:photoIndexToDelete + 1];
     
-    BBImage *bbimage = [curRecord_.arrayData objectAtIndex:curRecord_.iArrayIndex];
+    BB_BBImage *bbimage = [curRecord_.arrayData objectAtIndex:curRecord_.iArrayIndex];
     [BBMisc deleteImageFileOfCoredata:bbimage];
     [bbimage delete];
     [curRecord_.arrayData removeObjectAtIndex:curRecord_.iArrayIndex];
@@ -774,7 +774,7 @@ const CGFloat ktkDefaultToolbarHeight = 40 + 24;
     [self unloadPhoto:photoIndexToDelete - 1];
     [self unloadPhoto:photoIndexToDelete];
     [self unloadPhoto:photoIndexToDelete + 1];
-    BBRecord *bbrecord = [array_ objectAtIndex:curRecord_.index];
+    BB_BBRecord *bbrecord = [array_ objectAtIndex:curRecord_.index];
     [BBMisc deleteRecordFileOfCoredata:bbrecord];
     [bbrecord delete];
     [array_ removeObjectAtIndex:curRecord_.index];
@@ -797,18 +797,18 @@ const CGFloat ktkDefaultToolbarHeight = 40 + 24;
     int iTotalIndex = 0;
 
     for (int i = 0;  i < curRecord_.index; i++) {
-        BBRecord *rcd = [array_ objectAtIndex:i];
+        BB_BBRecord *rcd = [array_ objectAtIndex:i];
         NSArray *arimg = [rcd.imageInRecord allObjects];
         iTotalIndex += arimg.count;
     }
 //    assert(iTotalIndex == curRecord_.iTotalIndex - curRecord_.iTotalCout);
     curRecord_.iTotalIndex = iTotalIndex;
-    BBRecord *record = [array_ objectAtIndex:curRecord_.index];
+    BB_BBRecord *record = [array_ objectAtIndex:curRecord_.index];
     curRecord_.arrayData = [self getImgArrayatIndex:curRecord_.index];
     curRecord_.iMoodCount = [record.mood_count intValue];
     curRecord_.date = record.create_date;
     curRecord_.strUUid = record.key;
-    curRecord_.strMood = [BBRecord getRecordMoodStr:record];
+    curRecord_.strMood = [BB_BBRecord getRecordMoodStr:record];
     curRecord_.iArrayIndex = 0;
     curRecord_.iTotalCout = curRecord_.arrayData.count;
     [toolbar_ setrecord:record];
@@ -845,7 +845,7 @@ const CGFloat ktkDefaultToolbarHeight = 40 + 24;
     }
     else if([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:NSLocalizedString(@"Reedit", nil)])
     {
-        BBRecord *record = [array_ objectAtIndex:curRecord_.index];
+        BB_BBRecord *record = [array_ objectAtIndex:curRecord_.index];
         MediaViewController  *vc = [[MediaViewController alloc] initWithNote:record];
         [self.navigationController pushViewController:vc animated:YES];
         return;

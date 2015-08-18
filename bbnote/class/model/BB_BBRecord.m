@@ -6,11 +6,11 @@
 //  Copyright (c) 2013年 bob. All rights reserved.
 //
 
-#import "BBRecord.h"
-#import "BBAudio.h"
-#import "BBContent.h"
-#import "BBImage.h"
-#import "BBVideo.h"
+#import "BB_BBRecord.h"
+#import "BB_BBAudio.h"
+#import "BB_BBContent.h"
+#import "BB_BBImage.h"
+#import "BB_BBVideo.h"
 
 #import "BImage.h"
 #import "BAudio.h"
@@ -18,7 +18,7 @@
 #import "BRecord.h"
 #import "BContent.h"
 
-@implementation BBRecord
+@implementation BB_BBRecord
 
 @dynamic bg_color;
 @dynamic bg_image;
@@ -88,19 +88,19 @@
 //    [bbrecord save];
 //}
 
-+ (BBRecord *)initWithBRecord:(BRecord *)brecord
++ (BB_BBRecord *)initWithBRecord:(BRecord *)brecord
 {
     if(!brecord)
         return nil;
-    BBRecord *bbrecord = nil;
-    NSArray *array = [BBRecord whereFormat:@"key == '%@'", brecord.key];
+    BB_BBRecord *bbrecord = nil;
+    NSArray *array = [BB_BBRecord whereFormat:@"key == '%@'", brecord.key];
     if(array && array.count > 0)
     {
         bbrecord = array.first;
     }
     else
     {
-        bbrecord = [BBRecord create];
+        bbrecord = [BB_BBRecord create];
     }
     bbrecord.create_date = brecord.create_date;
     bbrecord.mood = brecord.mood;
@@ -120,7 +120,7 @@
     bbrecord.isDemo = brecord.isDemo;
     return bbrecord;
 }
-+ (NSString *)getRecordMoodStr:(BBRecord *)recd
++ (NSString *)getRecordMoodStr:(BB_BBRecord *)recd
 {
     NSString  *strMood = [NSString stringWithFormat:@"%.3i.png",[recd.mood integerValue]];
     if([recd.mood integerValue] <= 0)
@@ -162,13 +162,13 @@
     NSDictionary *recordDic = [self covertDictionary];
     BBINFO(@"11 %@", recordDic);
     [muldic setObject:recordDic forKey:@"record"];
-    BBText *bbtext = self.contentInRecord;
+    BB_BBText *bbtext = self.contentInRecord;
     NSDictionary *textDic = [bbtext covertDictionary];
     [muldic setObject:textDic forKey:@"text"];
     BBINFO(@"22 %@", recordDic);
     
     NSMutableArray *mulArray = [NSMutableArray arrayWithCapacity:10];
-    for (BBImage *bbimeage in [self.imageInRecord allObjects]) {
+    for (BB_BBImage *bbimeage in [self.imageInRecord allObjects]) {
         NSDictionary *imageDic = [bbimeage covertDictionary];
         BBINFO(@"33 %@", imageDic);
         [mulArray addObject:imageDic];
@@ -178,7 +178,7 @@
     }
     
     [mulArray removeAllObjects];
-    for (BBAudio *bbaudio in [self.audioInRecord allObjects]) {
+    for (BB_BBAudio *bbaudio in [self.audioInRecord allObjects]) {
         NSDictionary *dic = [bbaudio covertDictionary];
         BBINFO(@"44 %@", dic);
         [mulArray addObject:dic];
@@ -188,7 +188,7 @@
     }
     
     [mulArray removeAllObjects];
-    for (BBVideo *bbvideo in [self.videoInRecord allObjects]) {
+    for (BB_BBVideo *bbvideo in [self.videoInRecord allObjects]) {
         NSDictionary *dic = [bbvideo covertDictionary];
         BBINFO(@"55 %@", dic);
         [mulArray addObject:dic];

@@ -14,7 +14,7 @@
 //#import "iflyMSC/IFlySpeechRecognizer.h"
 #import "DateViewController.h"
 #import "BBMisc.h"
-#import "BBContent.h"
+#import "BB_BBContent.h"
 #import "FileManagerController.h"
 #import "BRecord.h"
 #import "BContent.h"
@@ -24,7 +24,7 @@
 #import "BBUserDefault.h"
 #import "BBSkin.h"
 #import "FontViewController.h"
-#import "BBImage.h"
+#import "BB_BBImage.h"
 //#import "ShareViewController.h"
 #import "NSDate+String.h"
 #import "DataModel.h"
@@ -105,16 +105,16 @@
     self.bContent.font = noteset.strFontName;
 }
 
-- (instancetype)initWithNote:(BBRecord *)bbrecord
+- (instancetype)initWithNote:(BB_BBRecord *)bbrecord
 {
     if(self = [super init])
     {
-        BBText *bbtext = bbrecord.contentInRecord;
+        BB_BBText *bbtext = bbrecord.contentInRecord;
         self.bRecord = [[BRecord alloc] initWithBBrecord:bbrecord];
         self.bContent = [[BContent alloc] initWithBBText:bbtext];
         [bbtext delete];
         NSArray *array = [bbrecord.imageInRecord allObjects];
-        for (BBImage *bbimg in array) {
+        for (BB_BBImage *bbimg in array) {
             if([bbimg.iscontent boolValue] && bbimg.data_path)
             {
                 NSString *strPath = [[self getNotePath] stringByAppendingPathComponent:bbimg.data_path];
@@ -357,7 +357,7 @@
     [txtFld_ resignFirstResponder];
  
 }
-- (BBRecord *)saveNoteData
+- (BB_BBRecord *)saveNoteData
 {
     [MobClick event:uMengNewNote];
     self.bContent.text = txtFld_.text;
@@ -366,15 +366,15 @@
         self.bContent.text = @"......Nothing to say...";
     }
     self.bRecord.mood_count = [NSNumber numberWithInt:[self.dateView getMoodCount]];
-    BBRecord *bbRecord = [BBRecord initWithBRecord:self.bRecord];
+    BB_BBRecord *bbRecord = [BB_BBRecord initWithBRecord:self.bRecord];
     
-    BBText *bbContent = [BBText BBContentWithBContent:self.bContent];
+    BB_BBText *bbContent = [BB_BBText BBContentWithBContent:self.bContent];
     bbContent.record = bbRecord;
     
     UIImage *img = [BBMisc createImageForBigWeibo:bbRecord];
     NSData *data = UIImageJPEGRepresentation(img, 0.8);
     BImage *bimg = [BBMisc saveAssetImageToSand:data smlImag:nil path:[self getNotePath] isContent:YES];
-    BBImage *bbimage = [BBImage BBImageWithBImage:bimg];
+    BB_BBImage *bbimage = [BB_BBImage BBImageWithBImage:bimg];
 //    if([bbimage isKindOfClass:[BBImage class]])
 //    {
 //        BBLOG();
