@@ -40,5 +40,5 @@
 
 + (void)addToolBar:(NSString *)strTitle normalImg:(NSString *)strNormal hlImg:(NSString *)strHl rect:(CGRect)rct titleHeight:(float)fH inView:(UIView *)view withTag:(int)iTag action:(SEL)action target:(id)controler;
 + (id)getANoNullObject:(id)aobject;
-+ (void)logSubviews:(UIView *)superview leve:(int)iLvl;
++ (void)logSubViews:(UIView *)uiview;
 @end

@@ -521,6 +521,8 @@
     
 }
 
+
+
 + (void)logSubviews:(UIView *)superview leve:(int)iLvl
 {
     NSString *strPre = @"";
@@ -531,6 +533,12 @@
         BBINFO(@"%@ -%@", strPre, view.debugDescription);
         [self logSubviews:view leve:iLvl + 1];
     }
+}
+
++ (void)logSubViews:(UIView *)uiview
+{
+    NSLog(@"%@", uiview.debugDescription);
+    [self logSubviews:uiview leve:0];
 }
 
 @end

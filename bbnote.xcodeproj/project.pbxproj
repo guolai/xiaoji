@@ -635,6 +635,7 @@
 		18F9FE221BC3FAFA0035A5AC /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F9FE211BC3FAFA0035A5AC /* MobileCoreServices.framework */; };
 		18F9FE241BC3FB0C0035A5AC /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F9FE231BC3FB0C0035A5AC /* MediaPlayer.framework */; };
 		18F9FE261BC3FB240035A5AC /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18F9FE251BC3FB240035A5AC /* CoreText.framework */; };
+		18F9FE281BC3FDEE0035A5AC /* test.html in Resources */ = {isa = PBXBuildFile; fileRef = 18F9FE271BC3FDEE0035A5AC /* test.html */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1588,6 +1589,7 @@
 		18F9FE211BC3FAFA0035A5AC /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		18F9FE231BC3FB0C0035A5AC /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		18F9FE251BC3FB240035A5AC /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		18F9FE271BC3FDEE0035A5AC /* test.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = test.html; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2059,6 +2061,7 @@
 		1809FE201AF91B9200F8A0C8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				18F9FE271BC3FDEE0035A5AC /* test.html */,
 				1809FE211AF91B9200F8A0C8 /* Info.plist */,
 				1809FE221AF91B9200F8A0C8 /* main.m */,
 				180902D51AF925E500F8A0C8 /* bbnote-Prefix.pch */,
@@ -3596,6 +3599,7 @@
 				18F9FDFB1BC3F91E0035A5AC /* kb-magnifier-ranged-lo-stemless@2x.png in Resources */,
 				180901E51AF9240700F8A0C8 /* historyPictureTemplate@2x.png in Resources */,
 				180902D21AF9240700F8A0C8 /* viplevel_7@2x.png in Resources */,
+				18F9FE281BC3FDEE0035A5AC /* test.html in Resources */,
 				1809020D1AF9240700F8A0C8 /* 016@2x.png in Resources */,
 				180901FD1AF9240700F8A0C8 /* login_key_highlighted@2x.png in Resources */,
 				180902551AF9240700F8A0C8 /* 088@2x.png in Resources */,

@@ -24,6 +24,7 @@
 #import "SmartCardViewController.h"
 #import "ImageCacheManager.h"
 #import "BBUserDefault.h"
+#import "RichEditViewController.h"
 
 typedef enum{
     e_HomeBtn_1,
@@ -368,7 +369,8 @@ typedef enum{
 
 - (void)btnAddNewPressed:(id)sender
 {
-    TextViewController *vc = [[TextViewController alloc] initWithNewNote];
+//    TextViewController *vc = [[TextViewController alloc] initWithNewNote];
+    RichEditViewController *vc = [[RichEditViewController alloc] init];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
