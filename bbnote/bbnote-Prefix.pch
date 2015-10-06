@@ -9,10 +9,34 @@
 #ifndef bbnote_bbnote_Prefix_pch
 #define bbnote_bbnote_Prefix_pch
 
+
+#define dispatch_main_sync_safe(block)\
+if ([NSThread isMainThread]) {\
+block();\
+} else {\
+dispatch_sync(dispatch_get_main_queue(), block);\
+}
+
+#define dispatch_main_async_safe(block)\
+if ([NSThread isMainThread]) {\
+block();\
+} else {\
+dispatch_async(dispatch_get_main_queue(), block);\
+}
+
+
 // Include any system framework and library headers here that should be included in all compilation units.
 // You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
+#import <CoreText/CoreText.h>
+#import "DTFoundation.h"
+#import "DTCoreText.h"
+#import "DTRichTextEditor.h"
+#import "DTWebArchive.h"
+#import "DTWebResource.h"
+#import "UIPasteboard+DTWebArchive.h"
+
 #import "BBMisc.h"
 #import "BBAutoSize.h"
 #import "Constant.h"

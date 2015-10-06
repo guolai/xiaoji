@@ -67,7 +67,7 @@
 
 
 
-#define    DEBUG_ENABLE
+//#define    DEBUG_ENABLE
 #ifdef DEBUG_ENABLE
 #define BBINFO(fmt, ...)          NSLog(@"[%@:%d]"fmt, \
 [[NSString stringWithFormat:@"%s", __FILE__] lastPathComponent], \

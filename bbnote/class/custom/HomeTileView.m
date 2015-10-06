@@ -41,7 +41,7 @@
         }
         NSDate *date = [NSDate date];
         NSInteger fNumber = [date getIntNumOfYearMonthDay];
-        if(fNumber < 20150817)
+        if(fNumber < 20150917)
         {
             bgImg = [UIImage imageNamed:@"profile_cover_bg_6"];
         }
