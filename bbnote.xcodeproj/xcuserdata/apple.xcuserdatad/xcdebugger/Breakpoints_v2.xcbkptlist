@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bbnote/class/views/note/RichEditViewController.m"
-            timestampString = "465920318.29328"
+            timestampString = "465927346.721481"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "244"
-            endingLineNumber = "244"
+            startingLineNumber = "245"
+            endingLineNumber = "245"
             landmarkName = "-createNewRecord"
             landmarkType = "5">
          </BreakpointContent>
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bbnote/class/views/note/RichEditViewController.m"
-            timestampString = "465920318.29328"
+            timestampString = "465927346.721481"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "213"
-            endingLineNumber = "213"
+            startingLineNumber = "214"
+            endingLineNumber = "214"
             landmarkName = "@implementation RichEditViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -96,6 +96,22 @@
             startingLineNumber = "1185"
             endingLineNumber = "1185"
             landmarkName = "-handleDoubleTap:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bbnote/class/views/note/RichEditViewController.m"
+            timestampString = "465928862.217585"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "969"
+            endingLineNumber = "969"
+            landmarkName = "-replaceCurrentSelectionWithPhoto:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

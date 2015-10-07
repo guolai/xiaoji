@@ -481,6 +481,7 @@
 		1809FFFF1AF923EB00F8A0C8 /* FileManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FEB11AF923EA00F8A0C8 /* FileManagerController.m */; };
 		182B20031AFEBB5C00412EF2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 182B20051AFEBB5C00412EF2 /* Localizable.strings */; };
 		182B200B1AFEBC0C00412EF2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 182B200D1AFEBC0C00412EF2 /* InfoPlist.strings */; };
+		188152D11BC57C1100A421E5 /* UIView+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 188152D01BC57C1100A421E5 /* UIView+Image.m */; settings = {ASSET_TAGS = (); }; };
 		18F9FAA41BC3F8830035A5AC /* RichEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F9FAA31BC3F8830035A5AC /* RichEditViewController.m */; settings = {ASSET_TAGS = (); }; };
 		18F9FD8E1BC3F91E0035A5AC /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 18F9FC641BC3F91E0035A5AC /* default.css */; settings = {ASSET_TAGS = (); }; };
 		18F9FD8F1BC3F91E0035A5AC /* DTAccessibilityElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F9FC661BC3F91E0035A5AC /* DTAccessibilityElement.m */; settings = {ASSET_TAGS = (); }; };
@@ -1375,6 +1376,8 @@
 		182B200C1AFEBC0C00412EF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		182B200E1AFEBC4400412EF2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		182B200F1AFEBC4500412EF2 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		188152CF1BC57C1100A421E5 /* UIView+Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Image.h"; sourceTree = "<group>"; };
+		188152D01BC57C1100A421E5 /* UIView+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Image.m"; sourceTree = "<group>"; };
 		18F9FAA21BC3F8830035A5AC /* RichEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RichEditViewController.h; sourceTree = "<group>"; };
 		18F9FAA31BC3F8830035A5AC /* RichEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RichEditViewController.m; sourceTree = "<group>"; };
 		18F9FC641BC3F91E0035A5AC /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = default.css; sourceTree = "<group>"; };
@@ -2328,6 +2331,8 @@
 		1809FE7D1AF923EA00F8A0C8 /* category */ = {
 			isa = PBXGroup;
 			children = (
+				188152CF1BC57C1100A421E5 /* UIView+Image.h */,
+				188152D01BC57C1100A421E5 /* UIView+Image.m */,
 				18F9FEDE1BC43D550035A5AC /* NSString+UIColor.h */,
 				18F9FEDF1BC43D550035A5AC /* NSString+UIColor.m */,
 				1809FE7E1AF923EA00F8A0C8 /* NSArray+Accessors.h */,
@@ -4159,6 +4164,7 @@
 				180900841AF923EB00F8A0C8 /* PullToRefreshViewController.m in Sources */,
 				18F9FE011BC3F91E0035A5AC /* DTLoupeLayerDelegate.m in Sources */,
 				1809006B1AF923EB00F8A0C8 /* CoreTextViewController.m in Sources */,
+				188152D11BC57C1100A421E5 /* UIView+Image.m in Sources */,
 				18F9FE151BC3F91E0035A5AC /* DTTextSelectionView.m in Sources */,
 				180900781AF923EB00F8A0C8 /* TileView.m in Sources */,
 				180900181AF923EB00F8A0C8 /* SmartCardCell.m in Sources */,

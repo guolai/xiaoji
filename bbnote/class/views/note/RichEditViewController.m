@@ -28,6 +28,7 @@
 #import "BBNavigationViewController.h"
 #import "DataManager.h"
 #import "MobClick.h"
+#import "UIView+Image.h"
 
 
 
@@ -260,6 +261,9 @@
 #pragma mark - event
 - (void)submitRecored
 {
+    UIImage *imge = [_richEditor.attributedTextContentView translateToImage];
+//    NSData *data = UIImageJPEGRepresentation(imge, 0.9);
+    UIImageWriteToSavedPhotosAlbum(imge, nil, nil, nil);
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -927,18 +931,33 @@
         if(arrayselectedimg  && arrayselectedimg.count > 0)
         {
             [self showProgressHUD];
-            for (BImage *bimg in arrayselectedimg)
-            {
-                UIImage *img = [UIImage imageWithContentsOfFile:[[self getNotePath] stringByAppendingPathComponent:bimg.data_path]];
-//                img  = [UIImage imageNamed:@"record00.jpg"];
-                [self replaceCurrentSelectionWithPhoto:img];
-            }
-            [self dismissProgressHUD];
+            [self addImageFromIndex:0 array:arrayselectedimg];
         }
         
     }
     [self dismissViewControllerAnimated:YES completion:NULL];
 }
+
+- (void)addImageFromIndex:(NSInteger)index array:(NSArray *)array
+{
+    if(index >= array.count)
+    {
+        [self dismissProgressHUD];
+        return;
+    }
+    @autoreleasepool
+    {
+        BImage *bimg = [array objectAtIndex:index];
+        UIImage *img = [UIImage imageWithContentsOfFile:[[self getNotePath] stringByAppendingPathComponent:bimg.data_path]];
+        //                img  = [UIImage imageNamed:@"record00.jpg"];
+        [self replaceCurrentSelectionWithPhoto:img];
+    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        _lastSelection = _richEditor.selectedTextRange;
+        [self addImageFromIndex:index + 1 array:array];
+    });
+}
+
 
 - (void)replaceCurrentSelectionWithPhoto:(UIImage *)image
 {
@@ -946,6 +965,7 @@
     {
         return;
     }
+    BBINFO(@"%@", _lastSelection);
     ScaledBImage *scaleImage = [DataModel scaleImage:image];
     // make an attachment
     DTImageTextAttachment *attachment = [[DTImageTextAttachment alloc] initWithElement:nil options:nil];
