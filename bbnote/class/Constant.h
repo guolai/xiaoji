@@ -19,7 +19,9 @@
 #define isIphone5Dot5 (([BBMisc screenHeight] == 736) ? YES : NO)
 #define fScr_Scale ([BBAutoSize getResizeScale])
 
-
+//加载了正确的launch image时,可以用此判断是否是iPhone 6 plus
+#define ISiPhone6Plus (SCR_HEIGHT_P == 736)
+#define ISiPhone6 (SCR_HEIGHT_P == 667)
 
 #define kBtnSwitchChanged  @"kBtnSwitchChanged"
 //sina weibo
@@ -67,7 +69,7 @@
 
 
 
-//#define    DEBUG_ENABLE
+#define    DEBUG_ENABLE
 #ifdef DEBUG_ENABLE
 #define BBINFO(fmt, ...)          NSLog(@"[%@:%d]"fmt, \
 [[NSString stringWithFormat:@"%s", __FILE__] lastPathComponent], \

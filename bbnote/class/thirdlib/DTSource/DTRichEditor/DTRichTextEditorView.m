@@ -1012,6 +1012,11 @@ typedef enum
 	coveredFrame = [self.window convertRect:coveredFrame toView:self.superview];
 	
 	_heightCoveredByKeyboard = coveredFrame.size.height;
+    if (_heightCoveredByKeyboard != SCR_HEIGHT_P)
+    {
+        _heightCoveredByKeyboard += 44;
+    }
+    
 	
 	// if we were changing then this is done now
 	_isChangingInputView = NO;
@@ -1113,6 +1118,12 @@ typedef enum
 	if (!self.isEditable)
 	{
 		[self resignFirstResponder];
+        if (self.bShouldOpenEdit)
+        {
+            self.bShouldOpenEdit = NO;
+            self.editable = YES;
+            [self becomeFirstResponder];
+        }
 		return;
 	}
 	

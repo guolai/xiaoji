@@ -41,4 +41,11 @@
 + (void)addToolBar:(NSString *)strTitle normalImg:(NSString *)strNormal hlImg:(NSString *)strHl rect:(CGRect)rct titleHeight:(float)fH inView:(UIView *)view withTag:(int)iTag action:(SEL)action target:(id)controler;
 + (id)getANoNullObject:(id)aobject;
 + (void)logSubViews:(UIView *)uiview;
+
++ (CGPoint)getScreenBlowPointFrom:(CGRect)rct;
++ (CGPoint)getScreenAbovePointFrom:(CGRect)rct;
++ (CGPoint)getCurrentPointFrom:(CGRect)rct;
++ (CGPoint)getBottomPointFrom:(CGRect)rct;
++ (CGRect)getScreenBlowRectForm:(CGRect)rct;
++ (CGRect)getScreenAboveRectForm:(CGRect)rct;
 @end

@@ -1,4 +1,0 @@
-<title>  </title>
-<_image>Icon.png</_image>
-      版本号:     v1.0
-      软件名称:  移动就医

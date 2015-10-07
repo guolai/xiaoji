@@ -541,4 +541,70 @@
     [self logSubviews:uiview leve:0];
 }
 
++ (CGPoint)getScreenBlowPointFrom:(CGRect)rct
+{
+    CGPoint retPoint = CGPointMake(0, 0);
+    retPoint.x = SCR_WIDTH / 2;
+    //    if(OS_VERSION  >= 7.0)
+    retPoint.y = SCR_HEIGHT_P + rct.size.height / 2;
+    //    else
+    //        retPoint.y = SCR_HEIGHT + rct.size.height / 2;
+    return retPoint;
+}
+
++ (CGPoint)getScreenAbovePointFrom:(CGRect)rct
+{
+    CGPoint retPoint = CGPointMake(0, 0);
+    retPoint.x = SCR_WIDTH / 2;
+    //    if(OS_VERSION  >= 7.0)
+    retPoint.y = SCR_HEIGHT_P - rct.size.height / 2;
+    //    else
+    //        retPoint.y = SCR_HEIGHT - rct.size.height / 2;
+    return retPoint;
+}
+
+
+
++ (CGPoint)getCurrentPointFrom:(CGRect)rct
+{
+    CGPoint pnt = CGPointMake(0, 0);
+    pnt.x = rct.origin.x + rct.size.width / 2;
+    pnt.y = rct.origin.y + rct.size.height / 2;
+    return pnt;
+}
+
++ (CGPoint)getBottomPointFrom:(CGRect)rct
+{
+    CGPoint pnt = CGPointMake(0, 0);
+    pnt.x = rct.origin.x + rct.size.width / 2;
+    //    if(OS_VERSION  >= 7.0)
+    pnt.y = SCR_HEIGHT_P;
+    //    else
+    //        pnt.y = SCR_HEIGHT;
+    pnt.y -= rct.size.height / 2;
+    return pnt;
+}
+
+
++ (CGRect)getScreenBlowRectForm:(CGRect)rct
+{
+    CGRect retRct = rct;
+    //    if(OS_VERSION  >= 7.0)
+    retRct.origin.y = SCR_HEIGHT_P;
+    //    else
+    //        retRct.origin.y = SCR_HEIGHT;
+    return retRct;
+}
+
++ (CGRect)getScreenAboveRectForm:(CGRect)rct
+{
+    CGRect retRct = rct;
+    //    if(OS_VERSION  >= 7.0)
+    retRct.origin.y = SCR_HEIGHT_P - rct.size.height;
+    //    else
+    //        retRct.origin.y = SCR_HEIGHT - rct.size.height;
+    return retRct;
+}
+
+
 @end

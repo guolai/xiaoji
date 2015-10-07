@@ -192,6 +192,8 @@ extern NSString * const DTRichTextEditorTextDidEndEditingNotification;
  */
 @property(nonatomic,getter=isEditable) BOOL editable;
 
+@property (nonatomic, assign) BOOL bShouldOpenEdit;
+
 /**
  Specifies that the receiver is in an editing state.  That means that the editor is first responder, and an inputView(usually the system keyboard) and cursor are showing. To programmatically enter an editing state, call becomeFirstResponder on the editor object when isEditable = YES(the default).  To programmatically end editing, call resignFirstResponder.
  */
