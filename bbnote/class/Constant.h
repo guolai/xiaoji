@@ -24,6 +24,7 @@
 #define ISiPhone6 (SCR_HEIGHT_P == 667)
 
 #define kBtnSwitchChanged  @"kBtnSwitchChanged"
+#define kDefatultFont @"system"
 //sina weibo
 #define kSinaAppKey             @"2835958904"
 #define kSinaAppSecret          @"39331988fede149cc1120f69f2e9d440"

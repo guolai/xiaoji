@@ -19,7 +19,6 @@
 		180900091AF923EB00F8A0C8 /* BRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FEC61AF923EA00F8A0C8 /* BRecord.m */; };
 		1809000A1AF923EB00F8A0C8 /* BVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FEC81AF923EA00F8A0C8 /* BVideo.m */; };
 		1809000B1AF923EB00F8A0C8 /* DataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FECA1AF923EA00F8A0C8 /* DataModel.m */; };
-		1809000C1AF923EB00F8A0C8 /* KPUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FECC1AF923EA00F8A0C8 /* KPUser.m */; };
 		1809000D1AF923EB00F8A0C8 /* BBAlbumTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FECF1AF923EA00F8A0C8 /* BBAlbumTableViewController.m */; };
 		1809000E1AF923EB00F8A0C8 /* BBAssetPickerNavigationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FED11AF923EA00F8A0C8 /* BBAssetPickerNavigationViewController.m */; };
 		1809000F1AF923EB00F8A0C8 /* BBAssetPikerState.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FED31AF923EA00F8A0C8 /* BBAssetPikerState.m */; };
@@ -482,6 +481,7 @@
 		182B20031AFEBB5C00412EF2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 182B20051AFEBB5C00412EF2 /* Localizable.strings */; };
 		182B200B1AFEBC0C00412EF2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 182B200D1AFEBC0C00412EF2 /* InfoPlist.strings */; };
 		188152D11BC57C1100A421E5 /* UIView+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 188152D01BC57C1100A421E5 /* UIView+Image.m */; settings = {ASSET_TAGS = (); }; };
+		188152D41BC58C1F00A421E5 /* BStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 188152D31BC58C1F00A421E5 /* BStyle.m */; settings = {ASSET_TAGS = (); }; };
 		18F9FAA41BC3F8830035A5AC /* RichEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F9FAA31BC3F8830035A5AC /* RichEditViewController.m */; settings = {ASSET_TAGS = (); }; };
 		18F9FD8E1BC3F91E0035A5AC /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 18F9FC641BC3F91E0035A5AC /* default.css */; settings = {ASSET_TAGS = (); }; };
 		18F9FD8F1BC3F91E0035A5AC /* DTAccessibilityElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F9FC661BC3F91E0035A5AC /* DTAccessibilityElement.m */; settings = {ASSET_TAGS = (); }; };
@@ -1121,8 +1121,6 @@
 		1809FEC81AF923EA00F8A0C8 /* BVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BVideo.m; sourceTree = "<group>"; };
 		1809FEC91AF923EA00F8A0C8 /* DataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataModel.h; sourceTree = "<group>"; };
 		1809FECA1AF923EA00F8A0C8 /* DataModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataModel.m; sourceTree = "<group>"; };
-		1809FECB1AF923EA00F8A0C8 /* KPUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KPUser.h; sourceTree = "<group>"; };
-		1809FECC1AF923EA00F8A0C8 /* KPUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KPUser.m; sourceTree = "<group>"; };
 		1809FECE1AF923EA00F8A0C8 /* BBAlbumTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAlbumTableViewController.h; sourceTree = "<group>"; };
 		1809FECF1AF923EA00F8A0C8 /* BBAlbumTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBAlbumTableViewController.m; sourceTree = "<group>"; };
 		1809FED01AF923EA00F8A0C8 /* BBAssetPickerNavigationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBAssetPickerNavigationViewController.h; sourceTree = "<group>"; };
@@ -1378,6 +1376,8 @@
 		182B200F1AFEBC4500412EF2 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		188152CF1BC57C1100A421E5 /* UIView+Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Image.h"; sourceTree = "<group>"; };
 		188152D01BC57C1100A421E5 /* UIView+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Image.m"; sourceTree = "<group>"; };
+		188152D21BC58C1F00A421E5 /* BStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BStyle.h; sourceTree = "<group>"; };
+		188152D31BC58C1F00A421E5 /* BStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BStyle.m; sourceTree = "<group>"; };
 		18F9FAA21BC3F8830035A5AC /* RichEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RichEditViewController.h; sourceTree = "<group>"; };
 		18F9FAA31BC3F8830035A5AC /* RichEditViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RichEditViewController.m; sourceTree = "<group>"; };
 		18F9FC641BC3F91E0035A5AC /* default.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = default.css; sourceTree = "<group>"; };
@@ -2452,8 +2452,8 @@
 				1809FEC81AF923EA00F8A0C8 /* BVideo.m */,
 				1809FEC91AF923EA00F8A0C8 /* DataModel.h */,
 				1809FECA1AF923EA00F8A0C8 /* DataModel.m */,
-				1809FECB1AF923EA00F8A0C8 /* KPUser.h */,
-				1809FECC1AF923EA00F8A0C8 /* KPUser.m */,
+				188152D21BC58C1F00A421E5 /* BStyle.h */,
+				188152D31BC58C1F00A421E5 /* BStyle.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -4008,6 +4008,7 @@
 				18F9FE0A1BC3F91E0035A5AC /* DTRichTextEditorView+Attributes.m in Sources */,
 				18F9FDA21BC3F91E0035A5AC /* DTCoreTextLayoutLine.m in Sources */,
 				180900481AF923EB00F8A0C8 /* ENSearchRequest.m in Sources */,
+				188152D41BC58C1F00A421E5 /* BStyle.m in Sources */,
 				18F9FDDB1BC3F91E0035A5AC /* DTSidePanelPanGestureRecognizer.m in Sources */,
 				18F9FDEB1BC3F91E0035A5AC /* NSString+DTPaths.m in Sources */,
 				18F9FDCE1BC3F91E0035A5AC /* DTLog.m in Sources */,
@@ -4092,7 +4093,6 @@
 				180900721AF923EB00F8A0C8 /* BBDateView.m in Sources */,
 				18F9FDC61BC3F91E0035A5AC /* NSScanner+HTML.m in Sources */,
 				18F9FDAF1BC3F91E0035A5AC /* DTImage+HTML.m in Sources */,
-				1809000C1AF923EB00F8A0C8 /* KPUser.m in Sources */,
 				1809006C1AF923EB00F8A0C8 /* GuideViewController.m in Sources */,
 				1809001D1AF923EB00F8A0C8 /* ENGCOAuth.m in Sources */,
 				1809001F1AF923EB00F8A0C8 /* NSData+ENBase64.m in Sources */,

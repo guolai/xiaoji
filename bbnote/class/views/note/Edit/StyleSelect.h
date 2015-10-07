@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "StyleScrView.h"
+#import "BStyle.h"
 
 typedef enum{
     e_KBState_A,
@@ -17,7 +18,7 @@ typedef enum{
 
 @protocol KeyBoardStateDelegate <NSObject>
 - (void)keyboardDidChangeState:(T_KeyBoard_Style_State)state;
-- (void)keyboardDidSelectStyle:(NSDictionary *)dic;
+- (void)keyboardDidSelectStyle:(BStyle *)bstyle;
 - (void)keyboardXunFeiInputDidBegin;
 - (void)keyboardXunFeiInputDidStop;
 @end
@@ -41,7 +42,7 @@ typedef enum{
 @property (nonatomic, retain) NSMutableArray *arrayBtms;
 @property (nonatomic, weak) id<KeyBoardStateDelegate> styleDelegate;
 - (id)initWithFrame:(CGRect)frame;
-- (void)setCurrentStyles:(NSDictionary *)dic;
+- (void)setCurrentStyles:(BStyle *)bstyle;
 @end
 
 

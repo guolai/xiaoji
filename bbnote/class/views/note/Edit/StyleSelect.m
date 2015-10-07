@@ -157,7 +157,7 @@
                           @{@"name":@"snFontP2", @"localname":@"小记"},
                           @{@"name":@"FZXKJW--GB1-0", @"localname":@"小记"},
                           @{@"name":@"FZHCJW--GB1-0", @"localname":@"小记"},
-                          @{@"name":@"system", @"localname":@"小记"},
+                          @{@"name":kDefatultFont, @"localname":@"小记"},
                           @{@"name":@"STKaiti-SC-Regular", @"localname":@"小记"},
                           @{@"name":@"FZQKBYSJW--GB1-0", @"localname":@"小记"},
                           ];
@@ -301,67 +301,80 @@
     }
 }
 
-- (void)setCurrentStyles:(NSDictionary *)dic
+- (void)setCurrentStyles:(BStyle *)bstyle
 {
-    NSString *strValue = [dic objectForKey:@"ElementStyle"];
-    if(ISEMPTY(strValue))
-        return;
-    NSArray *array = [strValue componentsSeparatedByString:@";"];
-    if(!array || array.count < 1)
+    if(!bstyle)
         return;
     NSString *strStyle = nil;
-    for (StyleScrView *styView in self.arrayStyles) {
+    for (StyleScrView *styView in self.arrayStyles)
+    {
         strStyle = styView.strStyleType;
-        for (NSString *str in array)
+        if ([strStyle isEqualToString:@"fontFamily"])
         {
-            if([str rangeOfString:strStyle].location != NSNotFound)
-            {
-                NSArray *array2 = [str componentsSeparatedByString:@"="];
-                if(array2.count == 2)
-                {
-                    if(ISEMPTY([array2 objectAtIndex:1]))
-                    {
-                        
-                    }
-                    else
-                    {
-                         [styView setCurrentSelectItem:[array2 objectAtIndex:1]];
-                    }
-                }
-                break;
-            }
+            [styView setCurrentSelectItem:bstyle.strFontName];
+        }
+        else if ([strStyle isEqualToString:@"color"])
+        {
+            [styView setCurrentSelectItem:bstyle.strColor];
+        }
+        else if ([strStyle isEqualToString:@"fontSize"])
+        {
+            [styView setCurrentSelectItem:bstyle.strSize];
+        }
+        else
+        {
+            NSParameterAssert(false);
         }
     }
 
-    for (StyleBtn *btn in self.arrayBtms)
-    {
-        for (NSString *str in array)
-        {
-            if([str rangeOfString:btn.strKey].location != NSNotFound)
-            {
-                NSArray *array2 = [str componentsSeparatedByString:@"="];
-                if(array2.count == 2)
-                {
-                    if([[array2 objectAtIndex:1] isEqualToString:btn.strHlStyle])
-                    {
-                        btn.bPressedDown = YES;
-                    }
-                    else
-                        btn.bPressedDown = NO;
-                }
-                break;
-            }
-        }
-    }
+//    for (StyleBtn *btn in self.arrayBtms)
+//    {
+//        for (NSString *str in array)
+//        {
+//            if([str rangeOfString:btn.strKey].location != NSNotFound)
+//            {
+//                NSArray *array2 = [str componentsSeparatedByString:@"="];
+//                if(array2.count == 2)
+//                {
+//                    if([[array2 objectAtIndex:1] isEqualToString:btn.strHlStyle])
+//                    {
+//                        btn.bPressedDown = YES;
+//                    }
+//                    else
+//                        btn.bPressedDown = NO;
+//                }
+//                break;
+//            }
+//        }
+//    }
 }
 
-- (NSDictionary *)getStyleDictionary
+- (BStyle *)getStyleDictionary
 {
+    BStyle *bstye = [[BStyle alloc] init];
     NSMutableDictionary *mtblDic = [NSMutableDictionary dictionaryWithCapacity:4];
-    for (StyleScrView *scrView  in self.arrayStyles) {
+    for (StyleScrView *scrView  in self.arrayStyles)
+    {
+        if ([scrView.strStyleType isEqualToString:@"fontFamily"])
+        {
+            bstye.strFontName = scrView.strCurStyle;
+        }
+        else if ([scrView.strStyleType isEqualToString:@"color"])
+        {
+            bstye.strColor = scrView.strCurStyle;
+        }
+        else if ([scrView.strStyleType isEqualToString:@"fontSize"])
+        {
+            bstye.strSize = scrView.strCurStyle;
+        }
+        else
+        {
+            NSParameterAssert(false);
+        }
         [mtblDic setObject:scrView.strCurStyle forKey:scrView.strStyleType];
     }
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < 3; i++)
+    {
         StyleBtn *btn = [self.arrayBtms objectAtIndex:i];
         [mtblDic setObject:[btn getStyle] forKey:btn.strKey];
     }
@@ -386,16 +399,16 @@
     {
         [mtblDic setObject:@"left" forKey:strKey];
     }
-    return mtblDic;
+    return bstye;
 }
 
 @end
 
 
-static void SoundFinished(SystemSoundID soundID,void* data){
-    
-    AudioServicesDisposeSystemSoundID(soundID);
-}
+//static void SoundFinished(SystemSoundID soundID,void* data){
+//    
+//    AudioServicesDisposeSystemSoundID(soundID);
+//}
 
 @implementation XunFeiAudioInputView
 @synthesize xunfeiDelegate;

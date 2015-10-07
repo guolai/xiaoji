@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "KPUser.h"
 
 
 @interface BBUserDefault : NSObject

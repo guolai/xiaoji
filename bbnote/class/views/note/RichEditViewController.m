@@ -29,6 +29,7 @@
 #import "DataManager.h"
 #import "MobClick.h"
 #import "UIView+Image.h"
+#import "NSString+UIColor.h"
 
 
 
@@ -96,9 +97,9 @@
     
     
     
-    _richEditor.baseURL = [NSURL URLWithString:@"http://www.drobnik.com"];
+    _richEditor.baseURL = [NSURL URLWithString:kSinaAppRedirectURI];
     _richEditor.textDelegate = self;
-    _richEditor.defaultFontFamily = @"Helvetica";
+    _richEditor.defaultFontFamily = @"FZQKBYSJW--GB1-0";
     _richEditor.textSizeMultiplier = 1.0;
     _richEditor.maxImageDisplaySize = CGSizeMake(300, 300);
     _richEditor.autocorrectionType = UITextAutocorrectionTypeYes;
@@ -838,9 +839,27 @@
     
 }
 
-- (void)keyboardDidSelectStyle:(NSDictionary *)dic
+- (void)keyboardDidSelectStyle:(BStyle *)bstyle
 {
-    
+    BBINFO(@"%@,%@,%@", bstyle.strFontName, bstyle.strColor, bstyle.strSize);
+    UITextRange *range = _richEditor.selectedTextRange;
+    if([range.start isEqual:range.end])
+    {
+        UIFont *font = [UIFont fontWithName:bstyle.strFontName size:[bstyle.strSize floatValue]];
+        if(!font || [bstyle.strFontName isEqualToString:kDefatultFont])
+        {
+            font = [UIFont systemFontOfSize:[bstyle.strSize floatValue]];
+        }
+        [_richEditor setFont:font];
+        UIColor *color = [bstyle.strColor getColorFromRGBA];
+        [_richEditor setForegroundColor:color inRange:range];
+    }
+    else
+    {
+         [_richEditor updateFontInRange:range withFontFamilyName:bstyle.strFontName pointSize:[bstyle.strSize floatValue]];
+    }
+    BBINFO(@"%@", range);
+   
 }
 
 - (void)keyboardXunFeiInputDidBegin
@@ -952,7 +971,7 @@
         //                img  = [UIImage imageNamed:@"record00.jpg"];
         [self replaceCurrentSelectionWithPhoto:img];
     }
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         _lastSelection = _richEditor.selectedTextRange;
         [self addImageFromIndex:index + 1 array:array];
     });

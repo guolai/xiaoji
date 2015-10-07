@@ -206,7 +206,7 @@
     else
     {
         [self setScrollEnabled:YES];
-//        NSAssert(false, @"invalid parameters!");
+        NSAssert(false, @"invalid parameters!");
     }
 }
 
