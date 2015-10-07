@@ -27,3 +27,11 @@
 
 - (instancetype)initWithBBImage:(BB_BBImage *)bbimage;
 @end
+
+@interface ScaledBImage : NSObject
+@property (nonatomic, strong) UIImage *imge;
+@property (nonatomic, assign) CGSize originalSize;
+@property (nonatomic, assign) CGSize displaySize;
+@end
+
+

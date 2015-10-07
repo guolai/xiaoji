@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BB_BBRecord.h"
+#import "BImage.h"
 
 
 @interface DataModel : NSObject
@@ -39,4 +40,5 @@
 + (void)copyMyOldNoteToDocument;
 
 + (void)recoverCrashNote;
++ (ScaledBImage *)scaleImage:(UIImage *)oriImage;
 @end

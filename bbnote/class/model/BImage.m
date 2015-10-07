@@ -90,3 +90,8 @@
     return self;
 }
 @end
+
+
+@implementation ScaledBImage
+
+@end

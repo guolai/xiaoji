@@ -17,6 +17,7 @@
 #import "FileManagerController.h"
 #import <ImageIO/ImageIO.h>
 #import "BBUserDefault.h"
+#import "UIImage+SCaleImage.h"
 
 @implementation DataModel
 
@@ -334,24 +335,71 @@
                 BB_BBAudio *bbAudio = [BB_BBAudio BBAudioWithBAudio:bAud];
                 bbAudio.record = bbRecord;
             }
-            for (BImage *bimg in arrayImage_) {
+            for (BImage *bimg in arrayImage_)
+            {
                 BB_BBImage *bbimage = [BB_BBImage BBImageWithBImage:bimg];
                 bbimage.record = bbRecord;
             }
-            for (BVideo *bvideo in arrayVideo_) {
+            for (BVideo *bvideo in arrayVideo_)
+            {
                 BB_BBVideo *bbvideo = [BB_BBVideo BBVideoWithBVideo:bvideo];
                 bbvideo.record = bbRecord;
             }
             [bbRecord save];
         }
-        @catch (NSException *exception) {
+        @catch (NSException *exception)
+        {
             [bbRecord delete];
 
         }
-        @finally {
+        @finally
+        {
             [BBUserDefault deleteArchvierDataNote];
         }
         
     }
 }
+
++ (ScaledBImage *)scaleImage:(UIImage *)oriImage
+{
+    if (!oriImage)
+    {
+        return nil;
+    }
+    CGFloat fWidth = SCR_WIDTH - 10 * 2;
+    CGSize orisize = oriImage.size;
+    CGSize displaySize = CGSizeZero;
+    if(orisize.width > orisize.height)
+    {
+        if (orisize.width > orisize.height * 2)
+        {
+            displaySize = CGSizeMake(fWidth, fWidth / 2);
+            oriImage = [oriImage clipImageToScaleSize:displaySize];
+            orisize = displaySize;
+        }
+        else
+        {
+            displaySize = CGSizeMake(fWidth, fWidth * orisize.height / orisize.width);
+        }
+    }
+    else
+    {
+        if (orisize.height > orisize.width * 2)
+        {
+            displaySize = CGSizeMake(fWidth, fWidth * 2);
+            oriImage = [oriImage clipImageToScaleSize:displaySize];
+            orisize = displaySize;
+        }
+        else
+        {
+            displaySize = CGSizeMake(fWidth, fWidth * orisize.height / orisize.width);
+        }
+    }
+    ScaledBImage *scaleImage = [[ScaledBImage alloc] init];
+    scaleImage.imge = oriImage;
+    scaleImage.displaySize = displaySize;
+    scaleImage.originalSize  = displaySize;
+    return scaleImage;
+}
+
 @end

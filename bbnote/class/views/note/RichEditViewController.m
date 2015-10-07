@@ -12,6 +12,22 @@
 #import "MediaSelectView.h"
 #import "StyleSelect.h"
 #import "AnimationHelper.h"
+#import "BBAssetPickerNavigationViewController.h"
+#import "BBMisc.h"
+#import "BB_BBContent.h"
+#import "FileManagerController.h"
+#import "BRecord.h"
+#import "BContent.h"
+#import "NSDate+String.h"
+#import "NSString+Help.h"
+#import "BBUserDefault.h"
+#import "BBSkin.h"
+#import "BB_BBImage.h"
+#import "NSDate+String.h"
+#import "DataModel.h"
+#import "BBNavigationViewController.h"
+#import "DataManager.h"
+#import "MobClick.h"
 
 
 
@@ -19,6 +35,7 @@
 {
     float _keyboardHeight;
     CGRect _priKbRct;
+    UITextRange *_lastSelection;
 }
 @property (nonatomic, strong) DTRichTextEditorView *richEditor;
 @property (nonatomic, strong)EditAccessoryView *accessoryView;
@@ -27,6 +44,8 @@
 @property (nonatomic, weak) UIView *keyBoardView;
 @property (nonatomic, weak) id<BBPresentViewControlerDelegate> presentDelegate;
 
+@property (nonatomic, retain)BRecord *bRecord;
+@property (nonatomic, retain)BContent *bContent;
 @end
 
 @implementation RichEditViewController
@@ -67,6 +86,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self createNewRecord];
     _richEditor = [[DTRichTextEditorView alloc] initWithFrame:self.view.bounds];
     _richEditor.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _richEditor.textDelegate = self;
@@ -93,11 +113,11 @@
 //    NSLog(@"%@", [DTCSSStylesheet defaultStyleSheet]);
     
     // demonstrate half em paragraph spacing
-    //    DTCSSStylesheet *styleSheet = [[DTCSSStylesheet alloc] initWithStyleBlock:@"p {margin-bottom:0.5em} ol {margin-bottom:0.5em} li {margin-bottom:0.5em}"];
-    //    [defaults setObject:styleSheet forKey:DTDefaultStyleSheet];
-    //
-    //    _richEditor.textDefaults = defaults;
-    _richEditor.attributedTextContentView.shouldDrawImages = NO;
+//    DTCSSStylesheet *styleSheet = [[DTCSSStylesheet alloc] initWithStyleBlock:@"p {margin-bottom:0.5em} ol {margin-bottom:0.5em} li {margin-bottom:0.5em}"];
+//    [defaults setObject:styleSheet forKey:DTDefaultStyleSheet];
+//    _richEditor.textDefaults = defaults;
+    
+    _richEditor.attributedTextContentView.shouldDrawImages = YES;
     NSString *path = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"html"];
     NSString *html = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
     [_richEditor setHTMLString:html];
@@ -192,6 +212,51 @@
 }
 
 
+#pragma mark - data
+
+- (void)createNewRecord
+{
+    NSDictionary *noteDic = [BBUserDefault getArchiverDataOfNote];
+    if(noteDic)
+    {
+        self.bRecord =[NSKeyedUnarchiver unarchiveObjectWithData:[noteDic objectForKey:@"record"]];
+        if(!self.bRecord)
+        {
+            self.bRecord = [[BRecord alloc]init];
+        }
+        self.bContent = [NSKeyedUnarchiver unarchiveObjectWithData:[noteDic objectForKey:@"content"]];
+        if(!self.bContent)
+        {
+            self.bContent = [[BContent alloc] init];
+        }
+    }
+    else
+    {
+        self.bRecord = [[BRecord alloc] init];
+        self.bContent = [[BContent alloc] init];
+    }
+    NoteSetting *noteset = [[DataManager ShareInstance] noteSetting];
+    if(noteset.isUseBgImg)
+    {
+        self.bRecord.bg_image = noteset.strBgImg;
+        self.bRecord.bg_color = noteset.strBgColor;
+    }
+    else
+    {
+        self.bRecord.bg_image = nil;
+        self.bRecord.bg_color = noteset.strBgColor;
+    }
+    self.bContent.text_color = noteset.strTextColor;
+    self.bContent.fontsize = noteset.nFontSize;
+    self.bContent.font = noteset.strFontName;
+}
+
+- (NSString *)getNotePath
+{
+    return [DataModel getNotePath:self.bRecord];
+}
+
+
 #pragma mark - event
 - (void)submitRecored
 {
@@ -202,7 +267,6 @@
 {
     BBLOG();
     [self.navigationController popViewControllerAnimated:YES];
-    
 }
 
 - (void)keyboardDown
@@ -789,15 +853,19 @@
 
 - (void)mediaSelectDidSelect:(T_Media_Type)iType
 {
-    [self keyboardDown];
+    _lastSelection = [_richEditor selectedTextRange];
     
+    if (!_lastSelection)
+    {
+        return;
+    }
     switch (iType) {
         case e_Media_Photo:
         {
-//            BBAssetPickerNavigationViewController *pikcerViewController = [[BBAssetPickerNavigationViewController alloc] initWithDelegate:self];
-//            pikcerViewController.type = BBAssetPikerMask;
-//            pikcerViewController.strValue = _strNotePath;
-//            [self presentViewController:pikcerViewController animated:YES completion:nil ];
+            BBAssetPickerNavigationViewController *pikcerViewController = [[BBAssetPickerNavigationViewController alloc] initWithDelegate:self];
+            pikcerViewController.type = BBAssetMulSelectPhoto;
+            pikcerViewController.strNotePath = [self getNotePath];
+            [self presentViewController:pikcerViewController animated:YES completion:nil];
         }
             break;
         case e_Media_Paper:
@@ -852,7 +920,40 @@
         
     }
     [self dismissViewControllerAnimated:YES completion:NULL];
+    if(seder && [seder isKindOfClass:[BBAssetPickerNavigationViewController class]])
+    {
+        NSArray *arrayselectedimg = [BBUserDefault getSavedAblumImage];
+  
+        if(arrayselectedimg  && arrayselectedimg.count > 0)
+        {
+            [self showProgressHUD];
+            for (BImage *bimg in arrayselectedimg)
+            {
+                UIImage *img = [UIImage imageWithContentsOfFile:[[self getNotePath] stringByAppendingPathComponent:bimg.data_path]];
+//                img  = [UIImage imageNamed:@"record00.jpg"];
+                [self replaceCurrentSelectionWithPhoto:img];
+            }
+            [self dismissProgressHUD];
+        }
+        
+    }
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
 
+- (void)replaceCurrentSelectionWithPhoto:(UIImage *)image
+{
+    if (!_lastSelection)
+    {
+        return;
+    }
+    ScaledBImage *scaleImage = [DataModel scaleImage:image];
+    // make an attachment
+    DTImageTextAttachment *attachment = [[DTImageTextAttachment alloc] initWithElement:nil options:nil];
+    attachment.image = (id)scaleImage.imge;
+    attachment.displaySize = scaleImage.displaySize;
+    attachment.originalSize = scaleImage.originalSize;
+    
+    [_richEditor replaceRange:_lastSelection withAttachment:attachment inParagraph:YES];
 }
 
 
