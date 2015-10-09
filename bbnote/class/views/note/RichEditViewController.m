@@ -30,6 +30,7 @@
 #import "MobClick.h"
 #import "UIView+Image.h"
 #import "NSString+UIColor.h"
+#import "UIImage+SCaleImage.h"
 
 
 
@@ -96,29 +97,19 @@
     [self.view addSubview:_richEditor];
     
     
-    
+    NoteSetting *noteset = [[DataManager ShareInstance] noteSetting];
     _richEditor.baseURL = [NSURL URLWithString:kSinaAppRedirectURI];
     _richEditor.textDelegate = self;
-    _richEditor.defaultFontFamily = @"FZQKBYSJW--GB1-0";
+    _richEditor.defaultFontFamily = noteset.strFontName;
     _richEditor.textSizeMultiplier = 1.0;
     _richEditor.maxImageDisplaySize = CGSizeMake(300, 300);
     _richEditor.autocorrectionType = UITextAutocorrectionTypeYes;
     _richEditor.editable = YES;
     _richEditor.editorViewDelegate = self;
-    _richEditor.defaultFontSize = 14;
+    _richEditor.defaultFontSize = [noteset.nFontSize floatValue];
     
-    
-    NSMutableDictionary *defaults = [NSMutableDictionary dictionary];
-    [defaults setObject:[NSNumber numberWithBool:YES] forKey:DTDefaultLinkDecoration];
-    [defaults setObject:[UIColor redColor] forKey:DTDefaultLinkColor];
-    
-//    NSLog(@"%@", [DTCSSStylesheet defaultStyleSheet]);
-    
-    // demonstrate half em paragraph spacing
-//    DTCSSStylesheet *styleSheet = [[DTCSSStylesheet alloc] initWithStyleBlock:@"p {margin-bottom:0.5em} ol {margin-bottom:0.5em} li {margin-bottom:0.5em}"];
-//    [defaults setObject:styleSheet forKey:DTDefaultStyleSheet];
-//    _richEditor.textDefaults = defaults;
-    
+    [self resetNoteSetting];
+    [self resetBackGroundColor];
     _richEditor.attributedTextContentView.shouldDrawImages = YES;
     NSString *path = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"html"];
     NSString *html = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
@@ -213,6 +204,42 @@
     return _mediaSlectView;
 }
 
+#pragma mark － set
+
+- (void)resetBackGroundColor
+{
+    NoteSetting *noteset = [[DataManager ShareInstance] noteSetting];
+    if(noteset.isUseBgImg)
+    {
+        UIImage *img = [UIImage imageNamed:self.bRecord.bg_image];
+        img  = [img imageAutoScaleToScreen];
+        if(img)
+        {
+            UIColor *color = [UIColor colorWithPatternImage:img];
+            _richEditor.attributedTextContentView.backgroundColor = color;
+            [_richEditor setBackgroundColor:color];
+        }
+    }
+    else
+    {
+        _richEditor.attributedTextContentView.backgroundColor = DTColorCreateWithHTMLName(noteset.strBgColor);
+        [_richEditor setBackgroundColor:DTColorCreateWithHTMLName(noteset.strBgColor)];
+    }
+}
+
+- (void)resetNoteSetting
+{
+     NoteSetting *noteset = [[DataManager ShareInstance] noteSetting];
+    NSMutableDictionary *defaults = [NSMutableDictionary dictionary];
+    [defaults setObject:[NSNumber numberWithBool:YES] forKey:DTDefaultLinkDecoration];
+    [defaults setObject:[UIColor blueColor] forKey:DTDefaultLinkColor];
+    [defaults setObject:noteset.strFontName forKey:DTDefaultFontFamily];
+    [defaults setObject:noteset.strFontName forKey:DTDefaultFontName];
+    [defaults setObject:noteset.nFontSize forKey:DTDefaultFontSize];
+    [defaults setObject:noteset.strTextColor forKey:DTDefaultTextColor];
+    _richEditor.textDefaults = defaults;
+ 
+}
 
 #pragma mark - data
 
@@ -845,17 +872,24 @@
     UITextRange *range = _richEditor.selectedTextRange;
     if([range.start isEqual:range.end])
     {
-        UIFont *font = [UIFont fontWithName:bstyle.strFontName size:[bstyle.strSize floatValue]];
-        if(!font || [bstyle.strFontName isEqualToString:kDefatultFont])
-        {
-            font = [UIFont systemFontOfSize:[bstyle.strSize floatValue]];
-        }
-        [_richEditor setFont:font];
-        UIColor *color = [bstyle.strColor getColorFromRGBA];
-        [_richEditor setForegroundColor:color inRange:range];
+        BBINFO(@"11111111");
+//        UIFont *font = [UIFont fontWithName:bstyle.strFontName size:[bstyle.strSize floatValue]];
+//        if(!font || [bstyle.strFontName isEqualToString:kDefatultFont])
+//        {
+//            font = [UIFont systemFontOfSize:[bstyle.strSize floatValue]];
+//        }
+//        [_richEditor setFont:font];
+//        UIColor *color = [bstyle.strColor getColorFromRGBA];
+//        [_richEditor setForegroundColor:color inRange:range];
+        NoteSetting *noteset = [[DataManager ShareInstance] noteSetting];
+        noteset.strTextColor = bstyle.strColor;
+        noteset.strFontName = bstyle.strFontName;
+        noteset.nFontSize = [NSNumber numberWithFloat:[bstyle.strSize floatValue]];
+        [self resetNoteSetting];
     }
     else
     {
+        BBINFO(@"22222222");
          [_richEditor updateFontInRange:range withFontFamilyName:bstyle.strFontName pointSize:[bstyle.strSize floatValue]];
     }
     BBINFO(@"%@", range);
@@ -1015,42 +1049,42 @@
 
 - (BOOL)editorViewShouldBeginEditing:(DTRichTextEditorView *)editorView
 {
-    NSLog(@"editorViewShouldBeginEditing:");
+//    BBINFO(@"editorViewShouldBeginEditing:");
     return YES;
 }
 
 - (void)editorViewDidBeginEditing:(DTRichTextEditorView *)editorView
 {
-    NSLog(@"editorViewDidBeginEditing:");
+//    BBINFO(@"editorViewDidBeginEditing:");
 }
 
 - (BOOL)editorViewShouldEndEditing:(DTRichTextEditorView *)editorView
 {
-    NSLog(@"editorViewShouldEndEditing:");
+//    BBINFO(@"editorViewShouldEndEditing:");
     return NO;
 }
 
 - (void)editorViewDidEndEditing:(DTRichTextEditorView *)editorView
 {
-    NSLog(@"editorViewDidEndEditing:");
+//    BBINFO(@"editorViewDidEndEditing:");
 }
 
 - (BOOL)editorView:(DTRichTextEditorView *)editorView shouldChangeTextInRange:(NSRange)range replacementText:(NSAttributedString *)text
 {
-    NSLog(@"editorView:shouldChangeTextInRange:replacementText:");
+//    BBINFO(@"editorView:shouldChangeTextInRange:replacementText:");
     
     return YES;
 }
 
 - (void)editorViewDidChangeSelection:(DTRichTextEditorView *)editorView
 {
-    NSLog(@"editorViewDidChangeSelection:");
+//    BBINFO(@"editorViewDidChangeSelection:");
     
 }
 
 - (void)editorViewDidChange:(DTRichTextEditorView *)editorView
 {
-    NSLog(@"editorViewDidChange:");
+//    BBINFO(@"editorViewDidChange:");
 }
 
 - (BOOL)editorView:(DTRichTextEditorView *)editorView canPerformAction:(SEL)action withSender:(id)sender

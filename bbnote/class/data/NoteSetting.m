@@ -24,6 +24,7 @@
     [aCoder encodeObject:self.strTextColor forKey:@"strTextColor"];
     [aCoder encodeObject:self.strFontName forKey:@"strFontName"];
     [aCoder encodeObject:self.nFontSize forKey:@"nFontSize"];
+    [aCoder encodeObject:self.strLink forKey:@"strLink"];
 }
 
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
@@ -35,6 +36,7 @@
         self.strTextColor = [aDecoder decodeObjectForKey:@"strTextColor"];
         self.strFontName = [aDecoder decodeObjectForKey:@"strFontName"];
         self.nFontSize = [aDecoder decodeObjectForKey:@"nFontSize"];
+        self.strLink = [aDecoder decodeObjectForKey:@"strLink"];
     }
     return self;
 }

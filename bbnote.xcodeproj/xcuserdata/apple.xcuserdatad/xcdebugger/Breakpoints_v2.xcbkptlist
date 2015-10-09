@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bbnote/AppDelegate.m"
-            timestampString = "466091708.646933"
+            timestampString = "466092031.706672"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
             landmarkName = "-applicationWillResignActive:"
             landmarkType = "5">
          </BreakpointContent>
@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bbnote/class/views/note/RichEditViewController.m"
-            timestampString = "465934722.062375"
+            timestampString = "466096218.941878"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "246"
-            endingLineNumber = "246"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
             landmarkName = "-createNewRecord"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bbnote/class/views/note/RichEditViewController.m"
-            timestampString = "465934722.062375"
+            timestampString = "466096218.941878"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "988"
-            endingLineNumber = "988"
+            startingLineNumber = "1022"
+            endingLineNumber = "1022"
             landmarkName = "-replaceCurrentSelectionWithPhoto:"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bbnote/class/views/note/RichEditViewController.m"
-            timestampString = "465934722.062375"
+            timestampString = "466096218.941878"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "846"
-            endingLineNumber = "846"
+            startingLineNumber = "873"
+            endingLineNumber = "873"
             landmarkName = "-keyboardDidSelectStyle:"
             landmarkType = "5">
          </BreakpointContent>
@@ -102,15 +102,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "bbnote/class/views/note/RichEditViewController.m"
-            timestampString = "465934722.062375"
+            timestampString = "466096218.941878"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "846"
-            endingLineNumber = "846"
+            startingLineNumber = "873"
+            endingLineNumber = "873"
             landmarkName = "-keyboardDidSelectStyle:"
             landmarkType = "5">
          </BreakpointContent>
@@ -137,13 +137,29 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "bbnote/AppDelegate.m"
-            timestampString = "466091719.188631"
+            filePath = "bbnote/class/thirdlib/DTSource/DTRichEditor/DTRichTextEditorView.m"
+            timestampString = "466092206.034275"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
-            landmarkName = "-showProtectViewCtl"
+            startingLineNumber = "2978"
+            endingLineNumber = "2978"
+            landmarkName = "-textDefaults"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "bbnote/class/views/note/RichEditViewController.m"
+            timestampString = "466096218.941878"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "101"
+            endingLineNumber = "101"
+            landmarkName = "-viewDidLoad"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -14,6 +14,7 @@
 -(UIImage*)scaleToSize:(CGSize)size;
 - (UIImage *)scaleImageToScale:(float)scaleSize;
 - (UIImage *)imageAutoScale;
+- (UIImage *)imageAutoScaleToScreen;
 - (UIImage*)imageWithCircularMask;
 - (UIImage *)resizedImage:(CGSize)newSize
      interpolationQuality:(CGInterpolationQuality)quality;

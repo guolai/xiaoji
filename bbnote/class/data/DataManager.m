@@ -150,10 +150,10 @@ static DataManager *dataManager;
             _noteSetting = [[NoteSetting alloc] init];
             _noteSetting.isUseBgImg = YES;
             _noteSetting.strBgImg = @"photo-detail-bg.jpg";
-            _noteSetting.strBgColor = @"1.0,1.0,1.0,1.0";
-            _noteSetting.strFontName = @"system";
+            _noteSetting.strBgColor = @"rgba(255,255,255,1.0)";
+            _noteSetting.strFontName = @"FZQKBYSJW--GB1-0";
             _noteSetting.nFontSize = [NSNumber numberWithFloat:14];
-            _noteSetting.strTextColor = @"0.0,0.0,0.0,1.0";
+            _noteSetting.strTextColor = @"rgba(0,0,0,1.0)";
             [self saveNoteSetting];
         }
     }

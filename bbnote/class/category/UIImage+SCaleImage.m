@@ -98,6 +98,13 @@
     return [self resizedImage:size interpolationQuality:kCGInterpolationDefault];
 }
 
+- (UIImage *)imageAutoScaleToScreen
+{
+    CGSize size = CGSizeMake(SCR_WIDTH , self.size.height * SCR_WIDTH  / self.size.width);
+    return [self resizedImage:size interpolationQuality:kCGInterpolationDefault];
+}
+
+
 
 - (UIImage*)imageWithCircularMask {
     CGContextRef context = CGBitmapContextCreate(NULL, self.size.width, self.size.height, CGImageGetBitsPerComponent(self.CGImage), 0, CGImageGetColorSpace(self.CGImage), kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);

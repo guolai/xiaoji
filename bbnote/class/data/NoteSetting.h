@@ -15,4 +15,5 @@
 @property (nonatomic, strong) NSString *strTextColor;
 @property (nonatomic, strong) NSString *strFontName;
 @property (nonatomic, strong) NSNumber *nFontSize;
+@property (nonatomic, strong) NSString *strLink;
 @end
