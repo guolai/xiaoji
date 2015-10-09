@@ -49,7 +49,6 @@
 
     if([BBUserDefault isFirstLaunchIn])
     {
-        
         [self showGuidView];
     }
     else
@@ -85,21 +84,13 @@
    
 
     [self.window makeKeyAndVisible];
-    if([BBUserDefault isOpenedProtect])
-    {
-        self.lockViewController = [[LockViewController alloc] init];
-        self.lockViewController.lockViewDelegate = self;
-        
-        [self.window.rootViewController  presentViewController:self.lockViewController animated:NO completion:Nil];
-    }
+    [self showProtectViewCtl];
     _bShouldLockScreenGetFocus = YES;
     return YES;
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
-    // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-    // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
     _bShouldLockScreenGetFocus = NO;
     if([BBUserDefault isOpenedProtect])
     {
@@ -118,10 +109,34 @@
             while (uiviewcontontoller.presentedViewController) {
                 uiviewcontontoller = uiviewcontontoller.presentedViewController;
             }
-            [uiviewcontontoller presentViewController:self.lockViewController animated:NO completion:Nil];
+            __weak typeof(UIViewController*) weakvc = uiviewcontontoller;
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakvc presentViewController:self.lockViewController animated:NO completion:Nil];
+            });
         }
     }
     
+}
+
+- (void)showProtectViewCtl
+{
+    if ([BBUserDefault isOpenedProtect] )
+    {
+        if(!self.lockViewController) {
+            self.lockViewController = [[LockViewController alloc] init];
+            self.lockViewController.lockViewDelegate = self;
+            [self.lockViewController getFocus:YES];
+            [self.window.rootViewController  presentViewController:self.lockViewController animated:NO completion:Nil];
+            _bShouldLockScreenGetFocus = YES;
+        }
+    }
+    else
+    {
+        if (self.lockViewController)
+        {
+            [self.lockViewController getFocus:YES];
+        }
+    }
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
