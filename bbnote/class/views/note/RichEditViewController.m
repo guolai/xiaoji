@@ -290,6 +290,7 @@
 - (void)submitRecored
 {
     UIImage *imge = [_richEditor.attributedTextContentView translateToImage];
+    BBINFO(@"%@", [_richEditor.attributedString string]);
 //    NSData *data = UIImageJPEGRepresentation(imge, 0.9);
     UIImageWriteToSavedPhotosAlbum(imge, nil, nil, nil);
     [self.navigationController popViewControllerAnimated:YES];
@@ -884,13 +885,17 @@
         NoteSetting *noteset = [[DataManager ShareInstance] noteSetting];
         noteset.strTextColor = bstyle.strColor;
         noteset.strFontName = bstyle.strFontName;
-        noteset.nFontSize = [NSNumber numberWithFloat:[bstyle.strSize floatValue]];
+        noteset.nFontSize = [NSNumber numberWithInteger:[bstyle.strSize floatValue]];
         [self resetNoteSetting];
+        UIColor *color = [bstyle.strColor getColorFromRGBA];
+        [_richEditor setForegroundColor:color inRange:range];
     }
     else
     {
         BBINFO(@"22222222");
-         [_richEditor updateFontInRange:range withFontFamilyName:bstyle.strFontName pointSize:[bstyle.strSize floatValue]];
+        UIColor *color = [bstyle.strColor getColorFromRGBA];
+        [_richEditor setForegroundColor:color inRange:range];
+        [_richEditor updateFontInRange:range withFontFamilyName:bstyle.strFontName pointSize:[bstyle.strSize floatValue]];
     }
     BBINFO(@"%@", range);
    

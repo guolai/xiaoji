@@ -14,6 +14,7 @@
 
 + (CGFloat)screenWidth;
 + (CGFloat)screenHeight;
++ (CGFloat)screenScale;
 + (CGSize)screenSize;//当前屏幕
 + (CGRect)screenRect;//当前屏幕
 

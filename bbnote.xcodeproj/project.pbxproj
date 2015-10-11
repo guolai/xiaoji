@@ -713,6 +713,7 @@
 		18F9FEDC1BC41CB80035A5AC /* StyleScrView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F9FED51BC41CB80035A5AC /* StyleScrView.m */; settings = {ASSET_TAGS = (); }; };
 		18F9FEDD1BC41CB80035A5AC /* StyleSelect.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F9FED71BC41CB80035A5AC /* StyleSelect.m */; settings = {ASSET_TAGS = (); }; };
 		18F9FEE01BC43D550035A5AC /* NSString+UIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F9FEDF1BC43D550035A5AC /* NSString+UIColor.m */; settings = {ASSET_TAGS = (); }; };
+		596C7CC31BCA998600F0B252 /* img_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 596C7CC21BCA998600F0B252 /* img_bg@2x.png */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1751,6 +1752,7 @@
 		18F9FED71BC41CB80035A5AC /* StyleSelect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StyleSelect.m; sourceTree = "<group>"; };
 		18F9FEDE1BC43D550035A5AC /* NSString+UIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UIColor.h"; sourceTree = "<group>"; };
 		18F9FEDF1BC43D550035A5AC /* NSString+UIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UIColor.m"; sourceTree = "<group>"; };
+		596C7CC21BCA998600F0B252 /* img_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "img_bg@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2128,6 +2130,7 @@
 		180901931AF9240700F8A0C8 /* textbg */ = {
 			isa = PBXGroup;
 			children = (
+				596C7CC21BCA998600F0B252 /* img_bg@2x.png */,
 				180901941AF9240700F8A0C8 /* photo-detail-bg.jpg */,
 				180901951AF9240700F8A0C8 /* photo-detail-bg@2x.jpg */,
 				180901961AF9240700F8A0C8 /* skin1-down.jpg */,
@@ -3881,6 +3884,7 @@
 				180901B81AF9240700F8A0C8 /* dragonflyBkgd.png in Resources */,
 				1809029D1AF9240700F8A0C8 /* playVideoBtn@2x.png in Resources */,
 				1809004F1AF923EB00F8A0C8 /* recoIndex.dtd in Resources */,
+				596C7CC31BCA998600F0B252 /* img_bg@2x.png in Resources */,
 				180901E21AF9240700F8A0C8 /* historyPicsTemplate.png in Resources */,
 				180902751AF9240700F8A0C8 /* navbar_bg_light5@2x.png in Resources */,
 				18F9FDFC1BC3F91E0035A5AC /* kb-magnifier-ranged-lo.png in Resources */,

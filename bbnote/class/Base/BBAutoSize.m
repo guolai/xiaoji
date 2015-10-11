@@ -12,6 +12,7 @@
 
 static CGFloat _scrWidth;
 static CGFloat _scrHeight;
+static CGFloat _fMainScreen;
 
 @implementation BBAutoSize
 
@@ -20,6 +21,7 @@ static CGFloat _scrHeight;
 {
     _scrWidth = CGRectGetWidth([[UIScreen mainScreen] bounds]);
     _scrHeight = CGRectGetHeight([[UIScreen mainScreen] bounds]);
+    _fMainScreen = [[UIScreen mainScreen] scale];
 }
 
 + (CGFloat)screenWidth
@@ -30,6 +32,11 @@ static CGFloat _scrHeight;
 + (CGFloat)screenHeight
 {
     return _scrHeight;
+}
+
++ (CGFloat)screenScale
+{
+    return _fMainScreen;
 }
 
 + (CGSize)screenSize//当前屏幕

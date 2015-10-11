@@ -255,7 +255,7 @@ typedef enum
 	self.editable = YES;
     self.selectionAffinity = UITextStorageDirectionForward;
 	self.userInteractionEnabled = YES; 	// for autocorrection candidate view
-	self.attributedTextContentView.edgeInsets = UIEdgeInsetsMake(10, 10, 10, 10);
+	self.attributedTextContentView.edgeInsets = UIEdgeInsetsMake(40, fTextMargin, 40, fTextMargin);
 	
 	// --- gestures
     if (!tripleTapGesture)
@@ -1298,7 +1298,7 @@ typedef enum
 - (void)handleLongPress:(UILongPressGestureRecognizer *)gesture
 {
 	CGPoint touchPoint = [gesture locationInView:self.attributedTextContentView];
-	
+    BBINFO(@"%zd", gesture.state);
 	switch (gesture.state)
 	{
         case UIGestureRecognizerStatePossible:
@@ -1398,7 +1398,7 @@ typedef enum
 - (void)handleDragHandle:(UIPanGestureRecognizer *)gesture
 {
 	CGPoint touchPoint = [gesture locationInView:self.attributedTextContentView];
-	
+    BBINFO(@"%zd", gesture.state);
 	switch (gesture.state)
 	{
         case UIGestureRecognizerStatePossible:

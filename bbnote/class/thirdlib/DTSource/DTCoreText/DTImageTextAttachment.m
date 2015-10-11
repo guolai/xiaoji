@@ -332,6 +332,14 @@ static NSCache *imageCache = nil;
 - (void)drawInRect:(CGRect)rect context:(CGContextRef)context
 {
 #if TARGET_OS_IPHONE
+//    CGFloat fMargin = 2;
+//    CGRect imgRect = rect;
+//    imgRect.origin.x += fMargin;
+//    imgRect.origin.y += fMargin;
+//    imgRect.size.height -= fMargin * 2;
+//    imgRect.size.width -= fMargin * 2;
+//    [UIColor whiteColor] 
+    
 	[self.image drawInRect:rect];
 #endif
 }

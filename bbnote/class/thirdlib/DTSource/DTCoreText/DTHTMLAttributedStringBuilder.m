@@ -197,7 +197,7 @@
 	
 	
 	// set the default font size
-	CGFloat defaultFontSize = 12.0f;
+	CGFloat defaultFontSize = 14.0f;
 	
 	NSNumber *defaultFontSizeNumber = [_options objectForKey:DTDefaultFontSize];
 	

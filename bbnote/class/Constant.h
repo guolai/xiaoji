@@ -23,6 +23,9 @@
 #define ISiPhone6Plus (SCR_HEIGHT_P == 736)
 #define ISiPhone6 (SCR_HEIGHT_P == 667)
 
+#define fTextMargin 20
+#define fImageMarin 5
+
 #define kBtnSwitchChanged  @"kBtnSwitchChanged"
 #define kDefatultFont @"system"
 //sina weibo

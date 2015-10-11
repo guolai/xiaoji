@@ -366,7 +366,7 @@
     {
         return nil;
     }
-    CGFloat fWidth = SCR_WIDTH - 10 * 2;
+    CGFloat fWidth = SCR_WIDTH - fTextMargin * 2  - fImageMarin * [BBAutoSize screenScale];
     CGSize orisize = oriImage.size;
     CGSize displaySize = CGSizeZero;
     if(orisize.width > orisize.height)
