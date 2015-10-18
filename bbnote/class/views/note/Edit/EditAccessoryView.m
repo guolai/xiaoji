@@ -8,128 +8,32 @@
 
 #import "EditAccessoryView.h"
 
-
-@implementation KBSwitchBtn
-@synthesize swithstate = _swithstate;
-@synthesize strKBImg;
-@synthesize strMicImg;
-@synthesize strMicImgHl;
-@synthesize strKBImgHl;
-
-- (void)dealloc
-{
-    self.strKBImg = nil;
-    self.strKBImgHl = nil;
-    self.strMicImg = nil;
-    self.strMicImgHl = nil;
-}
-
-- (void)switchBtnToState:(T_Accessory_Style_State)style
-{
-
-    if(style == e_KBSlct_Keyboard)//当前状态是键盘
-    {
-        if(self.strKBImg)
-        {
-            [self setImage:[UIImage imageNamed:self.strKBImgHl] forState:UIControlStateNormal];
-            [self setImage:[UIImage imageNamed:self.strKBImg] forState:UIControlStateHighlighted];
-        }
-        else
-        {
-            [self setImage:nil forState:UIControlStateNormal];
-            [self setImage:nil forState:UIControlStateHighlighted];
-        }
- 
-    }
-    else
-    {
-         if(self.strKBImg)
-         {
-             
-         }
-        else
-        {
-            [self setImage:[UIImage imageNamed:self.strMicImgHl] forState:UIControlStateNormal];
-            [self setImage:[UIImage imageNamed:self.strMicImg] forState:UIControlStateHighlighted];
-        }
-
-    }
-    self.swithstate = style;
-}
-- (void)setBubttonHl:(BOOL)bValue
-{
-    if(!bValue)
-    {
-        if(_swithstate == e_KBSlct_Keyboard)
-        {
-            if(self.strKBImg)
-            {
-                
-            }
-            else
-            {
-                
-            }
-            [self setImage:[UIImage imageNamed:self.strKBImgHl] forState:UIControlStateNormal];
-            [self setImage:[UIImage imageNamed:self.strKBImg] forState:UIControlStateHighlighted];
-        }
-        else
-        {
-            [self setImage:[UIImage imageNamed:self.strMicImgHl] forState:UIControlStateNormal];
-            [self setImage:[UIImage imageNamed:self.strMicImg] forState:UIControlStateHighlighted];
-        }
-    }
-    else
-    {
-        if(_swithstate == e_KBSlct_Keyboard)
-        {
-            if(self.strKBImg)
-            {
-                
-            }
-            else
-            {
-                
-            }
-            [self setImage:[UIImage imageNamed:self.strKBImg] forState:UIControlStateNormal];
-            [self setImage:[UIImage imageNamed:self.strKBImgHl] forState:UIControlStateHighlighted];
-        }
-        else
-        {
-            if(self.strKBImg)
-            {
-                
-            }
-  
-            [self setImage:[UIImage imageNamed:self.strMicImg] forState:UIControlStateNormal];
-            [self setImage:[UIImage imageNamed:self.strMicImgHl] forState:UIControlStateHighlighted];
-        }
-    }
-
-}
-@end
-
 @implementation KBBtn
-@synthesize strHlImg;
-@synthesize strImg;
 
-- (void)dealloc
+
+- (instancetype)init
 {
-    self.strHlImg = nil;
-    self.strImg = nil;
+    if(self = [super init])
+    {
+        int iBtnWidth = 44;
+        int iFontIcon = 20;
+        self.fontImg = [[FontImge alloc] initWithFrame:CGRectMake((iBtnWidth - 5 - iFontIcon), (iBtnWidth - iFontIcon) / 2, iFontIcon + 5, iFontIcon)];
+        [self addSubview:self.fontImg];
+        self.fontImg.bgViewColor = [UIColor clearColor];
+        self.fontImg.iconImgColor = [BBSkin shareSkin].titleBgColor;
+    }
+    return self;
 }
 
 - (void)setBubttonHl:(BOOL)bValue
 {
     if(bValue)
     {
-        [self setImage:[UIImage imageNamed:self.strHlImg] forState:UIControlStateNormal];
-        [self setImage:[UIImage imageNamed:self.strImg] forState:UIControlStateHighlighted];
+        self.fontImg.iconImgColor = [BBSkin shareSkin].titleBgColor;
     }
     else
     {
-        [self setImage:[UIImage imageNamed:self.strImg] forState:UIControlStateNormal];
-        [self setImage:[UIImage imageNamed:self.strHlImg] forState:UIControlStateHighlighted];
+        self.fontImg.iconImgColor = [UIColor grayColor];
     }
 }
 @end
@@ -137,9 +41,6 @@
 @implementation EditAccessoryView
 @synthesize slctState = _slctState;
 
-- (void)dealloc
-{
-}
 
 
 - (id)initWithFrame:(CGRect)frame
@@ -153,15 +54,14 @@
         UIImageView* bgImageView = [[UIImageView alloc] initWithImage:bgImage];
         bgImageView.frame = bgRect;
         [self addSubview:bgImageView];
-        NSArray *arrayImg = @[@"editAccessoryView_Microphone_Normal.png", @"edit_style.png", @"editAccessoryView_VoiceKeyboard_Normal.png"];
-        NSArray *arrayHlImg = @[@"editAccessoryView_Microphone_Pressed.png", @"edit_style_hl.png", @"editAccessoryView_VoiceKeyboard_Pressed.png"];
         float iSpace = 10;
         float iBtnWidth = 44;
 
-        float iMargin = (SCR_WIDTH - iSpace * 2 - iBtnWidth * 3) /4;
-        _mulArray = [NSMutableArray arrayWithCapacity:3];
-
+        NSArray *array = @[@(FAIconPicture), @(FAIconHeart), @(FAIconFont), @(FAIconThLarge)];
         
+        float iMargin = (SCR_WIDTH - iSpace * (array.count - 1) - iBtnWidth * array.count) /(array.count + 1);
+        _mulArray = [NSMutableArray arrayWithCapacity:3];
+       
         _lblPlaceHolder = [[UILabel alloc] initWithFrame:CGRectMake(50, (frame.size.height - 12) / 2, self.frame.size.width - 50, 12)];
         [_lblPlaceHolder setTextAlignment:NSTextAlignmentCenter];
         [_lblPlaceHolder setFont:[UIFont italicSystemFontOfSize:12]];
@@ -176,21 +76,29 @@
         iSpace += iMargin;
         KBBtn *btn = [[KBBtn alloc] init];
         [btn setTag:e_KB_Media + 900];
-        btn.strImg = [arrayImg objectAtIndex:i];
-        btn.strHlImg = [arrayHlImg objectAtIndex:i];
+        btn.fontImg.iconName = [[array objectAtIndex:i] integerValue];
         [btn setFrame:CGRectMake(iSpace, 0, iBtnWidth, iBtnWidth)];
         [btn addTarget:self action:@selector(btnPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn];
         [_mulArray addObject:btn];
         i++;
 
+        iSpace += iBtnWidth;
+        iSpace += iMargin;
+        btn = [[KBBtn alloc] init];
+        [btn setTag:e_KB_Paper + 900];
+        btn.fontImg.iconName = [[array objectAtIndex:i] integerValue];
+        [btn setFrame:CGRectMake(iSpace, 0, iBtnWidth, iBtnWidth)];
+        [btn addTarget:self action:@selector(btnPressed:) forControlEvents:UIControlEventTouchUpInside];
+        [self addSubview:btn];
+        [_mulArray addObject:btn];
+        i++;
         
         iSpace += iBtnWidth;
         iSpace += iMargin;
         btn = [[KBBtn alloc] init];
         [btn setTag:e_KB_Style + 900];
-        btn.strImg = [arrayImg objectAtIndex:i];
-        btn.strHlImg = [arrayHlImg objectAtIndex:i];
+        btn.fontImg.iconName = [[array objectAtIndex:i] integerValue];
         [btn setFrame:CGRectMake(iSpace, 0, iBtnWidth, iBtnWidth)];
         [btn addTarget:self action:@selector(btnPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn];
@@ -201,8 +109,7 @@
         iSpace += iMargin;
         btn = [[KBBtn alloc] init];
         [btn setTag:e_KB_KeyBoard + 900];
-        btn.strImg = [arrayImg objectAtIndex:i];
-        btn.strHlImg = [arrayHlImg objectAtIndex:i];
+        btn.fontImg.iconName = [[array objectAtIndex:i] integerValue];
         [btn setFrame:CGRectMake(iSpace, 0, iBtnWidth, iBtnWidth)];
         [btn addTarget:self action:@selector(btnPressed:) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:btn];

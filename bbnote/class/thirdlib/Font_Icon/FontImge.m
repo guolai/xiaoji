@@ -17,8 +17,8 @@
 @implementation FontImge
 
 @synthesize bgViewColor;
-@synthesize iconImgColor;
-@synthesize iconName;
+@synthesize iconImgColor = _iconImgColor;
+@synthesize iconName = _iconName;
 
 - (UILabel*)defaultView
 {
@@ -42,8 +42,18 @@
     return _defaultView;
 }
 
+- (void)setIconImgColor:(UIColor *)iconImgColor
+{
+    if(_iconImgColor != iconImgColor)
+    {
+        _iconImgColor = iconImgColor;
+        self.iconName = self.iconName;
+    }
+}
+
 - (void)setIconName:(FAIcon)iconName
 {
+    _iconName = iconName;
     NSString *strIcon = [NSString stringFromAwesomeIcon:iconName];
     self.defaultView.text = strIcon;
     if(self.bgViewColor)

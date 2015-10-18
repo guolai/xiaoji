@@ -612,17 +612,6 @@
         }
             
             break;
-            
-        case e_KB_Down:
-        {
-            NSAssert(false, @"error");
-        }
-            break;
-        case e_KB_Up:
-        {
-            NSAssert(false, @"error");
-        }
-            break;
         case e_KB_Style:
         {
             if(self.accessoryView.slctState == e_KBSlct_Style)
@@ -935,30 +924,7 @@
         
         }
             break;
-        case e_Media_Filter:
-        {
-      
-            
-        }
-            break;
-        case e_Media_Voice:
-        {
- 
-            
-        }
-            break;
-        case e_Media_Card:
-        {
-     
-        }
-            break;
-        case e_Media_Poster:
-        {
-
-            
-            
-        }
-            break;
+   
         default:
             break;
     }

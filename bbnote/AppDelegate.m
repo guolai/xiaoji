@@ -16,10 +16,19 @@
 #import "DataModel.h"
 //#import "ShareWeibo.h"
 #import "FileManagerController.h"
+#import "TestViewController.h"
 
 @implementation AppDelegate
 @synthesize lockViewController;
 @synthesize window;
+
+- (void)showTestView
+{
+    TestViewController *vc = [[TestViewController alloc] init];
+    BBNavigationViewController *nav = [[BBNavigationViewController alloc] initWithRootViewController:vc];
+    self.window.rootViewController = nav;
+}
+
 
 - (void)showHomeView
 {
@@ -78,6 +87,7 @@
             [animtView startAnimating];
         }
         [self showHomeView];
+//        [self showTestView];
         //            [self showGuidView];
     }
     [loadingView removeFromSuperview];

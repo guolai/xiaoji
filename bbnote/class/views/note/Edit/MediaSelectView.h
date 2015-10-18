@@ -10,10 +10,6 @@
 typedef enum {
     e_Media_Photo,
     e_Media_Paper,
-    e_Media_Poster,
-    e_Media_Filter,
-    e_Media_Card,
-    e_Media_Voice,
     e_Media_Max
 }T_Media_Type;
 

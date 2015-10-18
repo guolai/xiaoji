@@ -20,8 +20,8 @@
         float fSpace = (frame.size.width - iBtnWidth * 4) / 5;
         float fLeft = fSpace;
        
-        NSArray *arrayImg = @[@"editHead_Photo.png", @"editHead_Paper.png", @"editHead_Poster"];
-        NSArray *arrayText = @[NSLocalizedString(@"Photo", Nil), NSLocalizedString(@"Paper", Nil), NSLocalizedString(@"Poster", Nil)];
+        NSArray *arrayImg = @[@"record_add"];
+        NSArray *arrayText = @[NSLocalizedString(@"Photo", Nil)];
         for (int i = 0; i < arrayImg.count; i++)
         {
             CGRect rect = CGRectMake(fLeft + (iBtnWidth + fSpace) * i, 20, iBtnWidth, iBtnWidth);
