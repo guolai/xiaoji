@@ -1309,7 +1309,7 @@ static BOOL _DTCoreTextLayoutFramesShouldDrawDebugFrames = NO;
                     CGRect rect = CGRectMake(oneRun.frame.origin.x, oneLine.baselineOrigin.y - ascender, attachment.displaySize.width, attachment.displaySize.height);
                     [drawableAttachment drawInRect:rect context:context];
                 }
-                else if(1)
+                else
                 {
                     CGRect rect = CGRectMake(oneRun.frame.origin.x, oneLine.baselineOrigin.y - ascender, attachment.displaySize.width, attachment.displaySize.height);
                     
@@ -1323,32 +1323,8 @@ static BOOL _DTCoreTextLayoutFramesShouldDrawDebugFrames = NO;
                     imgRect.origin.y += fMargin;
                     imgRect.size.height -= fMargin * 2;
                     imgRect.size.width -= fMargin * 2;
-//                    drawableAttachment.im
                     [drawableAttachment drawInRect:imgRect context:context];
                 }
-                else
-                {
-                    CGRect rect = CGRectMake(oneRun.frame.origin.x, oneLine.baselineOrigin.y - ascender, attachment.displaySize.width, attachment.displaySize.height);
-                    
-                    UIImage *shadowImg = [UIImage imageNamed:@"img_bg"];
-                    UIEdgeInsets inset = UIEdgeInsetsMake(10, 10, 10, 10);
-                    shadowImg = [shadowImg resizableImageWithCapInsets:inset resizingMode:UIImageResizingModeStretch];
-                    CGFloat fMargin = 10;
-                    CGRect imgRect = rect;
-                    imgRect.origin.x -= fMargin;
-                    imgRect.origin.y -= fMargin;
-                    imgRect.size.height += fMargin * 2;
-                    imgRect.size.width += fMargin * 2;
-                    [shadowImg drawInRect:imgRect];
-                   
-                    //                    drawableAttachment.im
-                    [drawableAttachment drawInRect:rect context:context];
-                }
-				
-			
-				
-				
-				
 			}
 			
 			if (!drawLinks && oneRun.isHyperlink)
