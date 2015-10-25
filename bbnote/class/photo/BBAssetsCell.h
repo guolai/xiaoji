@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @protocol BBAssetsTableViewCellDelegate;
+@protocol BBAssetViewColumnDelegate;
 
-@interface BBAssetsCell : UITableViewCell
+@interface BBAssetsCell : UITableViewCell<BBAssetViewColumnDelegate>
+@property (nonatomic, copy) NSIndexPath *indexPath;
 @property (nonatomic, strong)NSMutableArray *arrayViews;
 @property (nonatomic, weak) id<BBAssetsTableViewCellDelegate> delegate;
 - (id)initWithReuseIdentifier:(NSString *)strIndefi;

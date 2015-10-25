@@ -527,7 +527,7 @@ static Class _layerClassToUseForDTAttributedTextContentView = nil;
 			
 			if ([self respondsToSelector:@selector(invalidateIntrinsicContentSize)])
 			{
-            [self invalidateIntrinsicContentSize];
+                [self invalidateIntrinsicContentSize];
 			}
 		}
 	});

@@ -52,9 +52,9 @@
 #define kSkinDidChanged @"kSkinDidChanged"
 
 //photo
-#define kPHOTO_SELECTED @"isSelected"
+//#define kPHOTO_SELECTED @"isSelected"
 #define kPHOTO_STATE_KEY @"state"
-#define kPHOTO_SELECTED_COUNT @"selectedCount"
+//#define kPHOTO_SELECTED_COUNT @"selectedCount"
 #define PHOTO_COLUMN_COUNT 4
 #define PHOTO_TABLEVIEW_INSETS UIEdgeInsetsMake(2, 0, 2, 0);
 #define PHOTO_VIEW_PADDING 4

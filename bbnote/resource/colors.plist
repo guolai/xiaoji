@@ -3,52 +3,52 @@
 <plist version="1.0">
 <dict>
 	<key>color1</key>
-	<string>0.992,0,0.09,1.0</string>
+	<string>rgba(253,0,23,1.0)</string>
 	<key>color2</key>
-	<string>0.992,0.463,0.137,1.0</string>
+	<string>rgba(253,118,35,1.0)</string>
 	<key>color3</key>
-	<string>1.000,0.920,0.000,1.0</string>
+	<string>rgba(255,235,0,1.0)</string>
 	<key>color4</key>
-	<string>0.610,1.000,0.000,1.0</string>
+	<string>rgba(0.610,156,0,1.0)</string>
 	<key>color5</key>
-	<string>0.270,1.000,0.000,1.0</string>
+	<string>rgba(69,255,0,1.0)</string>
 	<key>color6</key>
-	<string>0.170,0.650,1.000,1.0</string>
+	<string>rgba(43,166,255,1.0)</string>
 	<key>color7</key>
-	<string>0.050,0.210,1.000,1.0</string>
+	<string>rgba(13,54,255,1.0)</string>
 	<key>color8</key>
-	<string>0.270,0.670,0.440,1.0</string>
+	<string>rgba(69,171,112,1.0)</string>
 	<key>color9</key>
-	<string>0.432,0.223,0.797,1.0</string>
+	<string>rgba(110,57,203,1.0)</string>
 	<key>color10</key>
-	<string>0.872,0.153,0.337,1.0</string>
+	<string>rgba(222,39,86,1.0)</string>
 	<key>color11</key>
-	<string>0.982,0.823,0.227,1.0</string>
+	<string>rgba(250,210,58,1.0)</string>
 	<key>color12</key>
-	<string>0.862,0.000,0.507,1.0</string>
+	<string>rgba(220,0,129,1.0)</string>
 	<key>color13</key>
-	<string>0.867,0.098,0.980,1.0</string>
+	<string>rgba(221,25,250,1.0)</string>
 	<key>color14</key>
-	<string>0.382,0.353,0.457,1.0</string>
+	<string>rgba(97,90,117,1.0)</string>
 	<key>color15</key>
-	<string>0.252,0.253,0.387,1.0</string>
+	<string>rgba(64,65,99,1.0)</string>
 	<key>color16</key>
-	<string>0.272,0.673,0.447,1.0</string>
+	<string>rgba(69,172,114,1.0)</string>
 	<key>color17</key>
-	<string>0.692,0.793,0.107,1.0</string>
+	<string>rgba(176,202,27,1.0)</string>
 	<key>color18</key>
-	<string>0.622,0.453,0.287,1.0</string>
+	<string>rgba(159,116,73,1.0)</string>
 	<key>color19</key>
-	<string>0.612,0.283,0.307,1.0</string>
+	<string>rgba(156,72,78,1.0)</string>
 	<key>color20</key>
-	<string>1,1,1,1.0</string>
+	<string>rgba(255,255,255,1.0)</string>
 	<key>color21</key>
-	<string>0.784,0.784,0.784,1.0</string>
+	<string>rgba(200,200,200,1.0)</string>
 	<key>color22</key>
-	<string>0.549,0.549,0.549,1.0</string>
+	<string>rgba(140,140,140,1.0)</string>
 	<key>color23</key>
-	<string>0.275,0.275,0.275,1.0</string>
+	<string>rgba(70,70,70,1.0)</string>
 	<key>color24</key>
-	<string>0,0,0,1.0</string>
+	<string>rgba(0,0,0,1.0)</string>
 </dict>
 </plist>

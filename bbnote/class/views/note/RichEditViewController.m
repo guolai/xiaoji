@@ -31,10 +31,11 @@
 #import "UIView+Image.h"
 #import "NSString+UIColor.h"
 #import "UIImage+SCaleImage.h"
+#import "PaperListView.h"
+#import "BBTableDelegate.h"
 
 
-
-@interface RichEditViewController ()<DTRichTextEditorViewDelegate, DTAttributedTextContentViewDelegate,KeyBoardStateDelegate, MediaSelectDelegate, BBPresentViewControlerDelegate>
+@interface RichEditViewController ()<DTRichTextEditorViewDelegate, DTAttributedTextContentViewDelegate,KeyBoardStateDelegate, MediaSelectDelegate, BBPresentViewControlerDelegate, BBPaperListDelegate>
 {
     float _keyboardHeight;
     CGRect _priKbRct;
@@ -44,6 +45,7 @@
 @property (nonatomic, strong)EditAccessoryView *accessoryView;
 @property (nonatomic, strong)StyleSelectView *styleSlctView;
 @property (nonatomic, strong)MediaSelectView *mediaSlectView;
+@property (nonatomic, strong)PaperListView *paperListView;
 @property (nonatomic, weak) UIView *keyBoardView;
 @property (nonatomic, weak) id<BBPresentViewControlerDelegate> presentDelegate;
 
@@ -81,6 +83,8 @@
         _mediaSlectView = nil;
         [_styleSlctView removeFromSuperview];
         _styleSlctView = nil;
+        [_paperListView removeFromSuperview];
+        _paperListView = nil;
     }
     [super didReceiveMemoryWarning];
 }
@@ -204,6 +208,22 @@
     return _mediaSlectView;
 }
 
+- (PaperListView *)paperListView
+{
+    if(!_paperListView)
+    {
+        float mediaViewH = [BBAutoSize resizeWidth:240];
+        _paperListView = [[PaperListView alloc] initWithFrame:CGRectMake(0, 0, SCR_WIDTH, mediaViewH)];
+        _paperListView.frame = [BBMisc getScreenBlowRectForm:_paperListView.frame];
+        [_paperListView setBackgroundColor:[UIColor colorWithRed:240.0/255.0 green:245.0/255.0 blue:244.0/255.0 alpha:1]];
+        _paperListView.alpha = 0.97;
+        _paperListView.delegate = self;
+        [self.view addSubview:_paperListView];
+        _paperListView.hidden = YES;
+    }
+    return _paperListView;
+}
+
 #pragma mark － set
 
 - (void)resetBackGroundColor
@@ -211,19 +231,33 @@
     NoteSetting *noteset = [[DataManager ShareInstance] noteSetting];
     if(noteset.isUseBgImg)
     {
-        UIImage *img = [UIImage imageNamed:self.bRecord.bg_image];
+        UIImage *img = [UIImage imageNamed:noteset.strBgImg];
         img  = [img imageAutoScaleToScreen];
         if(img)
         {
             UIColor *color = [UIColor colorWithPatternImage:img];
             _richEditor.attributedTextContentView.backgroundColor = color;
             [_richEditor setBackgroundColor:color];
+//            [self reDrawView:_richEditor.attributedTextContentView];
+//            [self reDrawView:_richEditor];
+          
         }
     }
     else
     {
         _richEditor.attributedTextContentView.backgroundColor = DTColorCreateWithHTMLName(noteset.strBgColor);
         [_richEditor setBackgroundColor:DTColorCreateWithHTMLName(noteset.strBgColor)];
+//        [self reDrawView:_richEditor.attributedTextContentView];
+//        [self reDrawView:_richEditor];
+    }
+}
+
+- (void)reDrawView:(UIView *)view
+{
+    [view setNeedsDisplay];
+    if ([view respondsToSelector:@selector(invalidateIntrinsicContentSize)])
+    {
+        [view invalidateIntrinsicContentSize];
     }
 }
 
@@ -376,6 +410,18 @@
         rct.origin.y = rct.origin.y - _accessoryView.frame.size.height;
         _accessoryView.frame = rct;
     }
+    else if (_accessoryView.slctState == e_KBSlct_Paper)
+    {
+        self.keyBoardView.hidden = YES;
+        [self  showPaperWithAnimation:YES duration:[number floatValue]];
+        CGRect rct = [BBMisc getScreenAboveRectForm:_paperListView.frame];
+        toPoint.y = rct.origin.y - _accessoryView.frame.size.height / 2;
+        CAAnimationGroup *animationGroup = [AnimationHelper showInputAccessoryBarFromPoint:fromPoint toPoint:toPoint duration:[number floatValue]];
+        [_accessoryView.layer addAnimation:animationGroup forKey:@"show"];
+        rct.size.height = _accessoryView.frame.size.height;
+        rct.origin.y = rct.origin.y - _accessoryView.frame.size.height;
+        _accessoryView.frame = rct;
+    }
     else
     {
         NSAssert(false, @"keyboardWillShow type is undefined");
@@ -442,6 +488,18 @@
             _mediaSlectView.frame = rct;
         } completion:^(BOOL finished) {
             _mediaSlectView.hidden = YES;
+        }];
+        
+    }
+    else if(_accessoryView.slctState == e_KBSlct_Paper)
+    {
+        if(self.paperListView.hidden)
+            return;
+        CGRect rct = [BBMisc getScreenBlowRectForm:_paperListView.frame];
+        [UIView animateWithDuration:[number floatValue] animations:^{
+            _paperListView.frame = rct;
+        } completion:^(BOOL finished) {
+            _paperListView.hidden = YES;
         }];
         
     }
@@ -575,9 +633,8 @@
 #pragma mark - EditAccessoryViewToolbarDelegate
 - (void)accessoryToolbarSelected:(UIButton*)sender type:(T_KeyBoard_Btn)type {
     
-    switch (type) {
- 
-            
+    switch (type)
+    {
         case e_KB_Media:
         {
             if(self.accessoryView.slctState == e_KBSlct_Media)
@@ -599,6 +656,16 @@
                 [self hideStyleSelectViewWithAnimation:YES duration:-1];
                 [self showMeidaWithAnimation:NO duration:-1];
             }
+            else if (self.accessoryView.slctState == e_KBSlct_Paper)
+            {
+                [UIView animateWithDuration:0.3 animations:^{
+                    self.paperListView.alpha = 0.3;
+                } completion:^(BOOL finished) {
+                    _paperListView.alpha = 1.0;
+                    [self hidePaperWithAnimation:NO duration:-1];
+                }];
+                [self showMeidaWithAnimation:NO duration:-1];
+            }
             else
             {
                 NSAssert(false, @"error");
@@ -609,6 +676,49 @@
             } completion:^(BOOL finished) {
             }];
             self.accessoryView.slctState = e_KBSlct_Media;
+        }
+            break;
+        case e_KB_Paper:
+        {
+            if(self.accessoryView.slctState == e_KB_Paper)
+            {
+                [self keyboardDown];
+                return;
+            }
+            if (self.accessoryView.slctState == e_KBSlct_Max)
+            {
+                return;
+            }
+            if(self.accessoryView.slctState == e_KBSlct_Keyboard)
+            {
+                [self hideKeyBoardWithAnimation:YES duration:-1];
+                [self showPaperWithAnimation:NO  duration:-1];
+            }
+            else if(self.accessoryView.slctState == e_KBSlct_Style)
+            {
+                [self hideStyleSelectViewWithAnimation:YES duration:-1];
+                [self showPaperWithAnimation:NO duration:-1];
+            }
+            else if (self.accessoryView.slctState == e_KBSlct_Media)
+            {
+                [UIView animateWithDuration:0.3 animations:^{
+                    self.mediaSlectView.alpha = 0.3;
+                } completion:^(BOOL finished) {
+                    _mediaSlectView.alpha = 1.0;
+                    [self hideMeidaWithAnimation:NO duration:-1];
+                }];
+                [self showPaperWithAnimation:NO duration:-1];
+            }
+            else
+            {
+                NSAssert(false, @"error");
+            }
+            
+            [UIView animateWithDuration:0.1 animations:^{
+                [self.accessoryView setFrameNextToView:self.paperListView];
+            } completion:^(BOOL finished) {
+            }];
+            self.accessoryView.slctState = e_KBSlct_Paper;
         }
             break;
         case e_KB_Style:
@@ -635,6 +745,16 @@
                 } completion:^(BOOL finished) {
                     _mediaSlectView.alpha = 1.0;
                     [self hideMeidaWithAnimation:NO duration:-1];
+                }];
+                [self showStyleSelectViewWithAnimation:YES  duration:0.1];
+            }
+            else if (self.accessoryView.slctState == e_KBSlct_Paper)
+            {
+                [UIView animateWithDuration:0.3 animations:^{
+                    self.paperListView.alpha = 0.3;
+                } completion:^(BOOL finished) {
+                    _paperListView.alpha = 1.0;
+                    [self hidePaperWithAnimation:NO duration:-1];
                 }];
                 [self showStyleSelectViewWithAnimation:YES  duration:0.1];
             }
@@ -686,7 +806,15 @@
                     self.mediaSlectView.alpha = 1.0;
                     [self hideMeidaWithAnimation:NO duration:-1];
                 }];
-                
+            }
+            else if (self.accessoryView.slctState == e_KBSlct_Paper)
+            {
+                [UIView animateWithDuration:0.3 animations:^{
+                    self.paperListView.alpha = 0.3;
+                } completion:^(BOOL finished) {
+                    _paperListView.alpha = 1.0;
+                    [self hidePaperWithAnimation:NO duration:-1];
+                }];
             }
             else
             {
@@ -752,6 +880,55 @@
     }
     
 }
+
+- (void)showPaperWithAnimation:(BOOL)animation  duration:(float)fDura
+{
+    if(!self.paperListView.hidden)
+    {
+        return;
+    }
+    if(fDura < 0)
+        fDura = 0.25;
+    self.paperListView.hidden = NO;
+    if (animation) {
+        CGPoint fromPnt = [BBMisc getScreenBlowPointFrom:_paperListView.frame];
+        CGPoint toPnt = [BBMisc getScreenAbovePointFrom:_paperListView.frame];
+        CAAnimationGroup *animationGroup = [AnimationHelper showInputAccessoryBarFromPoint:fromPnt toPoint:toPnt duration:fDura];
+        [_paperListView.layer addAnimation:animationGroup forKey:@"show"];
+    }
+    CGRect rct = [BBMisc getScreenAboveRectForm:_paperListView.frame];
+    _paperListView.frame = rct;
+}
+
+- (void)hidePaperWithAnimation:(BOOL)animtation  duration:(float)fDura
+{
+    if(self.paperListView.hidden)
+        return;
+    if(fDura < 0)
+        fDura = 0.25;
+    //    if(animtation)
+    //    {
+    //        CGPoint fromPnt = [BBMisc getCurrentPointFrom:_mediaSlectView.frame];
+    //        CGPoint toPnt = [BBMisc getScreenBlowPointFrom:_mediaSlectView.frame];
+    //        CAAnimationGroup *animationGroup = [AnimationHelper dimissInputAccessoryBarFromPoint:fromPnt toPoint:toPnt duration:fDura];
+    //        [_mediaSlectView.layer addAnimation:animationGroup forKey:@"xunfeihide"];
+    //    }
+    if(animtation)
+    {
+        [UIView animateWithDuration:0.25 animations:^{
+            _paperListView.frame = [BBMisc getScreenBlowRectForm:_paperListView.frame];
+        } completion:^(BOOL finished) {
+            _paperListView.hidden = YES;
+        }];
+    }
+    else
+    {
+        _paperListView.frame = [BBMisc getScreenBlowRectForm:_paperListView.frame];
+        _paperListView.hidden = YES;
+    }
+    
+}
+
 
 - (void)showKeyboardWithAnimation:(BOOL)animation  duration:(float)fDura
 {
@@ -897,6 +1074,13 @@
 - (void)keyboardXunFeiInputDidStop
 {
     
+}
+
+#pragma mark - paperdelegate
+
+- (void)bbPhotoTableViewDidClick:(PaperItem *)object
+{
+    [self resetBackGroundColor];
 }
 
 #pragma mark - MediaSelectDelegate

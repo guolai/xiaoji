@@ -8,6 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface PaperListView : UIView
+@protocol BBPaperListDelegate;
 
+@interface PaperListView : UIView
+@property (nonatomic, weak) id<BBPaperListDelegate> delegate;
+- (void)removeTableAllConnection;
 @end

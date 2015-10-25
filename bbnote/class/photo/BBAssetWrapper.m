@@ -9,6 +9,11 @@
 #import "BBAssetWrapper.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 
+
+@implementation PaperItem
+
+@end
+
 @implementation BBAssetWrapper
 @synthesize asset = _asset;
 @synthesize paper = _paper;

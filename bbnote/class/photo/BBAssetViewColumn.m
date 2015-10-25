@@ -13,8 +13,7 @@
 @end
 
 @implementation BBAssetViewColumn
-@synthesize column = _column;
-@synthesize selected = _selected;
+
 
 
 
@@ -29,6 +28,12 @@
     _imgeView.image = thumbnail;
 }
 
+- (void)setthumbnailColor:(UIColor *)color
+{
+    _imgeView.image = nil;
+    [_imgeView setBackgroundColor:color];
+}
+
 - (id)initWithFrame:(CGRect)frame
 {
     if(self = [super initWithFrame:frame])
@@ -38,22 +43,41 @@
         _imgeView = [[UIImageView alloc] initWithFrame:self.bounds];
         _imgeView.contentMode = UIViewContentModeScaleAspectFill;
         [self addSubview:_imgeView];
+        _imgeView.clipsToBounds = YES;
+        UIImage *img = [UIImage imageNamed:@"skin_check.png"];
+        CGSize size = self.bounds.size;
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(size.width - img.size.width, size.height - img.size.height, img.size.width, img.size.height)];
+        [imgView setImage:img];
+        imgView.hidden = YES;
+        [self addSubview:imgView];
+        _maskView = imgView;
     }
     return self;
 }
 
-#pragma mark setter/getter
-
-- (void)setSelected:(BOOL)selected
+- (instancetype)init
 {
-    if(_selected != selected)
+    if(self = [super init])
     {
-        //kvo compliant notifications
-        [self willChangeValueForKey:kPHOTO_SELECTED];
-        _selected = selected;
-        [self didChangeValueForKey:kPHOTO_SELECTED];
+        NSAssert(false, @"shouduse initWithFrame");
     }
-    [self setNeedsDisplay];
+    return self;
+}
+
+- (void)setBSelected:(BOOL)bSelected
+{
+    if(_bSelected != bSelected)
+    {
+        _bSelected = bSelected;
+        if(self.bShouldSeleted && _bSelected)
+        {
+            _maskView.hidden = NO;
+        }
+        else
+        {
+            _maskView.hidden = YES;
+        }
+    }
 }
 
 
@@ -64,7 +88,11 @@
 {
     if(sender.state == UIGestureRecognizerStateEnded)
     {
-        self.selected = !self.selected;
+        self.bSelected = YES;
+        if ([self.delegate respondsToSelector:@selector(bbassetViewColoumnDidClick:selected:)])
+        {
+            [self.delegate bbassetViewColoumnDidClick:self selected:YES];
+        }
     }
 }
 

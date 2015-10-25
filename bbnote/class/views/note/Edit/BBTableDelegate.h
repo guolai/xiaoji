@@ -7,19 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BBAssetWrapper.h"
 
 
 @protocol BBPaperListDelegate <NSObject>
 
-- (void)qmPhotoTableViewDidClick:(PhotoItem *)object;
+- (void)bbPhotoTableViewDidClick:(PaperItem *)object;
 
 @end
 
 
 @interface BBTableDelegate : NSObject<UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) NSArray *arrayData;
-@property (nonatomic, strong) NSString *strTitle;
-@property (nonatomic, weak) id<QMSharePhotoListDelegate> delegate;
+@property (nonatomic, weak) id<BBPaperListDelegate> delegate;
 
 - (void)removeAllConnection;
 

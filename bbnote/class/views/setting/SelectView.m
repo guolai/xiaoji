@@ -8,7 +8,7 @@
 
 #import "SelectView.h"
 #import "Constant.h"
-#import "NSString+Help.h"
+#import "NSString+UIColor.h"
 #import "BBSkin.h"
 
 @implementation SelectBtnView
@@ -136,7 +136,7 @@
                 CGRect rct = CGRectMake((fWidth + iMargin) * j, (fWidth + iMargin) * i, fWidth, fWidth);
                 NSString *strColor = [self.arrayColors objectAtIndex:index];
                 
-                UIColor *color = [strColor getColorFromString];
+                UIColor *color = [strColor getColorFromRGBA];
                 SelectBtnView *selctview = [[SelectBtnView alloc] initWithFrame:rct withColor:color];
                 selctview.tag = CELL_TAG + index;
                 selctview.selectDelegate = self;
