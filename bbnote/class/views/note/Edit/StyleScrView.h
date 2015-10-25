@@ -17,7 +17,9 @@ typedef enum
 {
     e_BV_Text,
     e_BV_Size,
-    e_BV_Color
+    e_BV_Color,
+    e_BV_BgColor,
+    e_BV_Style,
 }T_BaseView;
 
 @interface StyleImageView : UIView
@@ -26,6 +28,7 @@ typedef enum
 - (void)setFontName:(NSString *)strText localName:(NSString *)strLocal;
 - (void)setFontSize:(NSString *)strText;
 - (void)setStringColor:(NSString *)strColor;
+- (void)setStringBgColor:(NSString *)strColor;
 - (void)setStyleImg:(NSString *)strName;
 @end
 

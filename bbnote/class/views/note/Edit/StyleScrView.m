@@ -74,6 +74,33 @@
     [self addSubview:lbl];
 }
 
+- (void)setStringBgColor:(NSString *)strColor
+{
+    float fW = self.frame.size.width;
+    float fH = self.frame.size.height;
+    UIColor *bgColor = [strColor getColorFromRGBA];
+    
+    float colorW = 30*_scale;
+    float colorH = 20*_scale;
+    UIView *lbl = [[UIView alloc] initWithFrame:CGRectMake((fW - colorW)/2, (fH - colorH)/2, colorW, colorH)];
+    [lbl setBackgroundColor:bgColor];
+    [self addSubview:lbl];
+    
+    UIColor *forColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+    colorW = 13*_scale;
+    colorH = 10*_scale;
+    if([bgColor isEqual:forColor])
+    {
+        forColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0];
+    }
+    UILabel *lbl1 = [[UILabel alloc] initWithFrame:CGRectMake((fW - colorW)/2, (fH - colorH)/2, colorW, colorH)];
+    [lbl1 setFont:[UIFont systemFontOfSize:7]];
+    [lbl1 setText:@"小记"];
+    [lbl1 setTextColor:forColor];
+    [lbl1 setBackgroundColor:[UIColor clearColor]];
+    [self addSubview:lbl1];
+}
+
 - (void)setStyleImg:(NSString *)strName
 {
     UIImage* img = [UIImage imageNamed:strName];
@@ -146,6 +173,10 @@
                 else if(_type == e_BV_Color)
                 {
                     [imgView setStringColor:[dic objectForKey:@"name"]];
+                }
+                else if(_type == e_BV_BgColor)
+                {
+                    [imgView setStringBgColor:[dic objectForKey:@"name"]];
                 }
                 
                 imgView.strStyle = [dic  objectForKey:@"name"];

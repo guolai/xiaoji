@@ -40,7 +40,7 @@
     CGRect _priKbRct;
     UITextRange *_lastSelection;
 }
-@property (nonatomic, strong) DTRichTextEditorView *richEditor;
+@property (nonatomic, strong)DTRichTextEditorView *richEditor;
 @property (nonatomic, strong)EditAccessoryView *accessoryView;
 @property (nonatomic, strong)StyleSelectView *styleSlctView;
 @property (nonatomic, strong)MediaSelectView *mediaSlectView;
@@ -610,7 +610,6 @@
             }];
             self.accessoryView.slctState = e_KBSlct_Media;
         }
-            
             break;
         case e_KB_Style:
         {

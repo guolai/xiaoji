@@ -11,6 +11,7 @@
 
 @implementation BBAssetWrapper
 @synthesize asset = _asset;
+@synthesize paper = _paper;
 
 
 
@@ -20,11 +21,20 @@
     return wrapper;
 }
 
-- (id)initWithAsset:(ALAsset *)asset;
+- (instancetype)initWithAsset:(ALAsset *)asset;
 {
     if(self = [super init])
     {
         _asset = asset;
+    }
+    return self;
+}
+
+- (instancetype)initWithPhotoItem:(PaperItem *)item
+{
+    if(self = [super init])
+    {
+        _paper = item;
     }
     return self;
 }

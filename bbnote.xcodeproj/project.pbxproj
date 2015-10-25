@@ -480,6 +480,8 @@
 		1809FFFF1AF923EB00F8A0C8 /* FileManagerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FEB11AF923EA00F8A0C8 /* FileManagerController.m */; };
 		182B20031AFEBB5C00412EF2 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 182B20051AFEBB5C00412EF2 /* Localizable.strings */; };
 		182B200B1AFEBC0C00412EF2 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 182B200D1AFEBC0C00412EF2 /* InfoPlist.strings */; };
+		187339B91BD3DC21002D7D40 /* PaperListView.m in Sources */ = {isa = PBXBuildFile; fileRef = 187339B81BD3DC21002D7D40 /* PaperListView.m */; settings = {ASSET_TAGS = (); }; };
+		187339BC1BD3DC73002D7D40 /* BBTableDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 187339BB1BD3DC73002D7D40 /* BBTableDelegate.m */; settings = {ASSET_TAGS = (); }; };
 		188152D11BC57C1100A421E5 /* UIView+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 188152D01BC57C1100A421E5 /* UIView+Image.m */; settings = {ASSET_TAGS = (); }; };
 		188152D41BC58C1F00A421E5 /* BStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 188152D31BC58C1F00A421E5 /* BStyle.m */; settings = {ASSET_TAGS = (); }; };
 		18AE706E1BD3C5A1007968E9 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AE706D1BD3C5A1007968E9 /* TestViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -1346,6 +1348,10 @@
 		182B200C1AFEBC0C00412EF2 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		182B200E1AFEBC4400412EF2 /* zh-Hans */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hans"; path = "zh-Hans.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
 		182B200F1AFEBC4500412EF2 /* zh-Hant */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "zh-Hant"; path = "zh-Hant.lproj/InfoPlist.strings"; sourceTree = "<group>"; };
+		187339B71BD3DC21002D7D40 /* PaperListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PaperListView.h; sourceTree = "<group>"; };
+		187339B81BD3DC21002D7D40 /* PaperListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PaperListView.m; sourceTree = "<group>"; };
+		187339BA1BD3DC73002D7D40 /* BBTableDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BBTableDelegate.h; sourceTree = "<group>"; };
+		187339BB1BD3DC73002D7D40 /* BBTableDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BBTableDelegate.m; sourceTree = "<group>"; };
 		188152CF1BC57C1100A421E5 /* UIView+Image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Image.h"; sourceTree = "<group>"; };
 		188152D01BC57C1100A421E5 /* UIView+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Image.m"; sourceTree = "<group>"; };
 		188152D21BC58C1F00A421E5 /* BStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BStyle.h; sourceTree = "<group>"; };
@@ -3370,6 +3376,10 @@
 				18F9FED51BC41CB80035A5AC /* StyleScrView.m */,
 				18F9FED61BC41CB80035A5AC /* StyleSelect.h */,
 				18F9FED71BC41CB80035A5AC /* StyleSelect.m */,
+				187339B71BD3DC21002D7D40 /* PaperListView.h */,
+				187339B81BD3DC21002D7D40 /* PaperListView.m */,
+				187339BA1BD3DC73002D7D40 /* BBTableDelegate.h */,
+				187339BB1BD3DC73002D7D40 /* BBTableDelegate.m */,
 			);
 			path = Edit;
 			sourceTree = "<group>";
@@ -3856,6 +3866,7 @@
 				1809FFEC1AF923EB00F8A0C8 /* NSNumber+Sort.m in Sources */,
 				1809000D1AF923EB00F8A0C8 /* BBAlbumTableViewController.m in Sources */,
 				1809006E1AF923EB00F8A0C8 /* HomeViewController.m in Sources */,
+				187339B91BD3DC21002D7D40 /* PaperListView.m in Sources */,
 				180900821AF923EB00F8A0C8 /* SkinViewController.m in Sources */,
 				18F9FDAA1BC3F91E0035A5AC /* DTHTMLElement.m in Sources */,
 				180900131AF923EB00F8A0C8 /* BBAssetWrapper.m in Sources */,
@@ -3971,6 +3982,7 @@
 				18F9FDD51BC3F91E0035A5AC /* DTCustomColoredAccessory.m in Sources */,
 				180900071AF923EB00F8A0C8 /* BContent.m in Sources */,
 				1809001A1AF923EB00F8A0C8 /* SmartObject.m in Sources */,
+				187339BC1BD3DC73002D7D40 /* BBTableDelegate.m in Sources */,
 				180900101AF923EB00F8A0C8 /* BBAssetsCell.m in Sources */,
 				180900721AF923EB00F8A0C8 /* BBDateView.m in Sources */,
 				18F9FDC61BC3F91E0035A5AC /* NSScanner+HTML.m in Sources */,

@@ -9,11 +9,28 @@
 #import <Foundation/Foundation.h>
 
 @class ALAsset;
+
+typedef NS_ENUM(NSUInteger, PaperType) {
+    Paper_Picture,
+    Paper_Color,
+    Paper_Max
+};
+
+
+@interface PaperItem : NSObject
+@property (nonatomic, assign) PaperType paperType;
+@property (nonatomic, strong) NSString *strName;
+
+@end
+
+
 @interface BBAssetWrapper : NSObject
 
 @property (nonatomic, strong, readonly) ALAsset *asset;
+@property (nonatomic, strong, readonly) PaperItem *paper;
 
 + (BBAssetWrapper *)wrapperWithAsset:(ALAsset *)asset;
 
-- (id)initWithAsset:(ALAsset *)asset;
+- (instancetype)initWithAsset:(ALAsset *)asset;
+- (instancetype)initWithPhotoItem:(PaperItem *)item;
 @end

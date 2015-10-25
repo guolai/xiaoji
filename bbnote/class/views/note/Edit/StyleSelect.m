@@ -140,7 +140,7 @@
         
         self.arrayBtms = [NSMutableArray arrayWithCapacity:6];
         self.arrayStyles = [NSMutableArray arrayWithCapacity:4];
-        NSArray *arrayStyle = @[@"fontFamily", @"color",  @"fontSize"];
+        NSArray *arrayStyle = @[@"fontFamily", @"color",  @"fontSize", @"bgColor"];
         
         [self setBackgroundColor:[UIColor colorWithRed:228/255.0 green:230/255.0 blue:232/255.0 alpha:1.0]];
         
@@ -196,6 +196,24 @@
                           @{@"name":@"36"},
                   ];
             }
+            else if(i == 3)
+            {
+                type = e_BV_BgColor;
+                array = @[@{@"name":@"rgba(255,255,255,1.0)"},
+                          @{@"name":@"rgba(46,49,146,1.0)"},
+                          @{@"name":@"rgba(117,76,36,1.0)"},
+                          @{@"name":@"rgba(32,32,32,1.0)"},
+                          @{@"name":@"rgba(172,172,172,1.0)"},
+                          @{@"name":@"rgba(240,240,240,1.0)"},
+                          @{@"name":@"rgba(56,140,228,1.0)"},
+                          @{@"name":@"rgba(46,166,155,1.0)"},
+                          @{@"name":@"rgba(57,181,74,1.0)"},
+                          @{@"name":@"rgba(255,138,0,1.0)"},
+                          @{@"name":@"rgba(237,35,8,1.0)"},
+                          @{@"name":@"rgba(199,0,43,1.0)"},
+                          @{@"name":@"rgba(176,79,187,1.0)"},
+                          ];
+            }
             
             StyleScrView *styleScrView = [[StyleScrView alloc] initWithFrame:CGRectMake(0, fTop - fMargin + (fMargin + fScrCellH) * i, SCR_WIDTH, fScrCellH) array:array width:fScrCellW height:fScrCellH type:type];
             styleScrView.strStyleType  = [arrayStyle objectAtIndex:i];
@@ -206,7 +224,7 @@
         
         fScrCellW += 24*2;//选中框的阴影部分
         fScrCellW -= 2*2;//margin部分
-        UIImageView *imgViewSelected = [[UIImageView alloc] initWithFrame:CGRectMake(SCR_WIDTH / 2 - fScrCellW / 2, fTop - fMargin, fScrCellW, (fMargin + fScrCellH) * 3 + fMargin * 2 - 5)];
+        UIImageView *imgViewSelected = [[UIImageView alloc] initWithFrame:CGRectMake(SCR_WIDTH / 2 - fScrCellW / 2, fTop - fMargin, fScrCellW, (fMargin + fScrCellH) * arrayStyle.count + fMargin * (arrayStyle.count - 1) - 5)];
         UIImage* selectedImg = [UIImage imageNamed:@"select_select.png"];
         CGSize size = selectedImg.size;
         selectedImg = [selectedImg stretchableImageWithLeftCapWidth:size.width/2 topCapHeight:size.height/2];
@@ -366,6 +384,10 @@
         else if ([scrView.strStyleType isEqualToString:@"fontSize"])
         {
             bstye.strSize = scrView.strCurStyle;
+        }
+        else if ([scrView.strStyleType isEqualToString:@"bgColor"])
+        {
+            bstye.strBgColor = scrView.strCurStyle;
         }
         else
         {
