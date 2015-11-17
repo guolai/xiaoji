@@ -402,4 +402,15 @@
     return scaleImage;
 }
 
+
++ (NSString *)checkFontName:(NSString *)strFontName2
+{
+    NSString *strFontName = @"STHeitiSC-Light";
+    if (strFontName2 &&  ![strFontName2 isEqualToString:@"system"])
+    {
+        strFontName = strFontName2;
+    }
+    return strFontName;
+}
+
 @end

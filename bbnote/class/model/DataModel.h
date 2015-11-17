@@ -41,4 +41,6 @@
 
 + (void)recoverCrashNote;
 + (ScaledBImage *)scaleImage:(UIImage *)oriImage;
+
++ (NSString *)checkFontName:(NSString *)strFontName;
 @end

@@ -225,11 +225,11 @@
     {
 		_defaultFontDescriptor.fontName = defaultFontName;
 	}
-    else
-    {
-        _defaultFontDescriptor.fontName = defaultFontFamily;
-        [_options setValue:defaultFontFamily forKey:DTDefaultFontName];
-    }
+//    else
+//    {
+//        _defaultFontDescriptor.fontName = defaultFontFamily;
+//        [_options setValue:defaultFontFamily forKey:DTDefaultFontName];
+//    }
 
 	
 	_defaultLinkColor = [_options objectForKey:DTDefaultLinkColor];

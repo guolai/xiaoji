@@ -117,7 +117,16 @@
     _richEditor.attributedTextContentView.shouldDrawImages = YES;
     NSString *path = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"html"];
     NSString *html = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
-    [_richEditor setHTMLString:html];
+    if ([[DataManager ShareInstance] attstring])
+    {
+        _richEditor.attributedString  = [[DataManager ShareInstance] attstring];
+    }
+    else
+    {
+        NSLog(@"===========22223344=====");
+        [_richEditor setHTMLString:html];
+    }
+    
     [_richEditor becomeFirstResponder];
     //    [DTCoreTextLayoutFrame setShouldDrawDebugFrames:YES];
     
@@ -268,7 +277,7 @@
     [defaults setObject:[NSNumber numberWithBool:YES] forKey:DTDefaultLinkDecoration];
     [defaults setObject:[UIColor blueColor] forKey:DTDefaultLinkColor];
     [defaults setObject:noteset.strFontName forKey:DTDefaultFontFamily];
-    [defaults setObject:noteset.strFontName forKey:DTDefaultFontName];
+//    [defaults setObject:noteset.strFontName forKey:DTDefaultFontName];
     [defaults setObject:noteset.nFontSize forKey:DTDefaultFontSize];
     [defaults setObject:noteset.strTextColor forKey:DTDefaultTextColor];
     _richEditor.textDefaults = defaults;
@@ -324,7 +333,20 @@
 - (void)submitRecored
 {
     UIImage *imge = [_richEditor.attributedTextContentView translateToImage];
-    BBINFO(@"%@", [_richEditor.attributedString string]);
+//    BBINFO(@"%@", _richEditor.attributedString);
+//    NSAttributedString *attributedString = _richEditor.attributedString;
+//    [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.length) options:nil usingBlock:^(NSDictionary<NSString *,id> * _Nonnull attrs, NSRange range, BOOL * _Nonnull stop) {
+//        NSDictionary *dic = attrs;
+//        NSLog(@"%@--%@--%d", dic, NSStringFromRange(range), *stop);
+//    }];
+    NSLog(@"%@", [_richEditor HTMLStringWithOptions:DTHTMLWriterOptionDocument]);
+    [[DataManager ShareInstance] setAttstring:_richEditor.attributedText];
+//    NSLog(@"%@", [[DataManager ShareInstance] attstring]);
+        NSAttributedString *attributedString = _richEditor.attributedText;
+        [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.length) options:nil usingBlock:^(NSDictionary<NSString *,id> * _Nonnull attrs, NSRange range, BOOL * _Nonnull stop) {
+            NSDictionary *dic = attrs;
+            NSLog(@"%@--%@--%d", dic, NSStringFromRange(range), *stop);
+        }];
 //    NSData *data = UIImageJPEGRepresentation(imge, 0.9);
     UIImageWriteToSavedPhotosAlbum(imge, nil, nil, nil);
     [self.navigationController popViewControllerAnimated:YES];
@@ -1054,13 +1076,16 @@
         [self resetNoteSetting];
         UIColor *color = [bstyle.strColor getColorFromRGBA];
         [_richEditor setForegroundColor:color inRange:range];
+        NSString *strFontName = [DataModel checkFontName:bstyle.strFontName];
+        [_richEditor updateFontInRange:range withFontFamilyName:strFontName pointSize:[bstyle.strSize floatValue]];
     }
     else
     {
         BBINFO(@"22222222");
         UIColor *color = [bstyle.strColor getColorFromRGBA];
         [_richEditor setForegroundColor:color inRange:range];
-        [_richEditor updateFontInRange:range withFontFamilyName:bstyle.strFontName pointSize:[bstyle.strSize floatValue]];
+        NSString *strFontName = [DataModel checkFontName:bstyle.strFontName];
+        [_richEditor updateFontInRange:range withFontFamilyName:strFontName pointSize:[bstyle.strSize floatValue]];
     }
     BBINFO(@"%@", range);
    

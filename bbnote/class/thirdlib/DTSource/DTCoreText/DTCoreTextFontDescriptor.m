@@ -18,7 +18,7 @@ static NSMutableDictionary *_fontOverrides = nil;
 static NSString *_fallbackFontFamily = @"Times New Roman";
 
 // adds "STHeitiSC-Light" font for cascading fix on iOS 5
-static BOOL _needsChineseFontCascadeFix = NO;
+static BOOL _needsChineseFontCascadeFix = YES;
 
 @interface DTCoreTextFontDescriptor ()
 
@@ -432,7 +432,16 @@ static BOOL _needsChineseFontCascadeFix = NO;
 	
 	if (!self.boldTrait && _needsChineseFontCascadeFix)
 	{
-		CTFontDescriptorRef desc = CTFontDescriptorCreateWithNameAndSize(CFSTR("STHeitiSC-Light"), self.pointSize);
+        CTFontDescriptorRef desc = nil;
+        if (_fontFamily)
+        {
+            desc = CTFontDescriptorCreateWithNameAndSize((__bridge CFStringRef)_fontFamily, self.pointSize);
+        }
+        else
+        {
+            desc = CTFontDescriptorCreateWithNameAndSize(CFSTR("STHeitiSC-Light"), self.pointSize);
+        }
+		
 		
 		[tmpDict setObject:[NSArray arrayWithObject:(__bridge_transfer id) desc] forKey:(id)kCTFontCascadeListAttribute];
 	}
@@ -664,7 +673,17 @@ static BOOL _needsChineseFontCascadeFix = NO;
 
 - (CTFontRef)newMatchingFont
 {
-	return [self _findOrMakeMatchingFont];
+    CTFontRef font = nil;
+    if (_fontFamily)
+    {
+       font = CTFontCreateWithName((CFStringRef)_fontFamily, self.pointSize, NULL);
+    }
+    else
+    {
+        font = CTFontCreateWithName(CFSTR("STHeitiSC-Light"), self.pointSize, NULL);
+    }
+    return font;
+//	return [self _findOrMakeMatchingFont];
 }
 
 // two font descriptors are equal if their attributes has identical hash codes
