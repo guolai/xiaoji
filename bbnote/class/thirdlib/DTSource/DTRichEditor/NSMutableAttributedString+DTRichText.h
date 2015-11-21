@@ -80,6 +80,8 @@ The color parameter is ignored if the method call toggles a previous URL off.
  */
 - (void)setForegroundColor:(UIColor *)color inRange:(NSRange)range;
 
+
+- (void)setBackgroundColor:(UIColor *)color inRange:(NSRange)range;
 /**
  Toggles the given string range between having a hyperlink and not
  

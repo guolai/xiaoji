@@ -13,6 +13,7 @@
 - (UIColor *)getColorFromRGBBlendR:(NSUInteger)nR G:(NSUInteger)nG B:(NSUInteger)nB alpha:(CGFloat)fA;
 - (UIColor *)getColorFromFromRGB:(CGFloat)fAlpha;
 - (UIColor *)getColorFromRGBA;
+
 - (UIColor *)getColorFromHexString:(CGFloat)fAlpha;
 - (UIColor *)getColorFromHexString;
 - (NSString *)getStringColorFromRGBA;

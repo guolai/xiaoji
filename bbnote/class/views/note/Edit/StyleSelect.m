@@ -152,20 +152,21 @@
             if(i == 0)
             {
                 type = e_BV_Text;
-                array = @[@{@"name":@"Helvetica", @"localname":@"note"},
+                array = @[@{@"name":@"Helvetica Neue", @"localname":@"note"},
                           @{@"name":@"snFontP1", @"localname":@"小记"},
                           @{@"name":@"snFontP2", @"localname":@"小记"},
-                          @{@"name":@"FZXKJW--GB1-0", @"localname":@"小记"},
-                          @{@"name":@"FZHCJW--GB1-0", @"localname":@"小记"},
+                          @{@"name":@"FZXingKai-S04S", @"localname":@"小记"},
+                          @{@"name":@"FZHuangCao-S09S", @"localname":@"小记"},
                           @{@"name":kDefatultFont, @"localname":@"小记"},
-                          @{@"name":@"STKaiti-SC-Regular", @"localname":@"小记"},
-                          @{@"name":@"FZQKBYSJW--GB1-0", @"localname":@"小记"},
+                          @{@"name":@"Kaiti SC", @"localname":@"小记"},
+                          @{@"name":@"FZQingKeBenYueSongS-R-GB", @"localname":@"小记"},
                           ];
             }
             else if(i == 1)
             {
                 type = e_BV_Color;
                 array = @[@{@"name":@"rgba(46,49,146,1.0)"},
+                          @{@"name":@"rgba(0,0,0,1.0)"},
                           @{@"name":@"rgba(117,76,36,1.0)"},
                           @{@"name":@"rgba(32,32,32,1.0)"},
                           @{@"name":@"rgba(172,172,172,1.0)"},
@@ -200,6 +201,7 @@
             {
                 type = e_BV_BgColor;
                 array = @[@{@"name":@"rgba(255,255,255,1.0)"},
+                          @{@"name":@"rgba(255,255,255,0.0)"},
                           @{@"name":@"rgba(46,49,146,1.0)"},
                           @{@"name":@"rgba(117,76,36,1.0)"},
                           @{@"name":@"rgba(32,32,32,1.0)"},
@@ -243,39 +245,39 @@
                               @{@"file":@"select_btm_4.png", @"hlfile":@"select_btm_4_hl.png", @"name":@"textAlign,center,nil"},
                               @{@"file":@"select_btm_5.png", @"hlfile":@"select_btm_5_hl.png", @"name":@"textAlign,right,nil"},
                               ];
-        for (int i = 0; i < 6; i++) {
-            NSDictionary *dic = [arrayBtm objectAtIndex:i];
-            NSString *strImg = [dic objectForKey:@"file"];
-            NSString *strImgHl = [dic objectForKey:@"hlfile"];
-            NSArray *array = [[dic objectForKey:@"name"] componentsSeparatedByString:@","];
-            if(array.count != 3)
-            {
-                NSAssert(false, @"error");
-            }
-            
-            StyleBtn *btn = [StyleBtn buttonWithType:UIButtonTypeCustom];
-            
-            if(i < 3){
-                [btn setFrame:CGRectMake(fOffsetW + (fMargin + fW) * i, self.frame.size.height - 10 - fW, fW, fW)];
-            }
-            else{
-                [btn setFrame:CGRectMake(rightOffsetW + (fMargin + fW) * (i-3), self.frame.size.height - 10 - fW, fW, fW)];
-            }
-            btn.norImg = [UIImage imageNamed:strImg];
-            btn.hlImg = [UIImage imageNamed:strImgHl];
-            [btn setBackgroundColor:[UIColor clearColor]];
-            [btn setImage:btn.norImg forState:UIControlStateNormal];
-            [btn setImage:btn.hlImg forState:UIControlStateHighlighted];
-            [btn setTag:(600 + i)];
-            [btn addTarget:self action:@selector(btnPressed:) forControlEvents:UIControlEventTouchUpInside];
-            btn.strStyle = [array objectAtIndex:2];
-            btn.strHlStyle = [array objectAtIndex:1];
-            btn.strKey = [array objectAtIndex:0];
-            btn.bPressedDown = NO;
-            [self.arrayBtms addObject:btn];
-            [self addSubview:btn];
-        }
-  
+//        for (int i = 0; i < 6; i++) {
+//            NSDictionary *dic = [arrayBtm objectAtIndex:i];
+//            NSString *strImg = [dic objectForKey:@"file"];
+//            NSString *strImgHl = [dic objectForKey:@"hlfile"];
+//            NSArray *array = [[dic objectForKey:@"name"] componentsSeparatedByString:@","];
+//            if(array.count != 3)
+//            {
+//                NSAssert(false, @"error");
+//            }
+//            
+//            StyleBtn *btn = [StyleBtn buttonWithType:UIButtonTypeCustom];
+//            
+//            if(i < 3){
+//                [btn setFrame:CGRectMake(fOffsetW + (fMargin + fW) * i, self.frame.size.height - 10 - fW, fW, fW)];
+//            }
+//            else{
+//                [btn setFrame:CGRectMake(rightOffsetW + (fMargin + fW) * (i-3), self.frame.size.height - 10 - fW, fW, fW)];
+//            }
+//            btn.norImg = [UIImage imageNamed:strImg];
+//            btn.hlImg = [UIImage imageNamed:strImgHl];
+//            [btn setBackgroundColor:[UIColor clearColor]];
+//            [btn setImage:btn.norImg forState:UIControlStateNormal];
+//            [btn setImage:btn.hlImg forState:UIControlStateHighlighted];
+//            [btn setTag:(600 + i)];
+//            [btn addTarget:self action:@selector(btnPressed:) forControlEvents:UIControlEventTouchUpInside];
+//            btn.strStyle = [array objectAtIndex:2];
+//            btn.strHlStyle = [array objectAtIndex:1];
+//            btn.strKey = [array objectAtIndex:0];
+//            btn.bPressedDown = NO;
+//            [self.arrayBtms addObject:btn];
+//            [self addSubview:btn];
+//        }
+//  
     }
     return self;
 }
@@ -339,6 +341,10 @@
         {
             [styView setCurrentSelectItem:bstyle.strSize];
         }
+        else if ([strStyle isEqualToString:@"bgColor"])
+        {
+            [styView setCurrentSelectItem:bstyle.strBgColor];
+        }
         else
         {
             NSParameterAssert(false);
@@ -395,32 +401,32 @@
         }
         [mtblDic setObject:scrView.strCurStyle forKey:scrView.strStyleType];
     }
-    for (int i = 0; i < 3; i++)
-    {
-        StyleBtn *btn = [self.arrayBtms objectAtIndex:i];
-        [mtblDic setObject:[btn getStyle] forKey:btn.strKey];
-    }
-    NSString *strValue = nil;
-    NSString *strKey = nil;
-    BOOL bFind = NO;
-    for (int i = 3; i < 6; i++) {
-        StyleBtn *btn = [self.arrayBtms objectAtIndex:i];
-        strKey = btn.strKey;
-        strValue = [btn getStyle];
-        if(!ISEMPTY(strValue) && ![strValue isEqualToString:@"nil"])
-        {
-            bFind = YES;
-            break;
-        }
-    }
-    if(bFind)
-    {
-        [mtblDic setObject:strValue forKey:strKey];
-    }
-    else
-    {
-        [mtblDic setObject:@"left" forKey:strKey];
-    }
+//    for (int i = 0; i < 3; i++)
+//    {
+//        StyleBtn *btn = [self.arrayBtms objectAtIndex:i];
+//        [mtblDic setObject:[btn getStyle] forKey:btn.strKey];
+//    }
+//    NSString *strValue = nil;
+//    NSString *strKey = nil;
+//    BOOL bFind = NO;
+//    for (int i = 3; i < 6; i++) {
+//        StyleBtn *btn = [self.arrayBtms objectAtIndex:i];
+//        strKey = btn.strKey;
+//        strValue = [btn getStyle];
+//        if(!ISEMPTY(strValue) && ![strValue isEqualToString:@"nil"])
+//        {
+//            bFind = YES;
+//            break;
+//        }
+//    }
+//    if(bFind)
+//    {
+//        [mtblDic setObject:strValue forKey:strKey];
+//    }
+//    else
+//    {
+//        [mtblDic setObject:@"left" forKey:strKey];
+//    }
     return bstye;
 }
 

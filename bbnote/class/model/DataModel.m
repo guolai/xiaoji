@@ -18,6 +18,7 @@
 #import <ImageIO/ImageIO.h>
 #import "BBUserDefault.h"
 #import "UIImage+SCaleImage.h"
+#import "BStyle.h"
 
 @implementation DataModel
 
@@ -406,11 +407,45 @@
 + (NSString *)checkFontName:(NSString *)strFontName2
 {
     NSString *strFontName = @"STHeitiSC-Light";
-    if (strFontName2 &&  ![strFontName2 isEqualToString:@"system"])
+    if (strFontName2 &&  ![strFontName2 isEqualToString:kDefatultFont])
     {
         strFontName = strFontName2;
     }
     return strFontName;
+}
+
++ (NSString*)getRGBAStringFormColor:(UIColor *)color
+{
+    CGFloat  red, green, blue, alpha;
+    [color getRed: &red green: &green blue:&blue alpha:&alpha];
+    
+    int iRed    = (int)(red*255);
+    int iGreen  = (int)(green*255);
+    int iBlue   = (int)(blue*255);
+    return [NSString stringWithFormat:@"rgba(%d,%d,%d,%.1f)", iRed, iGreen, iBlue, alpha];
+}
+
++ (BStyle *)getStyleFromDiction:(NSDictionary *)dic
+{
+    UIColor *forColor = [dic objectForKey:NSForegroundColorAttributeName];
+    UIColor *bgColor = [dic objectForKey:NSBackgroundColorAttributeName];
+    UIFont *font  = [dic objectForKey:NSFontAttributeName];
+    
+    BStyle *bstye = [[BStyle alloc] init];
+    if (forColor && [forColor isKindOfClass:[UIColor class]])
+    {
+        bstye.strColor = [DataModel getRGBAStringFormColor:forColor];
+    }
+    if (bgColor && [bgColor isKindOfClass:[UIColor class]])
+    {
+        bstye.strBgColor = [DataModel getRGBAStringFormColor:bgColor];
+    }
+    if (font && [font isKindOfClass:[UIFont class]])
+    {
+        bstye.strFontName = font.familyName;
+        bstye.strSize = [NSString stringWithFormat:@"%d", (int)font.pointSize];
+    }
+    return bstye;
 }
 
 @end

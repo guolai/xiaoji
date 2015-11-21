@@ -162,6 +162,19 @@
 }
 
 
+
+- (void)setBackgroundColor:(UIColor *)color
+{
+    if (color)
+    {
+        [self setObject:(id)color forKey:(id)NSBackgroundColorAttributeName];
+    }
+    else
+    {
+        [self removeObjectForKey:(id)NSBackgroundColorAttributeName];
+    }
+}
+
 - (void)removeAttachment
 {
 	[self removeObjectForKey:(id)kCTRunDelegateAttributeName];

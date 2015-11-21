@@ -180,6 +180,10 @@ typedef NS_ENUM(NSUInteger, DTHTMLWriterOption)
  */
 - (void)setForegroundColor:(UIColor *)color inRange:(UITextRange *)range;
 
+- (void)setForegroundColor:(UIColor *)fgcolor backgroundColor:(UIColor *)bgColor inRange:(UITextRange *)range;
+
+- (NSDictionary *)getAttributedStringCurrentRange:(UITextRange *)range;
+
 /**
  Toggles a hyperlink on the given range.
  

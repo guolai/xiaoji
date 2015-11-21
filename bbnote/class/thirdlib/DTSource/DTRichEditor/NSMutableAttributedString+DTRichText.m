@@ -398,6 +398,20 @@
 	[self endEditing];
 }
 
+- (void)setBackgroundColor:(UIColor *)color inRange:(NSRange)range
+{
+    [self beginEditing];
+    
+    [self removeAttribute:(id)NSBackgroundColorAttributeName range:range];
+    
+    if (color)
+    {
+        [self addAttribute:(id)NSBackgroundColorAttributeName value:(id)color range:range];
+    }
+    
+    [self endEditing];
+}
+
 - (void)toggleHyperlinkInRange:(NSRange)range URL:(NSURL *)URL
 {
 	[self beginEditing];

@@ -172,13 +172,14 @@
 {
     int r,g,b;
     r = g = b = 0;
+    UIColor *defaultColor =  [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0];
     NSString *lowerStr = [NSString stringWithString:[self lowercaseString]];
     
     if ([lowerStr hasPrefix:@"#"]) {
         NSUInteger length = lowerStr.length;
         if (7 != length && 9 != length) {
            NSAssert(false, @"error");
-            return [UIColor blackColor];
+            return defaultColor;
         }
         
         int intA = 0;
@@ -223,7 +224,7 @@
         rgbStr = [rgbStr stringByReplacingOccurrencesOfString:@" " withString:@""];
         NSArray *ary = [rgbStr componentsSeparatedByString:@","];
         if (3 != ary.count) {
-            return nil;
+            return defaultColor;
         }
         
         r = [[ary objectAtIndex:0] intValue];
@@ -237,7 +238,7 @@
         rgbStr = [rgbStr stringByReplacingOccurrencesOfString:@" " withString:@""];
         NSArray *ary = [rgbStr componentsSeparatedByString:@","];
         if (4 != ary.count) {
-            return nil;
+            return defaultColor;
         }
         
         r = [[ary objectAtIndex:0] intValue];
@@ -248,7 +249,7 @@
         
     }
     
-    return nil;
+    return defaultColor;
 }
 
 @end

@@ -10,6 +10,7 @@
 #import "BB_BBRecord.h"
 #import "BImage.h"
 
+@class BStyle;
 
 @interface DataModel : NSObject
 
@@ -43,4 +44,9 @@
 + (ScaledBImage *)scaleImage:(UIImage *)oriImage;
 
 + (NSString *)checkFontName:(NSString *)strFontName;
+
++ (BStyle *)getStyleFromDiction:(NSDictionary *)dic;
++ (NSString*)getRGBAStringFormColor:(UIColor *)color;
+
+
 @end

@@ -78,7 +78,18 @@
 {
     float fW = self.frame.size.width;
     float fH = self.frame.size.height;
-    UIColor *bgColor = [strColor getColorFromRGBA];
+    UIColor *bgColor = [strColor getColorFromCSSString];
+    UIColor *clearcolor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0];
+    UIColor *forColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+    if([bgColor isEqual:clearcolor])
+    {
+        [self setBackgroundColor:[UIColor lightTextColor]];
+        forColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0];
+    }
+    else
+    {
+        [self setBackgroundColor:[UIColor whiteColor]];
+    }
     
     float colorW = 30*_scale;
     float colorH = 20*_scale;
@@ -86,13 +97,15 @@
     [lbl setBackgroundColor:bgColor];
     [self addSubview:lbl];
     
-    UIColor *forColor = [UIColor colorWithRed:1.0 green:1.0 blue:1.0 alpha:1.0];
+    
     colorW = 13*_scale;
     colorH = 10*_scale;
     if([bgColor isEqual:forColor])
     {
         forColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:1.0];
     }
+  
+        
     UILabel *lbl1 = [[UILabel alloc] initWithFrame:CGRectMake((fW - colorW)/2, (fH - colorH)/2, colorW, colorH)];
     [lbl1 setFont:[UIFont systemFontOfSize:7]];
     [lbl1 setText:@"小记"];
@@ -197,6 +210,7 @@
 
 - (void)setCurrentSelectItem:(NSString *)strItem
 {
+    BBINFO(@"%@", strItem);
     _bShouldCallDelegate = NO;
     [self setScrollEnabled:NO];
     float fMid = _iCount * 5 / 2;
@@ -237,7 +251,8 @@
     else
     {
         [self setScrollEnabled:YES];
-        NSAssert(false, @"invalid parameters!");
+        NSLog(@"==================== not found");
+//        NSAssert(false, @"invalid parameters!");
     }
 }
 

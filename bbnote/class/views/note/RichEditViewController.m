@@ -51,6 +51,7 @@
 
 @property (nonatomic, retain)BRecord *bRecord;
 @property (nonatomic, retain)BContent *bContent;
+@property (nonatomic, strong)BStyle *lastStyle;
 @end
 
 @implementation RichEditViewController
@@ -241,7 +242,10 @@
     if(noteset.isUseBgImg)
     {
         UIImage *img = [UIImage imageNamed:noteset.strBgImg];
-        img  = [img imageAutoScaleToScreen];
+        if ([noteset.strBgImg hasPrefix:@"skin"])
+        {
+            img  = [img imageAutoScaleToScreen];
+        }
         if(img)
         {
             UIColor *color = [UIColor colorWithPatternImage:img];
@@ -279,6 +283,7 @@
     [defaults setObject:noteset.strFontName forKey:DTDefaultFontFamily];
 //    [defaults setObject:noteset.strFontName forKey:DTDefaultFontName];
     [defaults setObject:noteset.nFontSize forKey:DTDefaultFontSize];
+    [defaults setObject:noteset.strBgColor forKey:DTBackgroundColorAttribute];
     [defaults setObject:noteset.strTextColor forKey:DTDefaultTextColor];
     _richEditor.textDefaults = defaults;
  
@@ -1056,7 +1061,7 @@
 
 - (void)keyboardDidSelectStyle:(BStyle *)bstyle
 {
-    BBINFO(@"%@,%@,%@", bstyle.strFontName, bstyle.strColor, bstyle.strSize);
+    BBINFO(@"%@,%@,%@,%@", bstyle.strFontName, bstyle.strColor, bstyle.strBgColor, bstyle.strSize);
     UITextRange *range = _richEditor.selectedTextRange;
     if([range.start isEqual:range.end])
     {
@@ -1072,18 +1077,22 @@
         NoteSetting *noteset = [[DataManager ShareInstance] noteSetting];
         noteset.strTextColor = bstyle.strColor;
         noteset.strFontName = bstyle.strFontName;
+        noteset.strBgColor = bstyle.strBgColor;
         noteset.nFontSize = [NSNumber numberWithInteger:[bstyle.strSize floatValue]];
         [self resetNoteSetting];
-        UIColor *color = [bstyle.strColor getColorFromRGBA];
-        [_richEditor setForegroundColor:color inRange:range];
+        UIColor *color = [bstyle.strColor getColorFromCSSString];
+        UIColor *bgColor = [bstyle.strBgColor getColorFromCSSString];
+        [_richEditor setForegroundColor:color backgroundColor:bgColor inRange:range];
         NSString *strFontName = [DataModel checkFontName:bstyle.strFontName];
         [_richEditor updateFontInRange:range withFontFamilyName:strFontName pointSize:[bstyle.strSize floatValue]];
+        self.lastStyle = bstyle;
     }
     else
     {
         BBINFO(@"22222222");
-        UIColor *color = [bstyle.strColor getColorFromRGBA];
-        [_richEditor setForegroundColor:color inRange:range];
+        UIColor *color = [bstyle.strColor getColorFromCSSString];
+        UIColor *bgColor = [bstyle.strBgColor getColorFromCSSString];
+        [_richEditor setForegroundColor:color backgroundColor:bgColor inRange:range];
         NSString *strFontName = [DataModel checkFontName:bstyle.strFontName];
         [_richEditor updateFontInRange:range withFontFamilyName:strFontName pointSize:[bstyle.strSize floatValue]];
     }
@@ -1239,38 +1248,51 @@
 
 - (BOOL)editorViewShouldEndEditing:(DTRichTextEditorView *)editorView
 {
-//    BBINFO(@"editorViewShouldEndEditing:");
+    BBINFO(@"editorViewShouldEndEditing:");
     return NO;
 }
 
 - (void)editorViewDidEndEditing:(DTRichTextEditorView *)editorView
 {
-//    BBINFO(@"editorViewDidEndEditing:");
+    BBINFO(@"editorViewDidEndEditing:");
 }
 
 - (BOOL)editorView:(DTRichTextEditorView *)editorView shouldChangeTextInRange:(NSRange)range replacementText:(NSAttributedString *)text
 {
-//    BBINFO(@"editorView:shouldChangeTextInRange:replacementText:");
+    BBINFO(@"editorView:shouldChangeTextInRange:replacementText:");
     
     return YES;
 }
 
 - (void)editorViewDidChangeSelection:(DTRichTextEditorView *)editorView
 {
-//    BBINFO(@"editorViewDidChangeSelection:");
+    UITextRange *range = editorView.selectedTextRange;
+    BStyle *bstyle = self.lastStyle;
+    if([range isEmpty] && self.lastStyle)
+    {
+        
+    }
+    else
+    {
+        NSDictionary *dic = [_richEditor getAttributedStringCurrentRange:range];
+        bstyle = [DataModel getStyleFromDiction:dic];
+    }
+    [_styleSlctView setCurrentStyles:bstyle];
+//    setCurrentStyles
+    BBINFO(@"editorViewDidChangeSelection:");
     
 }
 
 - (void)editorViewDidChange:(DTRichTextEditorView *)editorView
 {
-//    BBINFO(@"editorViewDidChange:");
+    BBINFO(@"editorViewDidChange:");
 }
 
 - (BOOL)editorView:(DTRichTextEditorView *)editorView canPerformAction:(SEL)action withSender:(id)sender
 {
     DTTextRange *selectedTextRange = (DTTextRange *)editorView.selectedTextRange;
     BOOL hasSelection = ![selectedTextRange isEmpty];
-    
+//    BBINFO(@"canPerformAction:");
     //    if (action == @selector(insertStar:) || action == @selector(insertWhiteStar:))
     //    {
     //        return _showInsertMenu;

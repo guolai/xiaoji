@@ -60,6 +60,8 @@
  */
 - (void)setForegroundColor:(UIColor *)color;
 
+- (void)setBackgroundColor:(UIColor *)color;
+
 /**
  Removes the attributes related to a DTTextAttachment from the receiver
  */
