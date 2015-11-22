@@ -23,5 +23,5 @@
 @property (nonatomic, retain) BB_BBRecord *record;
 
 + (BB_BBAudio *)BBAudioWithBAudio:(BAudio *)baudio;
-- (NSDictionary *)covertDictionary;
+//- (NSDictionary *)covertDictionary;
 @end

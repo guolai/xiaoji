@@ -208,255 +208,255 @@
     return CGRectMake(fx, fY, fW, fH);
 }
 
-+(void)drawText:(BB_BBText *)content Incontext:(CGContextRef)context withRect:(CGRect)rct scale:(float)fScale
-{
-    NoteSetting *noteset = [[DataManager ShareInstance] noteSetting];
-    CGContextSaveGState(context);
-    
-    if(!ISEMPTY(content.text_color))
-    {
-        CGContextSetFillColorWithColor(context, [content.text_color getColorFromString].CGColor);
-    }
-    else
-    {
-        CGContextSetFillColorWithColor(context, [[noteset strTextColor] getColorFromString].CGColor);
-    }
+//+(void)drawText:(BB_BBText *)content Incontext:(CGContextRef)context withRect:(CGRect)rct scale:(float)fScale
+//{
+//    NoteSetting *noteset = [[DataManager ShareInstance] noteSetting];
+//    CGContextSaveGState(context);
+//    
+//    if(!ISEMPTY(content.text_color))
+//    {
+//        CGContextSetFillColorWithColor(context, [content.text_color getColorFromString].CGColor);
+//    }
+//    else
+//    {
+//        CGContextSetFillColorWithColor(context, [[noteset strTextColor] getColorFromString].CGColor);
+//    }
+//
+//    UIFont *txtFont = [UIFont systemFontOfSize:14 * fScale];
+//    
+//    
+//    if(!ISEMPTY(content.font) && ![content.font isEqualToString:@"system"] && content.fontsize && [content.fontsize integerValue] > 0)
+//    {
+//        txtFont = [UIFont fontWithName:content.font size:[content.fontsize integerValue] * fScale];;
+//    }
+//    else
+//    {
+//        txtFont = [UIFont systemFontOfSize:[content.fontsize integerValue] * fScale];
+//    }
+//    
+//    [content.text drawInRect:rct withFont:txtFont lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentLeft];
+//    CGContextRestoreGState(context);
+//}
 
-    UIFont *txtFont = [UIFont systemFontOfSize:14 * fScale];
-    
-    
-    if(!ISEMPTY(content.font) && ![content.font isEqualToString:@"system"] && content.fontsize && [content.fontsize integerValue] > 0)
-    {
-        txtFont = [UIFont fontWithName:content.font size:[content.fontsize integerValue] * fScale];;
-    }
-    else
-    {
-        txtFont = [UIFont systemFontOfSize:[content.fontsize integerValue] * fScale];
-    }
-    
-    [content.text drawInRect:rct withFont:txtFont lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentLeft];
-    CGContextRestoreGState(context);
-}
-
-+(void)drawTitle:(BB_BBRecord *)record Incontext:(CGContextRef)context withRect:(CGRect)rct scale:(float)fScale
-{
-    int iWeekWidth_ = 120 * fScale;
-    float iHeight = rct.size.height * 0.5;
-    float iWidth = rct.size.width;
-    //    float fR = [[[self.strColor componentsSeparatedByString:@","] objectAtIndex:0] floatValue];
-    //    float fG = [[[self.strColor componentsSeparatedByString:@","] objectAtIndex:1] floatValue];
-    //    float fB = [[[self.strColor componentsSeparatedByString:@","] objectAtIndex:2] floatValue];
-    //    float fA = [[[self.strColor componentsSeparatedByString:@","] objectAtIndex:3] floatValue];
-    //
-    int iH = rct.size.height;
-    CGContextSaveGState(context);
-    //CGRect drawingRect = CGRectMake(0, 0, iWidth, self.frame.size.height);
-    CGContextSetRGBStrokeColor(context, 0.1, 0.1, 0.1, 1);
-    CGContextSetRGBFillColor(context, 0.1, 0.1, 0, 0.6);
-    //CGContextFillRect(context, drawingRect);
-    CGContextMoveToPoint(context, 0, 0);
-    CGContextAddLineToPoint(context, SCR_WIDTH * fScale, 0);
-    CGContextAddLineToPoint(context, SCR_WIDTH * fScale, iH);
-    int iStep = 5 * fScale;
-    int i = 1;
-    while (SCR_WIDTH  * fScale - iStep * i > 0)
-    {
-        
-        if(i % 2)
-        {
-            CGContextAddLineToPoint(context, SCR_WIDTH * fScale- iStep * i, iH - 3 * fScale);
-        }
-        else
-        {
-            CGContextAddLineToPoint(context, SCR_WIDTH * fScale - iStep * i, iH);
-        }
-        i ++;
-    }
-    CGContextAddLineToPoint(context, 0, iH);
-    CGContextClosePath(context);
-    CGContextDrawPath(context, kCGPathFill);
-    
-    //bg
-    int iLeftSapce = 8.0 * fScale;
-    
-    //    CGFloat fRadius = 5.0;
-    //    CGContextMoveToPoint(context, fRadius, 0.0f);
-    //    CGContextAddArc(context, iWidth - fRadius, fRadius, fRadius, -M_PI_2, 0.0f, 0);
-    //    CGContextAddArc(context, iWidth - fRadius, self.frame.size.height - fRadius, fRadius, 0, M_PI_2, 0);
-    //    CGContextAddArc(context, fRadius, self.frame.size.height - fRadius, fRadius, M_PI_2, M_PI, 0);
-    //    CGContextAddArc(context, fRadius, fRadius, fRadius, M_PI, M_PI * 1.5, 0);
-    //    CGContextDrawPath(context, kCGPathEOFillStroke);
-    
-    CGContextMoveToPoint(context, iLeftSapce, iHeight);
-    CGContextAddLineToPoint(context, iWeekWidth_ + iLeftSapce, iHeight);
-    
-    CGContextMoveToPoint(context, iLeftSapce + iWeekWidth_ / 2, iHeight);
-    CGContextAddLineToPoint(context, iLeftSapce + iWeekWidth_ / 2, iHeight * 2);
-    CGContextStrokePath(context);
-    NSDate *date = record.create_date;
-    NSString *strDate = [date getMonthDay];
-    NSString *strTime = [date qzGetTime];
-    NSString *strWeek = [date qzGetWeek];
-//    NSString *strColor = record.title_color;
-    int iMood = [record.mood integerValue];
-    int iMoodCount = [record.mood_count integerValue];
-    NSString *strMood = [NSString stringWithFormat:@"%.3i.png", iMood];
-    
-    UIFont *font = [UIFont systemFontOfSize:14 * fScale];
-    CGRect dateRct = CGRectMake(iLeftSapce, 0, iWeekWidth_, iHeight);
-    CGContextSetRGBFillColor(context, 0, 1, 0, 1);
-    [strDate drawInRect:dateRct withFont:font lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentCenter];
-    CGRect weekRct = CGRectMake(iLeftSapce, iHeight, iWeekWidth_ / 2, iHeight);
-    [strWeek drawInRect:weekRct withFont:font lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentCenter];
-    weekRct.origin.x = iLeftSapce + iWeekWidth_ / 2;
-    [strTime drawInRect:weekRct withFont:font lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentCenter];
-    
-    UIImage *img = [UIImage imageNamed:strMood];
-    int iFaceWidth = 30 * fScale;
-    int iImgTopSpace = (iHeight * 2 - iFaceWidth) / 2;
-    
-    [img drawInRect:CGRectMake(140 * fScale, iImgTopSpace, iFaceWidth, iFaceWidth) blendMode:kCGBlendModeNormal alpha:1.0];
-    if(iMoodCount > 1)
-        [img drawInRect:CGRectMake(180 * fScale, iImgTopSpace, iFaceWidth, iFaceWidth) blendMode:kCGBlendModeNormal alpha:1.0];
-    if(iMoodCount > 2)
-        [img drawInRect:CGRectMake(220 * fScale, iImgTopSpace, iFaceWidth, iFaceWidth) blendMode:kCGBlendModeNormal alpha:1.0];
-    
-    NSString *strVip = [NSString stringWithFormat:@"viplevel_%@.png", [[NSUserDefaults standardUserDefaults] objectForKey:@"vip"]];
-    img = [UIImage imageNamed:strVip];
-    [img drawInRect:CGRectMake(280 * fScale, iImgTopSpace, iFaceWidth, iFaceWidth) blendMode:kCGBlendModeNormal alpha:1.0];
-    CGContextRestoreGState(context);
-}
-
-+ (UIImage *)createImageForBigWeibo:(BB_BBRecord *)record
-{
-    NoteSetting *noteset = [[DataManager ShareInstance] noteSetting];
-    BB_BBText *bbcontent = record.contentInRecord;
-    if(ISEMPTY(bbcontent.text))
-    {
+//+(void)drawTitle:(BB_BBRecord *)record Incontext:(CGContextRef)context withRect:(CGRect)rct scale:(float)fScale
+//{
+//    int iWeekWidth_ = 120 * fScale;
+//    float iHeight = rct.size.height * 0.5;
+//    float iWidth = rct.size.width;
+//    //    float fR = [[[self.strColor componentsSeparatedByString:@","] objectAtIndex:0] floatValue];
+//    //    float fG = [[[self.strColor componentsSeparatedByString:@","] objectAtIndex:1] floatValue];
+//    //    float fB = [[[self.strColor componentsSeparatedByString:@","] objectAtIndex:2] floatValue];
+//    //    float fA = [[[self.strColor componentsSeparatedByString:@","] objectAtIndex:3] floatValue];
+//    //
+//    int iH = rct.size.height;
+//    CGContextSaveGState(context);
+//    //CGRect drawingRect = CGRectMake(0, 0, iWidth, self.frame.size.height);
+//    CGContextSetRGBStrokeColor(context, 0.1, 0.1, 0.1, 1);
+//    CGContextSetRGBFillColor(context, 0.1, 0.1, 0, 0.6);
+//    //CGContextFillRect(context, drawingRect);
+//    CGContextMoveToPoint(context, 0, 0);
+//    CGContextAddLineToPoint(context, SCR_WIDTH * fScale, 0);
+//    CGContextAddLineToPoint(context, SCR_WIDTH * fScale, iH);
+//    int iStep = 5 * fScale;
+//    int i = 1;
+//    while (SCR_WIDTH  * fScale - iStep * i > 0)
+//    {
+//        
+//        if(i % 2)
+//        {
+//            CGContextAddLineToPoint(context, SCR_WIDTH * fScale- iStep * i, iH - 3 * fScale);
+//        }
+//        else
+//        {
+//            CGContextAddLineToPoint(context, SCR_WIDTH * fScale - iStep * i, iH);
+//        }
+//        i ++;
+//    }
+//    CGContextAddLineToPoint(context, 0, iH);
+//    CGContextClosePath(context);
+//    CGContextDrawPath(context, kCGPathFill);
+//    
+//    //bg
+//    int iLeftSapce = 8.0 * fScale;
+//    
+//    //    CGFloat fRadius = 5.0;
+//    //    CGContextMoveToPoint(context, fRadius, 0.0f);
+//    //    CGContextAddArc(context, iWidth - fRadius, fRadius, fRadius, -M_PI_2, 0.0f, 0);
+//    //    CGContextAddArc(context, iWidth - fRadius, self.frame.size.height - fRadius, fRadius, 0, M_PI_2, 0);
+//    //    CGContextAddArc(context, fRadius, self.frame.size.height - fRadius, fRadius, M_PI_2, M_PI, 0);
+//    //    CGContextAddArc(context, fRadius, fRadius, fRadius, M_PI, M_PI * 1.5, 0);
+//    //    CGContextDrawPath(context, kCGPathEOFillStroke);
+//    
+//    CGContextMoveToPoint(context, iLeftSapce, iHeight);
+//    CGContextAddLineToPoint(context, iWeekWidth_ + iLeftSapce, iHeight);
+//    
+//    CGContextMoveToPoint(context, iLeftSapce + iWeekWidth_ / 2, iHeight);
+//    CGContextAddLineToPoint(context, iLeftSapce + iWeekWidth_ / 2, iHeight * 2);
+//    CGContextStrokePath(context);
+//    NSDate *date = record.create_date;
+//    NSString *strDate = [date getMonthDay];
+//    NSString *strTime = [date qzGetTime];
+//    NSString *strWeek = [date qzGetWeek];
+////    NSString *strColor = record.title_color;
+//    int iMood = [record.mood integerValue];
+//    int iMoodCount = [record.mood_count integerValue];
+//    NSString *strMood = [NSString stringWithFormat:@"%.3i.png", iMood];
+//    
+//    UIFont *font = [UIFont systemFontOfSize:14 * fScale];
+//    CGRect dateRct = CGRectMake(iLeftSapce, 0, iWeekWidth_, iHeight);
+//    CGContextSetRGBFillColor(context, 0, 1, 0, 1);
+//    [strDate drawInRect:dateRct withFont:font lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentCenter];
+//    CGRect weekRct = CGRectMake(iLeftSapce, iHeight, iWeekWidth_ / 2, iHeight);
+//    [strWeek drawInRect:weekRct withFont:font lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentCenter];
+//    weekRct.origin.x = iLeftSapce + iWeekWidth_ / 2;
+//    [strTime drawInRect:weekRct withFont:font lineBreakMode:NSLineBreakByTruncatingTail alignment:NSTextAlignmentCenter];
+//    
+//    UIImage *img = [UIImage imageNamed:strMood];
+//    int iFaceWidth = 30 * fScale;
+//    int iImgTopSpace = (iHeight * 2 - iFaceWidth) / 2;
+//    
+//    [img drawInRect:CGRectMake(140 * fScale, iImgTopSpace, iFaceWidth, iFaceWidth) blendMode:kCGBlendModeNormal alpha:1.0];
+//    if(iMoodCount > 1)
+//        [img drawInRect:CGRectMake(180 * fScale, iImgTopSpace, iFaceWidth, iFaceWidth) blendMode:kCGBlendModeNormal alpha:1.0];
+//    if(iMoodCount > 2)
+//        [img drawInRect:CGRectMake(220 * fScale, iImgTopSpace, iFaceWidth, iFaceWidth) blendMode:kCGBlendModeNormal alpha:1.0];
+//    
+//    NSString *strVip = [NSString stringWithFormat:@"viplevel_%@.png", [[NSUserDefaults standardUserDefaults] objectForKey:@"vip"]];
+//    img = [UIImage imageNamed:strVip];
+//    [img drawInRect:CGRectMake(280 * fScale, iImgTopSpace, iFaceWidth, iFaceWidth) blendMode:kCGBlendModeNormal alpha:1.0];
+//    CGContextRestoreGState(context);
+//}
+//
+//+ (UIImage *)createImageForBigWeibo:(BB_BBRecord *)record
+//{
+//    NoteSetting *noteset = [[DataManager ShareInstance] noteSetting];
+//    BB_BBText *bbcontent = record.contentInRecord;
+//    if(ISEMPTY(bbcontent.text))
+//    {
+////        assert(false);
+//        bbcontent.text = @"blabla,你没有存进来东西...";
+//    }
+//    
+//    CGFloat contextScale = [[UIScreen mainScreen] scale];
+//    UIFont *txtFont = [UIFont systemFontOfSize:14 * contextScale];
+//    
+//    
+//    if(!ISEMPTY(bbcontent.font) && ![bbcontent.font isEqualToString:@"system"] && bbcontent.fontsize && [bbcontent.fontsize integerValue] > 0)
+//    {
+//        txtFont = [UIFont fontWithName:bbcontent.font size:[bbcontent.fontsize integerValue] * contextScale];;
+//    }
+//    else
+//    {
+//        txtFont = [UIFont systemFontOfSize:[bbcontent.fontsize integerValue] * contextScale];
+//    }
+//    
+//    int iTitleHeight = 40 * contextScale;
+//    float fSpace = 10.0f * contextScale;
+//    float fTextWidth = SCR_WIDTH * contextScale - fSpace * 2; //文字前后留宽10像素
+//    CGSize size = [bbcontent.text sizeWithFont:txtFont constrainedToSize:CGSizeMake(fTextWidth, 15000) lineBreakMode:NSLineBreakByTruncatingTail];
+////    size = [bbcontent.text boundingRectWithSize:CGSizeMake(fTextWidth, 10000) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName: txtFont} context:nil].size;
+//    {
+//        size.height = size.height + [bbcontent.fontsize integerValue] * contextScale;
+//    }
+//    //计算文字高度
+//    BBINFO(@"bbcontent text %@ --size %@", bbcontent.text, NSStringFromCGSize(size));
+//    
+//    int iByteCount;
+//    int iBytesPerRow;
+//    int iWidth = SCR_WIDTH * contextScale;
+//    int iHight = SCR_HEIGHT * contextScale / 2;
+//    if(iHight - iTitleHeight - fSpace * 2 < size.height) //文字前后留宽10像素
+//        iHight = size.height + fSpace * 2 + iTitleHeight;
+//    iBytesPerRow  = iWidth * 4;
+//    iByteCount = iBytesPerRow * iHight;
+//    void *bitmapData = malloc(iByteCount);
+//    if(bitmapData == NULL)
+//    {
+//        NSLog(@"malloc bitmapdata space failed!");
 //        assert(false);
-        bbcontent.text = @"blabla,你没有存进来东西...";
-    }
-    
-    CGFloat contextScale = [[UIScreen mainScreen] scale];
-    UIFont *txtFont = [UIFont systemFontOfSize:14 * contextScale];
-    
-    
-    if(!ISEMPTY(bbcontent.font) && ![bbcontent.font isEqualToString:@"system"] && bbcontent.fontsize && [bbcontent.fontsize integerValue] > 0)
-    {
-        txtFont = [UIFont fontWithName:bbcontent.font size:[bbcontent.fontsize integerValue] * contextScale];;
-    }
-    else
-    {
-        txtFont = [UIFont systemFontOfSize:[bbcontent.fontsize integerValue] * contextScale];
-    }
-    
-    int iTitleHeight = 40 * contextScale;
-    float fSpace = 10.0f * contextScale;
-    float fTextWidth = SCR_WIDTH * contextScale - fSpace * 2; //文字前后留宽10像素
-    CGSize size = [bbcontent.text sizeWithFont:txtFont constrainedToSize:CGSizeMake(fTextWidth, 15000) lineBreakMode:NSLineBreakByTruncatingTail];
-//    size = [bbcontent.text boundingRectWithSize:CGSizeMake(fTextWidth, 10000) options:NSStringDrawingTruncatesLastVisibleLine | NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:@{NSFontAttributeName: txtFont} context:nil].size;
-    {
-        size.height = size.height + [bbcontent.fontsize integerValue] * contextScale;
-    }
-    //计算文字高度
-    BBINFO(@"bbcontent text %@ --size %@", bbcontent.text, NSStringFromCGSize(size));
-    
-    int iByteCount;
-    int iBytesPerRow;
-    int iWidth = SCR_WIDTH * contextScale;
-    int iHight = SCR_HEIGHT * contextScale / 2;
-    if(iHight - iTitleHeight - fSpace * 2 < size.height) //文字前后留宽10像素
-        iHight = size.height + fSpace * 2 + iTitleHeight;
-    iBytesPerRow  = iWidth * 4;
-    iByteCount = iBytesPerRow * iHight;
-    void *bitmapData = malloc(iByteCount);
-    if(bitmapData == NULL)
-    {
-        NSLog(@"malloc bitmapdata space failed!");
-        assert(false);
-        return nil;
-    }
-    CGColorSpaceRef colorRef = CGColorSpaceCreateDeviceRGB();
-    CGContextRef context = CGBitmapContextCreate(bitmapData, iWidth, iHight, 8, iBytesPerRow, colorRef,  kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);
-    CGColorSpaceRelease(colorRef);
-    if(context == NULL)
-    {
-        NSLog(@"CGBitmapContextCreate failed!");
-        assert(false);
-        return nil;
-    }
-    UIGraphicsPushContext(context);
-    CGContextTranslateCTM(context, 0, iHight);
-    CGContextScaleCTM(context, 1, -1);
-    UIImage *bgimg = nil;
-    
- 
-    if(!ISEMPTY(record.bg_image))
-    {
-        BBINFO(@"-------- %@", record.bg_image);
-        bgimg = [UIImage imageNamed:record.bg_image];
-    }
-    else
-    {
-        if(!ISEMPTY(record.bg_color))
-        {
-            CGContextSetFillColorWithColor(context, [record.bg_color getColorFromString].CGColor);
-            
-            //CGContextDrawPath(context, kCGPathFill);
-            //CGContextFillPath(context);
-        }
-        else
-        {
-            CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
-        }
-        CGContextFillRect(context, CGRectMake(0, 0, iWidth, iHight));
-    }
-    
-    if(bgimg)
-    {
-        float fHeight = iHight;
-        float fImgHeight = bgimg.size.height;
-        
-        float fTotal = 0;
-        fImgHeight = fImgHeight * iWidth / bgimg.size.width;
-        
-        if(fImgHeight >= fHeight)
-        {
-            [bgimg drawInRect:CGRectMake(0, 0, iWidth, fImgHeight)];
-        }
-        else
-        {
-            while(fTotal < fHeight)
-            {
-                [bgimg drawInRect:CGRectMake(0, fTotal, iWidth, fImgHeight)];
-                fTotal += fImgHeight;
-                BBINFO(@"---- %f", fTotal);
-            }
-        }
-    }
-    CGContextSetAllowsAntialiasing(context, YES);
-    CGContextSetShouldSmoothFonts(context, YES);
-    CGContextSetAllowsFontSmoothing(context, YES);
-    [self drawTitle:record Incontext:context withRect:CGRectMake(0, 0, iWidth, iTitleHeight) scale:contextScale];
-    [self drawText:bbcontent Incontext:context withRect:CGRectMake(fSpace, fSpace + iTitleHeight, fTextWidth, iHight - iTitleHeight - fSpace * 2) scale:contextScale];
-    
-    {// test draw logo
-        
-        CGContextSetRGBFillColor(context, 1.0f, 0.0f, 0.0f, 0.1f);
-        NSString *strLogo = [[[NSBundle mainBundle] localizedInfoDictionary] objectForKey:@"CFBundleDisplayName"];
-        [strLogo drawInRect:CGRectMake((SCR_WIDTH -  110) * contextScale, iHight  - 20 * contextScale, 100 * contextScale, 20 * contextScale) withFont:[UIFont boldSystemFontOfSize:14 * contextScale]];
-    }
-    //CGContextDrawImage(context, CGRectZero, nil);
-    CGImageRef imgRef = CGBitmapContextCreateImage(context);
-    UIImage *img = [UIImage imageWithCGImage:imgRef];
-    CGImageRelease(imgRef);
-    UIGraphicsPopContext();
-    UIGraphicsEndImageContext();
-    CGContextRelease(context);
-    free(bitmapData);
-    BBINFO(@"%@", NSStringFromCGSize(img.size));
-    return img;
-}
+//        return nil;
+//    }
+//    CGColorSpaceRef colorRef = CGColorSpaceCreateDeviceRGB();
+//    CGContextRef context = CGBitmapContextCreate(bitmapData, iWidth, iHight, 8, iBytesPerRow, colorRef,  kCGBitmapByteOrderDefault | kCGImageAlphaPremultipliedFirst);
+//    CGColorSpaceRelease(colorRef);
+//    if(context == NULL)
+//    {
+//        NSLog(@"CGBitmapContextCreate failed!");
+//        assert(false);
+//        return nil;
+//    }
+//    UIGraphicsPushContext(context);
+//    CGContextTranslateCTM(context, 0, iHight);
+//    CGContextScaleCTM(context, 1, -1);
+//    UIImage *bgimg = nil;
+//    
+// 
+//    if(!ISEMPTY(record.bg_image))
+//    {
+//        BBINFO(@"-------- %@", record.bg_image);
+//        bgimg = [UIImage imageNamed:record.bg_image];
+//    }
+//    else
+//    {
+//        if(!ISEMPTY(record.bg_color))
+//        {
+//            CGContextSetFillColorWithColor(context, [record.bg_color getColorFromString].CGColor);
+//            
+//            //CGContextDrawPath(context, kCGPathFill);
+//            //CGContextFillPath(context);
+//        }
+//        else
+//        {
+//            CGContextSetFillColorWithColor(context, [UIColor whiteColor].CGColor);
+//        }
+//        CGContextFillRect(context, CGRectMake(0, 0, iWidth, iHight));
+//    }
+//    
+//    if(bgimg)
+//    {
+//        float fHeight = iHight;
+//        float fImgHeight = bgimg.size.height;
+//        
+//        float fTotal = 0;
+//        fImgHeight = fImgHeight * iWidth / bgimg.size.width;
+//        
+//        if(fImgHeight >= fHeight)
+//        {
+//            [bgimg drawInRect:CGRectMake(0, 0, iWidth, fImgHeight)];
+//        }
+//        else
+//        {
+//            while(fTotal < fHeight)
+//            {
+//                [bgimg drawInRect:CGRectMake(0, fTotal, iWidth, fImgHeight)];
+//                fTotal += fImgHeight;
+//                BBINFO(@"---- %f", fTotal);
+//            }
+//        }
+//    }
+//    CGContextSetAllowsAntialiasing(context, YES);
+//    CGContextSetShouldSmoothFonts(context, YES);
+//    CGContextSetAllowsFontSmoothing(context, YES);
+//    [self drawTitle:record Incontext:context withRect:CGRectMake(0, 0, iWidth, iTitleHeight) scale:contextScale];
+//    [self drawText:bbcontent Incontext:context withRect:CGRectMake(fSpace, fSpace + iTitleHeight, fTextWidth, iHight - iTitleHeight - fSpace * 2) scale:contextScale];
+//    
+//    {// test draw logo
+//        
+//        CGContextSetRGBFillColor(context, 1.0f, 0.0f, 0.0f, 0.1f);
+//        NSString *strLogo = [[[NSBundle mainBundle] localizedInfoDictionary] objectForKey:@"CFBundleDisplayName"];
+//        [strLogo drawInRect:CGRectMake((SCR_WIDTH -  110) * contextScale, iHight  - 20 * contextScale, 100 * contextScale, 20 * contextScale) withFont:[UIFont boldSystemFontOfSize:14 * contextScale]];
+//    }
+//    //CGContextDrawImage(context, CGRectZero, nil);
+//    CGImageRef imgRef = CGBitmapContextCreateImage(context);
+//    UIImage *img = [UIImage imageWithCGImage:imgRef];
+//    CGImageRelease(imgRef);
+//    UIGraphicsPopContext();
+//    UIGraphicsEndImageContext();
+//    CGContextRelease(context);
+//    free(bitmapData);
+//    BBINFO(@"%@", NSStringFromCGSize(img.size));
+//    return img;
+//}
 
 + (UIImage *)createImageForRecord:(BRecord *)record
 {

@@ -28,5 +28,5 @@
 @property (nonatomic, retain) BB_BBRecord *record;
 
 +(BB_BBImage *)BBImageWithBImage:(BImage *)bimg;
-- (NSDictionary *)covertDictionary;
+//- (NSDictionary *)covertDictionary;
 @end

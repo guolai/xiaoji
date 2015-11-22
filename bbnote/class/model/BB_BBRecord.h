@@ -39,8 +39,8 @@
 //+ (void)saveBBRecordWithBRecord:(BRecord *)brecord content:(BContent *)bContent imageArray:(NSArray *)imgArray audioArray:(NSArray *)audioArry videoArray:(NSArray *)videoArry;
 + (BB_BBRecord *)initWithBRecord:(BRecord *)brecord;
 + (NSString *)getRecordMoodStr:(BB_BBRecord *)recd;
-- (NSDictionary *)covertDictionary;
-- (void)saveToSandBoxPath:(NSString *)strFolder;
+//- (NSDictionary *)covertDictionary;
+//- (void)saveToSandBoxPath:(NSString *)strFolder;
 
 @end
 

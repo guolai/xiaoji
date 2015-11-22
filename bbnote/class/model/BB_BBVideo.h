@@ -22,5 +22,5 @@
 @property (nonatomic, retain) NSString * update;
 @property (nonatomic, retain) BB_BBRecord *record;
 + (BB_BBVideo *)BBVideoWithBVideo:(BVideo *)bvideo;
-- (NSDictionary *)covertDictionary;
+//- (NSDictionary *)covertDictionary;
 @end

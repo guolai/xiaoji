@@ -37,5 +37,6 @@
  The image represented by the receiver
  */
 @property (nonatomic, strong) DTImage *image;
+@property (nonatomic, strong) NSString *strFileName;
 
 @end

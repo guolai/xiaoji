@@ -152,7 +152,7 @@
             if(i == 0)
             {
                 type = e_BV_Text;
-                array = @[@{@"name":@"Helvetica Neue", @"localname":@"note"},
+                array = @[@{@"name":kHelVetica, @"localname":@"note"},
                           @{@"name":@"snFontP1", @"localname":@"小记"},
                           @{@"name":@"snFontP2", @"localname":@"小记"},
                           @{@"name":@"FZXingKai-S04S", @"localname":@"小记"},
@@ -323,8 +323,14 @@
 
 - (void)setCurrentStyles:(BStyle *)bstyle
 {
-    if(!bstyle)
+    if(!bstyle || _bstyle == bstyle)
+    {
         return;
+    }
+    
+    
+    _bstyle = bstyle;
+    
     NSString *strStyle = nil;
     for (StyleScrView *styView in self.arrayStyles)
     {

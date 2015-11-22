@@ -50,8 +50,19 @@
     }
     
     mulArray_ = [NSMutableArray arrayWithCapacity:16];
-    [mulArray_ addObject:@"photo-detail-bg.jpg"];
-    for (int i = 1; i <= 7; i++) {
+    for (int i = 1; i <= 7; i++)
+    {
+        NSString *str = [NSString stringWithFormat:@"%.2d.png", i];
+        [mulArray_ addObject:str];
+    }
+    for (int i = 1; i <= 7; i++)
+    {
+        NSString *str = [NSString stringWithFormat:@"%.2d.jpg", i];
+        [mulArray_ addObject:str];
+    }
+    [mulArray_ addObject:@"skindefault.jpg"];
+    for (int i = 1; i <= 7; i++)
+    {
         NSString *str = [NSString stringWithFormat:@"skin%d-down.jpg", i];
         [mulArray_ addObject:str];
     }

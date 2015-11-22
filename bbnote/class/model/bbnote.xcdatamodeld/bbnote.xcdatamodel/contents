@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="9057" systemVersion="14F27" minimumToolsVersion="Xcode 4.3">
     <entity name="BBAudio" representedClassName="BB_BBAudio" syncable="YES">
         <attribute name="create_date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="data_path" optional="YES" attributeType="String" syncable="YES"/>
@@ -23,6 +23,23 @@
         <attribute name="vertical" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="width" optional="YES" attributeType="Float" defaultValueString="0.0" syncable="YES"/>
         <relationship name="record" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="BBRecord" inverseName="imageInRecord" inverseEntity="BBRecord" syncable="YES"/>
+    </entity>
+    <entity name="BBLine" representedClassName="BB_BBLine" syncable="YES">
+        <attribute name="bgcolor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="displaySizeH" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="displaySizeW" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
+        <attribute name="fileName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fontname" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="fontsize" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="forcolor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="length" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="line" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="location" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="orgiSizeH" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="orgiSizeW" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="run" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="bText" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="BBText" inverseName="lineInText" inverseEntity="BBText" syncable="YES"/>
     </entity>
     <entity name="BBRecord" representedClassName="BB_BBRecord" syncable="YES">
         <attribute name="bg_color" optional="YES" attributeType="String" syncable="YES"/>
@@ -48,11 +65,9 @@
     </entity>
     <entity name="BBText" representedClassName="BB_BBText" syncable="YES">
         <attribute name="create_date" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="font" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="fontsize" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="modify_date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="text" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="text_color" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="lineInText" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="BBLine" inverseName="bText" inverseEntity="BBLine" syncable="YES"/>
         <relationship name="record" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="BBRecord" inverseName="contentInRecord" inverseEntity="BBRecord" syncable="YES"/>
     </entity>
     <entity name="BBVideo" representedClassName="BB_BBVideo" syncable="YES">
@@ -69,7 +84,8 @@
         <element name="BBAudio" positionX="160" positionY="192" width="128" height="165"/>
         <element name="BBImage" positionX="-198" positionY="-144" width="128" height="225"/>
         <element name="BBRecord" positionX="18" positionY="-360" width="128" height="345"/>
-        <element name="BBText" positionX="178" positionY="-99" width="128" height="150"/>
+        <element name="BBText" positionX="178" positionY="-99" width="128" height="120"/>
         <element name="BBVideo" positionX="-144" positionY="126" width="128" height="165"/>
+        <element name="BBLine" positionX="-9" positionY="-207" width="128" height="270"/>
     </elements>
 </model>

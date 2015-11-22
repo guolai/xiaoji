@@ -19,4 +19,7 @@
 - (NSString *)getTime;
 
 + (NSString *)keyForFilePath:(NSString *)strFilePath;
+
+- (NSString *)substringSafeWithRange:(NSRange)range; //如果range 不对，返回自身
+
 @end

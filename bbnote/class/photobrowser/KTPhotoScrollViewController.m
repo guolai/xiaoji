@@ -18,8 +18,7 @@
 #import "BBMisc.h"
 #import "DataModel.h"
 #import "BBNavigationViewController.h"
-#import "MediaViewController.h"
-#import "TextViewController.h"
+//#import "TextViewController.h"
 
 const CGFloat ktkDefaultPortraitToolbarHeight   = 44;
 const CGFloat ktkDefaultLandscapeToolbarHeight  = 33;
@@ -846,8 +845,8 @@ const CGFloat ktkDefaultToolbarHeight = 40 + 24;
     else if([[actionSheet buttonTitleAtIndex:buttonIndex] isEqualToString:NSLocalizedString(@"Reedit", nil)])
     {
         BB_BBRecord *record = [array_ objectAtIndex:curRecord_.index];
-        MediaViewController  *vc = [[MediaViewController alloc] initWithNote:record];
-        [self.navigationController pushViewController:vc animated:YES];
+//        MediaViewController  *vc = [[MediaViewController alloc] initWithNote:record];
+//        [self.navigationController pushViewController:vc animated:YES];
         return;
     }
     [self startChromeDisplayTimer];

@@ -9,5 +9,6 @@
 #import "BBViewController.h"
 
 @interface RichEditViewController : BBViewController
-
+- (instancetype)initWithRecored:(BB_BBRecord *)recored;
+- (instancetype)initWithNewNote;
 @end

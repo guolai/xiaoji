@@ -124,8 +124,6 @@
 		180900731AF923EB00F8A0C8 /* DateViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FFAC1AF923EB00F8A0C8 /* DateViewController.m */; };
 		180900741AF923EB00F8A0C8 /* FaceScrView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FFAE1AF923EB00F8A0C8 /* FaceScrView.m */; };
 		180900751AF923EB00F8A0C8 /* ImagesBtnView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FFB01AF923EB00F8A0C8 /* ImagesBtnView.m */; };
-		180900761AF923EB00F8A0C8 /* MediaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FFB21AF923EB00F8A0C8 /* MediaViewController.m */; };
-		180900771AF923EB00F8A0C8 /* TextViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FFB41AF923EB00F8A0C8 /* TextViewController.m */; };
 		180900781AF923EB00F8A0C8 /* TileView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FFB61AF923EB00F8A0C8 /* TileView.m */; };
 		180900791AF923EB00F8A0C8 /* PasswordViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FFB81AF923EB00F8A0C8 /* PasswordViewController.m */; };
 		1809007A1AF923EB00F8A0C8 /* BBTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1809FFBB1AF923EB00F8A0C8 /* BBTitleView.m */; };
@@ -498,6 +496,9 @@
 		187339BC1BD3DC73002D7D40 /* BBTableDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 187339BB1BD3DC73002D7D40 /* BBTableDelegate.m */; };
 		188152D11BC57C1100A421E5 /* UIView+Image.m in Sources */ = {isa = PBXBuildFile; fileRef = 188152D01BC57C1100A421E5 /* UIView+Image.m */; };
 		188152D41BC58C1F00A421E5 /* BStyle.m in Sources */ = {isa = PBXBuildFile; fileRef = 188152D31BC58C1F00A421E5 /* BStyle.m */; };
+		1890D1661C016DD000411ECC /* NSMutableDictionary+SafeSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 1890D1631C016DD000411ECC /* NSMutableDictionary+SafeSet.m */; };
+		1890D1701C01811C00411ECC /* BB_BBLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 1890D16F1C01811C00411ECC /* BB_BBLine.m */; };
+		1890D19E1C01819900411ECC /* BLine.m in Sources */ = {isa = PBXBuildFile; fileRef = 1890D19D1C01819900411ECC /* BLine.m */; };
 		18AE706E1BD3C5A1007968E9 /* TestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18AE706D1BD3C5A1007968E9 /* TestViewController.m */; };
 		18F9FAA41BC3F8830035A5AC /* RichEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F9FAA31BC3F8830035A5AC /* RichEditViewController.m */; };
 		18F9FD8E1BC3F91E0035A5AC /* default.css in Resources */ = {isa = PBXBuildFile; fileRef = 18F9FC641BC3F91E0035A5AC /* default.css */; };
@@ -1310,10 +1311,6 @@
 		1809FFAE1AF923EB00F8A0C8 /* FaceScrView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceScrView.m; sourceTree = "<group>"; };
 		1809FFAF1AF923EB00F8A0C8 /* ImagesBtnView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesBtnView.h; sourceTree = "<group>"; };
 		1809FFB01AF923EB00F8A0C8 /* ImagesBtnView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesBtnView.m; sourceTree = "<group>"; };
-		1809FFB11AF923EB00F8A0C8 /* MediaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MediaViewController.h; sourceTree = "<group>"; };
-		1809FFB21AF923EB00F8A0C8 /* MediaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MediaViewController.m; sourceTree = "<group>"; };
-		1809FFB31AF923EB00F8A0C8 /* TextViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextViewController.h; sourceTree = "<group>"; };
-		1809FFB41AF923EB00F8A0C8 /* TextViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextViewController.m; sourceTree = "<group>"; };
 		1809FFB51AF923EB00F8A0C8 /* TileView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TileView.h; sourceTree = "<group>"; };
 		1809FFB61AF923EB00F8A0C8 /* TileView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TileView.m; sourceTree = "<group>"; };
 		1809FFB71AF923EB00F8A0C8 /* PasswordViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordViewController.h; sourceTree = "<group>"; };
@@ -1384,6 +1381,12 @@
 		188152D01BC57C1100A421E5 /* UIView+Image.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Image.m"; sourceTree = "<group>"; };
 		188152D21BC58C1F00A421E5 /* BStyle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BStyle.h; sourceTree = "<group>"; };
 		188152D31BC58C1F00A421E5 /* BStyle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BStyle.m; sourceTree = "<group>"; };
+		1890D1621C016DD000411ECC /* NSMutableDictionary+SafeSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableDictionary+SafeSet.h"; sourceTree = "<group>"; };
+		1890D1631C016DD000411ECC /* NSMutableDictionary+SafeSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableDictionary+SafeSet.m"; sourceTree = "<group>"; };
+		1890D16E1C01811C00411ECC /* BB_BBLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BB_BBLine.h; sourceTree = "<group>"; };
+		1890D16F1C01811C00411ECC /* BB_BBLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BB_BBLine.m; sourceTree = "<group>"; };
+		1890D19C1C01819900411ECC /* BLine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLine.h; sourceTree = "<group>"; };
+		1890D19D1C01819900411ECC /* BLine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BLine.m; sourceTree = "<group>"; };
 		18AE706C1BD3C5A1007968E9 /* TestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestViewController.h; sourceTree = "<group>"; };
 		18AE706D1BD3C5A1007968E9 /* TestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestViewController.m; sourceTree = "<group>"; };
 		18F9FAA21BC3F8830035A5AC /* RichEditViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RichEditViewController.h; sourceTree = "<group>"; };
@@ -2314,6 +2317,8 @@
 		1809FE7D1AF923EA00F8A0C8 /* category */ = {
 			isa = PBXGroup;
 			children = (
+				1890D1621C016DD000411ECC /* NSMutableDictionary+SafeSet.h */,
+				1890D1631C016DD000411ECC /* NSMutableDictionary+SafeSet.m */,
 				188152CF1BC57C1100A421E5 /* UIView+Image.h */,
 				188152D01BC57C1100A421E5 /* UIView+Image.m */,
 				18F9FEDE1BC43D550035A5AC /* NSString+UIColor.h */,
@@ -2437,6 +2442,10 @@
 				1809FECA1AF923EA00F8A0C8 /* DataModel.m */,
 				188152D21BC58C1F00A421E5 /* BStyle.h */,
 				188152D31BC58C1F00A421E5 /* BStyle.m */,
+				1890D16E1C01811C00411ECC /* BB_BBLine.h */,
+				1890D16F1C01811C00411ECC /* BB_BBLine.m */,
+				1890D19C1C01819900411ECC /* BLine.h */,
+				1890D19D1C01819900411ECC /* BLine.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -2839,10 +2848,6 @@
 				1809FFAE1AF923EB00F8A0C8 /* FaceScrView.m */,
 				1809FFAF1AF923EB00F8A0C8 /* ImagesBtnView.h */,
 				1809FFB01AF923EB00F8A0C8 /* ImagesBtnView.m */,
-				1809FFB11AF923EB00F8A0C8 /* MediaViewController.h */,
-				1809FFB21AF923EB00F8A0C8 /* MediaViewController.m */,
-				1809FFB31AF923EB00F8A0C8 /* TextViewController.h */,
-				1809FFB41AF923EB00F8A0C8 /* TextViewController.m */,
 				1809FFB51AF923EB00F8A0C8 /* TileView.h */,
 				1809FFB61AF923EB00F8A0C8 /* TileView.m */,
 			);
@@ -3967,6 +3972,7 @@
 				180900481AF923EB00F8A0C8 /* ENSearchRequest.m in Sources */,
 				188152D41BC58C1F00A421E5 /* BStyle.m in Sources */,
 				18F9FDDB1BC3F91E0035A5AC /* DTSidePanelPanGestureRecognizer.m in Sources */,
+				1890D1701C01811C00411ECC /* BB_BBLine.m in Sources */,
 				18F9FDEB1BC3F91E0035A5AC /* NSString+DTPaths.m in Sources */,
 				18F9FDCE1BC3F91E0035A5AC /* DTLog.m in Sources */,
 				1809FE261AF91B9200F8A0C8 /* AppDelegate.m in Sources */,
@@ -3990,7 +3996,6 @@
 				1809FFE81AF923EB00F8A0C8 /* BBPlayer.m in Sources */,
 				18F9FED91BC41CB80035A5AC /* EditHeadView.m in Sources */,
 				18F9FD921BC3F91E0035A5AC /* DTAttributedLabel.m in Sources */,
-				180900761AF923EB00F8A0C8 /* MediaViewController.m in Sources */,
 				1809FFF41AF923EB00F8A0C8 /* HomeTileView.m in Sources */,
 				1809003C1AF923EB00F8A0C8 /* EvernoteNoteStore.m in Sources */,
 				18F9FD9D1BC3F91E0035A5AC /* DTCoreTextGlyphRun.m in Sources */,
@@ -4017,7 +4022,6 @@
 				180900011AF923EB00F8A0C8 /* BB_BBAudio.m in Sources */,
 				18F9FE171BC3F91E0035A5AC /* DTWebResource+DTRichText.m in Sources */,
 				180900431AF923EB00F8A0C8 /* ENLinkNotebookRequest.m in Sources */,
-				180900771AF923EB00F8A0C8 /* TextViewController.m in Sources */,
 				180900661AF923EB00F8A0C8 /* FontImge.m in Sources */,
 				18F9FE061BC3F91E0035A5AC /* DTMutableCoreTextLayoutFrame.m in Sources */,
 				180900681AF923EB00F8A0C8 /* UIButton+Bootstrap.m in Sources */,
@@ -4082,6 +4086,7 @@
 				18F9FDE11BC3F91E0035A5AC /* NSURL+DTAppLinks.m in Sources */,
 				180900571AF923EB00F8A0C8 /* ENCredentialStore.m in Sources */,
 				1809FFE71AF923EB00F8A0C8 /* UIViewController+BackButton.m in Sources */,
+				1890D1661C016DD000411ECC /* NSMutableDictionary+SafeSet.m in Sources */,
 				180900581AF923EB00F8A0C8 /* ENOAuthViewController.m in Sources */,
 				180900631AF923EB00F8A0C8 /* NSDataBase64Additions.m in Sources */,
 				18F9FD971BC3F91E0035A5AC /* DTColor+Compatibility.m in Sources */,
@@ -4163,6 +4168,7 @@
 				18F9FE031BC3F91E0035A5AC /* DTCoreTextLayoutFrame+DTRichText.m in Sources */,
 				180900621AF923EB00F8A0C8 /* NSData+EvernoteSDK.m in Sources */,
 				1809002A1AF923EB00F8A0C8 /* SSKeychain.m in Sources */,
+				1890D19E1C01819900411ECC /* BLine.m in Sources */,
 				180900041AF923EB00F8A0C8 /* bbnote.xcdatamodeld in Sources */,
 				18F9FDD01BC3F91E0035A5AC /* DTActionSheet.m in Sources */,
 				18F9FE141BC3F91E0035A5AC /* DTTextSelectionRect.m in Sources */,

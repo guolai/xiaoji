@@ -30,8 +30,8 @@
 + (BImage *)saveAssetImageToSand:(NSData *)bigData smlImag:(UIImage *)smlImage path:(NSString *)strPath isContent:(BOOL)bContent;
 + (CGRect)getRect:(float)fX withPosY:(float)fY withwidth:(float)fW withHeight:(float)fH;
 
-+ (UIImage *)createImageForBigWeibo:(BB_BBRecord *)record;
-+ (UIImage *)createImageForRecord:(BB_BBRecord *)record;
+//+ (UIImage *)createImageForBigWeibo:(BB_BBRecord *)record;
+//+ (UIImage *)createImageForRecord:(BB_BBRecord *)record;
 
 //delete image of coredata file
 + (void)deleteImageFileOfCoredata:(BImage *)bimg;

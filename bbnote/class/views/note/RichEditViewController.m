@@ -33,6 +33,10 @@
 #import "UIImage+SCaleImage.h"
 #import "PaperListView.h"
 #import "BBTableDelegate.h"
+#import "NSString+Help.h"
+#import "NSMutableDictionary+SafeSet.h"
+#import "BLine.h"
+#import "BB_BBLine.h"
 
 
 @interface RichEditViewController ()<DTRichTextEditorViewDelegate, DTAttributedTextContentViewDelegate,KeyBoardStateDelegate, MediaSelectDelegate, BBPresentViewControlerDelegate, BBPaperListDelegate>
@@ -52,6 +56,10 @@
 @property (nonatomic, retain)BRecord *bRecord;
 @property (nonatomic, retain)BContent *bContent;
 @property (nonatomic, strong)BStyle *lastStyle;
+@property (nonatomic, strong)NSMutableArray *imgArray;
+@property (nonatomic, strong)BB_BBRecord *bbRecored;
+@property (nonatomic, strong)NSMutableDictionary *imgDic;
+@property (nonatomic, retain)NSTimer *saveTimer;
 @end
 
 @implementation RichEditViewController
@@ -90,11 +98,40 @@
     [super didReceiveMemoryWarning];
 }
 
+- (instancetype)initWithRecored:(BB_BBRecord *)recored
+{
+    if (self = [super init])
+    {
+        self.bbRecored = recored;
+        self.bRecord = [[BRecord alloc] initWithBBrecord:recored];
+        self.bContent = [[BContent alloc] initWithBBText:recored.contentInRecord];
+        self.imgArray = [NSMutableArray arrayWithCapacity:10];
+        NSArray *array = [self.bbRecored.imageInRecord allObjects];
+        for (BB_BBImage *bbimg in array)
+        {
+            BImage *bime = [[BImage alloc] initWithBBImage:bbimg];
+            [self.imgArray addObject:bime];
+        }
+        self.imgDic = [NSMutableDictionary dictionaryWithCapacity:10];
+        
+    }
+    return self;
+}
+
+- (instancetype)initWithNewNote
+{
+    if (self = [super init])
+    {
+        [self createNewRecord];
+        [BBUserDefault deleteArchvierDataNote];
+        self.imgDic = [NSMutableDictionary dictionaryWithCapacity:10];
+    }
+    return self;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self createNewRecord];
     _richEditor = [[DTRichTextEditorView alloc] initWithFrame:self.view.bounds];
     _richEditor.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     _richEditor.textDelegate = self;
@@ -118,9 +155,9 @@
     _richEditor.attributedTextContentView.shouldDrawImages = YES;
     NSString *path = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"html"];
     NSString *html = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:NULL];
-    if ([[DataManager ShareInstance] attstring])
+    if (self.bContent.arrayLine.count > 0)
     {
-        _richEditor.attributedString  = [[DataManager ShareInstance] attstring];
+        _richEditor.attributedString  = [self geneAttributedString:self.bContent.arrayLine];
     }
     else
     {
@@ -144,14 +181,17 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
-//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-//         [BBMisc logSubViews:self.view];
-//        [BBMisc logSubViews:self.keyBoardView];
-//        self.keyBoardView.hidden = YES;
-//    });
+    [super viewWillAppear:animated];
+    self.saveTimer = [NSTimer scheduledTimerWithTimeInterval:5.0 target:self selector:@selector(saveRecordToSandbox) userInfo:nil repeats:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    [self.saveTimer invalidate];
+    self.saveTimer = nil;
 }
 
 - (EditAccessoryView *)accessoryView
@@ -306,11 +346,17 @@
         {
             self.bContent = [[BContent alloc] init];
         }
+        self.imgArray = [NSKeyedUnarchiver unarchiveObjectWithData:[noteDic objectForKey:@"image"]];
+        if(!self.imgArray || ![self.imgArray isKindOfClass:[NSMutableArray class]])
+        {
+            self.imgArray = [[NSMutableArray alloc] initWithCapacity:8];
+        }
     }
     else
     {
         self.bRecord = [[BRecord alloc] init];
         self.bContent = [[BContent alloc] init];
+        self.imgArray = [NSMutableArray arrayWithCapacity:10];
     }
     NoteSetting *noteset = [[DataManager ShareInstance] noteSetting];
     if(noteset.isUseBgImg)
@@ -323,10 +369,75 @@
         self.bRecord.bg_image = nil;
         self.bRecord.bg_color = noteset.strBgColor;
     }
-    self.bContent.text_color = noteset.strTextColor;
-    self.bContent.fontsize = noteset.nFontSize;
-    self.bContent.font = noteset.strFontName;
 }
+
+- (void)saveRecordToSandbox
+{
+    if(self.bRecord)
+    {
+        [self parseAttributedString:_richEditor.attributedText];
+        
+        NSMutableDictionary *noteDic = [NSMutableDictionary dictionaryWithCapacity:4];
+        [noteDic setObject:[NSKeyedArchiver archivedDataWithRootObject:self.bContent] forKey:@"content"];
+        [noteDic setObject:[NSKeyedArchiver archivedDataWithRootObject:self.bRecord] forKey:@"record"];
+        if(self.imgArray.count > 0)
+            [noteDic setObject:[NSKeyedArchiver archivedDataWithRootObject:self.imgArray] forKey:@"image"];
+        [BBUserDefault setArchvierData:noteDic];
+        BBINFO(@"%@", [BBUserDefault getArchiverDataOfNote]);
+    }
+}
+
+- (void)saveNoteData
+{
+    [self parseAttributedString:_richEditor.attributedText];
+    if (!self.bbRecored)
+    {
+        self.bbRecored = [BB_BBRecord initWithBRecord:self.bRecord];
+        BB_BBText *bbcontent = [BB_BBText BBContentWithBContent:self.bContent];
+        bbcontent.record = self.bbRecored;
+        self.bbRecored.contentInRecord = bbcontent;
+    }
+    else
+    {
+        [self.bbRecored.contentInRecord updateWithBContent:self.bContent];
+    }
+    for (int i = 0; i < self.imgArray.count; i++)
+    {
+        BImage *bime = [self.imgArray objectAtIndex:i];
+        if ([self.imgDic objectForKey:bime.data_path])
+        {
+            BB_BBImage *bbime = [BB_BBImage BBImageWithBImage:bime];
+            bbime.record = self.bbRecored;
+        }
+        else
+        {
+            BB_BBImage *bbimage = nil;
+            NSArray *array = [BB_BBImage whereFormat:@"key == '%@'", bime.key];
+            if(array && array.count > 0)
+            {
+                bbimage = array.first;
+            }
+            if(bbimage)
+            {
+                [bbimage delete];
+            }
+            if (bime.data_path && bime.data_path.length > 0)
+            {
+                NSString *strPath = [[self getNotePath] stringByAppendingPathComponent:bime.data_path];
+                if ([FileManagerController fileExist:strPath])
+                {
+                    [FileManagerController removeFile:strPath];
+                }
+                
+            }
+            
+        }
+    }
+    BBINFO(@"%@", [self getNotePath]);
+    [self.bbRecored save];
+    
+}
+
 
 - (NSString *)getNotePath
 {
@@ -335,32 +446,134 @@
 
 
 #pragma mark - event
+
+
+- (NSAttributedString *)geneAttributedString:(NSArray*)array
+{
+    NSMutableAttributedString *mulAttributeString = [[NSMutableAttributedString alloc] init];
+    NSArray *sortedArray = [array sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2)      {
+        NSComparisonResult result = NSOrderedSame;
+        BLine *line1 = (BLine *)obj1;
+        BLine *line2 = (BLine *)obj2;
+        if (line1.line > line2.line)
+        {
+            result = NSOrderedDescending;
+        }
+        else if (line1.line == line2.line)
+        {
+            if (line1.run > line2.run)
+            {
+                result = NSOrderedDescending;
+            }
+            else if (line1.run < line2.run)
+            {
+                result = NSOrderedAscending;
+            }
+        }
+        else
+        {
+            result = NSOrderedAscending;
+        }
+        return result;
+    }];
+    
+    for (int i = 0; i < sortedArray.count; i++)
+    {
+        BLine *line = [sortedArray objectAtIndex:i];
+        [mulAttributeString appendAttributedString:[line geneAttributedStringFromDir:[self getNotePath]]];
+    }
+    
+    return mulAttributeString;
+}
+
+- (NSArray *)parseAttributedString:(NSAttributedString *)attributedString
+{
+    NSMutableArray *retArray = [NSMutableArray arrayWithCapacity:10];
+    NSString *plainString = [attributedString string];
+    self.bContent.text = plainString;
+    NSArray *paragraphs = [plainString componentsSeparatedByString:@"\n"];
+    NSInteger location = 0;
+    [self.imgDic removeAllObjects];
+    for (NSUInteger i=0; i<[paragraphs count]; i++)
+    {
+        NSString *oneParagraph = [paragraphs objectAtIndex:i];
+        NSRange paragraphRange = NSMakeRange(location, [oneParagraph length]);
+        
+        // skip empty paragraph at the end
+   
+        if (!paragraphRange.length)
+        {
+            BLine *bline = [[BLine alloc] init];
+            bline.line = i;
+            bline.run = 0;
+            [retArray addObject:bline];
+            continue;
+        }
+        
+        __block NSUInteger runNum = 0;
+        NSAttributedString *subAttributedString = [attributedString attributedSubstringFromRange:paragraphRange];
+        [subAttributedString enumerateAttributesInRange:NSMakeRange(0, subAttributedString.length) options:nil usingBlock:^(NSDictionary<NSString *,id> * _Nonnull attrs, NSRange range, BOOL * _Nonnull stop) {
+            NSDictionary *dic = attrs;
+            BStyle *style = [DataModel getStyleFromDiction:dic];
+            BLine *bline = [[BLine alloc] init];
+            bline.forcolor = style.strColor;
+            bline.bgcolor = style.strBgColor;
+            bline.fontsize = style.strSize;
+            bline.fontname = style.strFontName;
+            bline.location = range.location;
+            bline.length = range.length;
+            bline.line = i;
+            bline.run = runNum;
+            bline.text = [oneParagraph substringSafeWithRange:range];
+            DTImageTextAttachment *imgAttachment = [dic objectForKey:NSAttachmentAttributeName];
+            if (imgAttachment && [imgAttachment isKindOfClass:[DTImageTextAttachment class]])
+            {
+                bline.fileName = imgAttachment.strFileName;
+                bline.displaySize = imgAttachment.displaySize;
+                bline.orgiSize = imgAttachment.originalSize;
+                [self.imgDic setObject:imgAttachment.strFileName forKey:imgAttachment.strFileName];
+                BBINFO(@"%@", imgAttachment);
+            }
+            [retArray addObject:bline];
+            NSLog(@"%@--%@--%@--%d",[oneParagraph substringSafeWithRange:range], dic, NSStringFromRange(range), *stop);
+            runNum ++;
+            
+        }];
+        
+        location = location + paragraphRange.length + 1;
+    }
+    [self.bContent.arrayLine removeAllObjects];
+    self.bContent.arrayLine = retArray;
+    return retArray;
+}
+
 - (void)submitRecored
 {
-    UIImage *imge = [_richEditor.attributedTextContentView translateToImage];
-//    BBINFO(@"%@", _richEditor.attributedString);
-//    NSAttributedString *attributedString = _richEditor.attributedString;
-//    [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.length) options:nil usingBlock:^(NSDictionary<NSString *,id> * _Nonnull attrs, NSRange range, BOOL * _Nonnull stop) {
-//        NSDictionary *dic = attrs;
-//        NSLog(@"%@--%@--%d", dic, NSStringFromRange(range), *stop);
-//    }];
-    NSLog(@"%@", [_richEditor HTMLStringWithOptions:DTHTMLWriterOptionDocument]);
-    [[DataManager ShareInstance] setAttstring:_richEditor.attributedText];
-//    NSLog(@"%@", [[DataManager ShareInstance] attstring]);
-        NSAttributedString *attributedString = _richEditor.attributedText;
-        [attributedString enumerateAttributesInRange:NSMakeRange(0, attributedString.length) options:nil usingBlock:^(NSDictionary<NSString *,id> * _Nonnull attrs, NSRange range, BOOL * _Nonnull stop) {
-            NSDictionary *dic = attrs;
-            NSLog(@"%@--%@--%d", dic, NSStringFromRange(range), *stop);
-        }];
-//    NSData *data = UIImageJPEGRepresentation(imge, 0.9);
-    UIImageWriteToSavedPhotosAlbum(imge, nil, nil, nil);
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.saveTimer invalidate];
+    [BBUserDefault setHomeViewIndex:-1];
+    [self showProgressHUD];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIImage *imge = [_richEditor.attributedTextContentView translateToImage];
+        UIImageWriteToSavedPhotosAlbum(imge, nil, nil, nil);
+        [self saveNoteData];
+        [BBUserDefault deleteArchvierDataNote];
+        [self dismissProgressHUD];
+        [self.navigationController popViewControllerAnimated:YES];
+    });
+ 
+
 }
 
 - (void)backBtnPressed
 {
-    BBLOG();
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.saveTimer invalidate];
+    [BBUserDefault setHomeViewIndex:-1];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self saveNoteData];
+        [BBUserDefault deleteArchvierDataNote];
+        [self.navigationController popViewControllerAnimated:YES];
+    });
+
 }
 
 - (void)keyboardDown
@@ -1172,6 +1385,7 @@
         if(arrayselectedimg  && arrayselectedimg.count > 0)
         {
             [self showProgressHUD];
+            [self.imgArray addObjectsFromArray:arrayselectedimg];
             [self addImageFromIndex:0 array:arrayselectedimg];
         }
         
@@ -1191,7 +1405,7 @@
         BImage *bimg = [array objectAtIndex:index];
         UIImage *img = [UIImage imageWithContentsOfFile:[[self getNotePath] stringByAppendingPathComponent:bimg.data_path]];
         //                img  = [UIImage imageNamed:@"record00.jpg"];
-        [self replaceCurrentSelectionWithPhoto:img];
+        [self replaceCurrentSelectionWithPhoto:img fileName:bimg.data_path];
     }
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.5 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         _lastSelection = _richEditor.selectedTextRange;
@@ -1200,7 +1414,7 @@
 }
 
 
-- (void)replaceCurrentSelectionWithPhoto:(UIImage *)image
+- (void)replaceCurrentSelectionWithPhoto:(UIImage *)image fileName:(NSString *)strFilename
 {
     if (!_lastSelection)
     {
@@ -1213,6 +1427,7 @@
     attachment.image = (id)scaleImage.imge;
     attachment.displaySize = scaleImage.displaySize;
     attachment.originalSize = scaleImage.originalSize;
+    attachment.strFileName = strFilename;
     
     [_richEditor replaceRange:_lastSelection withAttachment:attachment inParagraph:YES];
 }

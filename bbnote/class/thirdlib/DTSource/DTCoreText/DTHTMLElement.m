@@ -904,7 +904,7 @@ NSDictionary *_classesForNames = nil;
 				
 				if ([lowercaseFontFamilyWithoutWhiteSpacesArray indexOfObject:@"geneva"] != NSNotFound)
 				{
-					_fontDescriptor.fontFamily = @"Helvetica";
+					_fontDescriptor.fontFamily = kHelVetica;
 					foundFontFamily = YES;
 				}
 				else if ([lowercaseFontFamilyWithoutWhiteSpacesArray indexOfObject:@"cursive"] != NSNotFound)
@@ -917,7 +917,7 @@ NSDictionary *_classesForNames = nil;
 				{
 					// too many matches (24)
 					// fontDescriptor.stylisticClass = kCTFontSansSerifClass;
-					_fontDescriptor.fontFamily = @"Helvetica";
+					_fontDescriptor.fontFamily = kHelVetica;
 					foundFontFamily = YES;
 				}
 				else if ([lowercaseFontFamilyWithoutWhiteSpacesArray indexOfObject:@"serif"] != NSNotFound)

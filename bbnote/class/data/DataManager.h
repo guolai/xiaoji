@@ -12,7 +12,6 @@
 @property (nonatomic, strong) NoteSetting *noteSetting;
 @property (nonatomic, strong) NSString *strName;
 @property (nonatomic, assign) int iTime;
-@property (nonatomic, strong) NSAttributedString *attstring;
 + (id)ShareInstance;
 - (void)registerLocalAlert:(int)iValue;
 - (void)removeLoaclNotification;

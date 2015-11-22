@@ -38,6 +38,9 @@ typedef enum{
 @end
 
 @interface StyleSelectView : UIView<TextStyleDelegate>
+{
+    BStyle *_bstyle;
+}
 @property (nonatomic, retain) NSMutableArray *arrayStyles;
 @property (nonatomic, retain) NSMutableArray *arrayBtms;
 @property (nonatomic, weak) id<KeyBoardStateDelegate> styleDelegate;

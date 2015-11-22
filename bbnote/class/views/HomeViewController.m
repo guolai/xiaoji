@@ -15,7 +15,6 @@
 #import "HomeViewController.h"
 #import "SettinViewController.h"
 #import "TimeLineViewController.h"
-#import "MediaViewController.h"
 #import "NSDate+String.h"
 #import "BB_BBImage.h"
 #import "KTPhotoScrollViewController2.h"
@@ -369,14 +368,13 @@ typedef enum{
 
 - (void)btnAddNewPressed:(id)sender
 {
-//    TextViewController *vc = [[TextViewController alloc] initWithNewNote];
-    RichEditViewController *vc = [[RichEditViewController alloc] init];
+    RichEditViewController *vc = [[RichEditViewController alloc] initWithNewNote];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)btnCameraPressed:(id)sender
 {
-    MediaViewController *vc = [[MediaViewController alloc] initWithNewNote];
+    RichEditViewController *vc = [[RichEditViewController alloc] initWithNewNote];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

@@ -20,17 +20,16 @@
 #import "KTPhotoScrollViewController.h"
 #import "SettinViewController.h"
 #import "SelectBgViewController.h"
-#import "TextViewController.h"
-#import "MediaViewController.h"
 #import "NSDate+String.h"
 #import "BBUserDefault.h"
 #import "NSString+UUID.h"
-#import "MediaViewController.h"
-#import "TextViewController.h"
 #import "UIImage+SCaleImage.h"
 #import "DataModel.h"
 #import "DataManager.h"
 #import "HomeSelectViewController.h"
+#import "RichEditViewController.h"
+#import "BRecord.h"
+#import "BLine.h"
 
 @interface TimeLineViewController ()
 
@@ -129,8 +128,11 @@
 {
     if([BBUserDefault shouldCreateDemo])
     {
-        NoteSetting *noteset = [[DataManager ShareInstance] noteSetting];
+
         BRecord *brecord = [[BRecord alloc] init];
+        BContent *bContent = [[BContent alloc] init];
+        NSMutableArray *imgArray = [NSMutableArray arrayWithCapacity:10];
+        NoteSetting *noteset = [[DataManager ShareInstance] noteSetting];
         if(noteset.isUseBgImg)
         {
             brecord.bg_image = noteset.strBgImg;
@@ -143,75 +145,68 @@
         }
         BB_BBRecord *bbrecord = [BB_BBRecord initWithBRecord:brecord];
         bbrecord.create_date = [NSDate getNoteBirthDay];
-        BContent *bcontent = [[BContent alloc] init];
-        bcontent.text_color = noteset.strTextColor;
-        bcontent.fontsize = noteset.nFontSize;
-        bcontent.font = noteset.strFontName;
         NSString *strFloder = [DataModel getNotePath:bbrecord];
+        
+        NSArray *arrayText = @[@"用美妙的文字记录下此刻感想，用生动的图片定格青春的每一个精彩的瞬间，用声音缅怀那些曾经的青涩，", @"用美妙的文字记录下此刻感想，用生动的图片定格青春的每一个精彩的瞬间，用声音缅怀那些曾经的青涩，", @"用美妙的文字记录下此刻感想，用生动的图片定格青春的每一个精彩的瞬间，用声音缅怀那些曾经的青涩，", @"用美妙的文字记录下此刻感想，用生动的图片定格青春的每一个精彩的瞬间，用声音缅怀那些曾经的青涩，"];
+        NSMutableString *string = [NSMutableString string];
+        NSMutableArray *arrayLines = [NSMutableArray arrayWithCapacity:5];
+        for (int i = 0; i < 4; i++)
+        {
+            NSString *strPath = [NSString stringWithFormat:@"record0%d.jpg", i];
+            BBINFO(@"%@", strPath);
+            UIImage *image = [UIImage imageNamed:strPath];
+            ScaledBImage *scaleImage = [DataModel scaleImage:image];
+        
+            BImage *bimge = [[BImage alloc] init];
+            bimge.create_date = [NSDate getNoteBirthDay];
+
+            bimge.data_path = [NSString stringWithFormat:@"%@.jpg", bimge.key];
+            [imgArray addObject:bimge];
             
+            NSString *strOldPath = [[FileManagerController resourcesPath] stringByAppendingPathComponent:strPath];
+            NSString *strNewPath = [strFloder stringByAppendingPathComponent:bimge.data_path];
+            [FileManagerController copyItem:strOldPath toItem:strNewPath];
         
+            BLine *bline = [[BLine alloc] init];
+            bline.text = [arrayText objectAtIndex:i];
+            bline.line = i * 3;
+            bline.length = bline.text.length;
+            [arrayLines addObject:bline];
+            [string appendString:bline.text];
+            
+            bline = [[BLine alloc] init];
+            bline.text = UNICODE_OBJECT_PLACEHOLDER;
+            bline.displaySize = scaleImage.displaySize;
+            bline.orgiSize = scaleImage.originalSize;
+            bline.fileName = bimge.data_path;
+            bline.line = i * 3 + 1;
+            [arrayLines addObject:bline];
+            [string appendString:bline.text];
+            
+            bline = [[BLine alloc] init];
+            bline.text = @"\n";
+            bline.line = i * 3 + 2;
+            bline.length = bline.text.length;
+            [arrayLines addObject:bline];
+            [string appendString:bline.text];
+        }
+        bContent.text = string;
+        bContent.arrayLine = arrayLines;
         
-//        bcontent.text = @"心怀温暖，直面残酷 \n是的，青春终将散场，现实远比电影更加残酷无情，有着更多的失望甚至绝望，有着更加浓重的黑色，曾经的爱情、梦想、信仰可能会被击得粉碎。但不妨为心保留一块温柔的地方，心怀温暖，直面残酷。";
-        bcontent.text = @"用美妙的文字记录下此刻感想，用生动的图片定格青春的每一个精彩的瞬间，用声音缅怀那些曾经的青涩，用视频见证我们共同的欢笑。我准备好了，你呢";
-        BB_BBText *bbcontent = [BB_BBText BBContentWithBContent:bcontent];
+        for (int i = 0; i < imgArray.count; i++)
+        {
+            BImage *bime = [imgArray objectAtIndex:i];
+            BB_BBImage *bbime = [BB_BBImage BBImageWithBImage:bime];
+            bbime.record = bbrecord;
+        }
+        
+        BB_BBText *bbcontent = [BB_BBText BBContentWithBContent:bContent];
+        bbcontent.record = bbrecord;
         bbcontent.create_date = [NSDate getNoteBirthDay];
         bbcontent.modify_date = [NSDate getNoteBirthDay];
-        [bbcontent save];
         bbrecord.contentInRecord = bbcontent;
-        for (int i = 0; i < 4; i++) {
-            @autoreleasepool {
-                NSString *strPath = [NSString stringWithFormat:@"record0%d.jpg", i];
-                BBINFO(@"%@", strPath);
-                UIImage *img = [UIImage imageNamed:strPath];
-//                UIImage *smlImg = [img imageAutoScale];
-                BBINFO(@"%@", strPath);
-                BB_BBImage *bbimg = [BB_BBImage create];
-                bbimg.create_date = [NSDate getNoteBirthDay];
-                bbimg.width = [NSNumber numberWithFloat:img.size.width];
-                bbimg.height = [NSNumber numberWithFloat:img.size.height];
-                bbimg.size = [NSNumber numberWithFloat:30000];
-                bbimg.key = [NSString generateKey];
-                bbimg.data_path = [NSString stringWithFormat:@"%@.jpg", bbimg.key];
-//                bbimg.data_small_path = [NSString stringWithFormat:@"%@sml.jpg", bbimg.key];
-                bbimg.iscontent = [NSNumber numberWithBool:NO];
-                bbimg.record = bbrecord;
-                [bbimg save];
-                NSString *strOldPath = [[FileManagerController resourcesPath] stringByAppendingPathComponent:strPath];
-                NSString *strNewPath = [strFloder stringByAppendingPathComponent:bbimg.data_path];
-                [FileManagerController copyItem:strOldPath toItem:strNewPath];
-//                NSData *data = UIImageJPEGRepresentation(smlImg, 1.0);
-//                [data writeToFile:[strFloder stringByAppendingPathComponent:bbimg.data_small_path] atomically:YES];
-            }
-            
-        }
-        //audio
-        {
-            NSString *strPath = [[FileManagerController resourcesPath] stringByAppendingPathComponent:@"Relax.caf"];
-            NSData *data = [NSData dataWithContentsOfFile:strPath];
-            BB_BBAudio *audio = [BB_BBAudio create];
-            audio.record = bbrecord;
-            audio.create_date = [NSDate getNoteBirthDay];
-            audio.key = [NSString generateKey];
-            audio.data_path = [NSString stringWithFormat:@"%@.caf", audio.key];
-            audio.size = [NSNumber numberWithFloat:data.length];
-            audio.times = [NSNumber numberWithFloat:41.0f];
-            [audio save];
-            NSString *strOldPath = strPath;
-            NSString *strNewPath = [strFloder stringByAppendingPathComponent:audio.data_path];
-            [FileManagerController copyItem:strOldPath toItem:strNewPath];
-        }
- 
-        { // save text to image
-            UIImage *img = [BBMisc createImageForBigWeibo:bbrecord];
-            NSData *data = UIImageJPEGRepresentation(img, 0.8);
-            BImage *bimg = [BBMisc saveAssetImageToSand:data smlImag:nil path:strFloder isContent:YES];
-            BB_BBImage *bbimage = [BB_BBImage BBImageWithBImage:bimg];
-            
-            bbimage.record = bbrecord;
-            [bbimage save];
-        }
+        
         [bbrecord save];
-        [bbrecord saveToSandBoxPath:[DataModel getNotePath:bbrecord]];
     }
 }
 
@@ -220,7 +215,7 @@
 {
     bFrist_ = YES;
     iStartIndex_ = 0;
-    iLimit_  = 100;
+    iLimit_  = 10000;
     [self.datalistArray removeAllObjects];
     [self requestData];
 }
@@ -288,7 +283,9 @@
     else
     {
         iRow = iRow - 1;
-        KTPhotoScrollViewController *vc = [[KTPhotoScrollViewController alloc] initWithImageArray:self.datalistArray andStartWithPhotoAtIndex:iRow andLocalFile:YES];
+//        KTPhotoScrollViewController *vc = [[KTPhotoScrollViewController alloc] initWithImageArray:self.datalistArray andStartWithPhotoAtIndex:iRow andLocalFile:YES];
+        BB_BBRecord *bbrecord = [self.datalistArray objectAtIndex:iRow];
+        RichEditViewController *vc = [[RichEditViewController alloc] initWithRecored:bbrecord];
         [self.navigationController pushViewController:vc animated:YES];
     }
 }
@@ -308,7 +305,7 @@
 
 - (void)rightNavPressed:(id)sender
 {
-    MediaViewController  *vc = [[MediaViewController alloc] initWithNewNote];
+    RichEditViewController  *vc = [[RichEditViewController alloc] initWithNewNote];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

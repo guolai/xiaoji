@@ -309,20 +309,7 @@
             
             BB_BBText *bbContent = [BB_BBText BBContentWithBContent:bContent];
             bbContent.record = bbRecord;
-            
-            UIImage *img = [BBMisc createImageForBigWeibo:bbRecord];
-            NSData *data = UIImageJPEGRepresentation(img, 0.8);
-            BImage *bimg = [BBMisc saveAssetImageToSand:data smlImag:nil path:[DataModel getNotePath:bRecord] isContent:YES];
-            BB_BBImage *bbimage = [BB_BBImage BBImageWithBImage:bimg];
-            //    if([bbimage isKindOfClass:[BBImage class]])
-            //    {
-            //        BBLOG();
-            //    }
-            //    if([bbimage isMemberOfClass:[BBImage class]])
-            //    {
-            //        BBLOG();
-            //    }
-            bbimage.record = bbRecord;
+
             NSArray *arrayAudio_ = [NSKeyedUnarchiver unarchiveObjectWithData:[noteDic objectForKey:@"audio"]];
             
             NSArray *arrayImage_ = [NSKeyedUnarchiver unarchiveObjectWithData:[noteDic objectForKey:@"image"]];
@@ -447,5 +434,7 @@
     }
     return bstye;
 }
+
+
 
 @end

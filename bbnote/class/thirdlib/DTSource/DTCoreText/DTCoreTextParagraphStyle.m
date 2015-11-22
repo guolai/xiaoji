@@ -127,7 +127,7 @@
 		_lineHeightMultiple = 0.0;
 		_minimumLineHeight = 0.0;
 		_maximumLineHeight = 0.0;
-		_paragraphSpacing = 0.0;
+		_paragraphSpacing = 10.0;
 	}
 	
 	return self;

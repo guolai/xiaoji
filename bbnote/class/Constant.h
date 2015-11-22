@@ -28,6 +28,7 @@
 
 #define kBtnSwitchChanged  @"kBtnSwitchChanged"
 #define kDefatultFont @"system"
+#define kHelVetica @"Helvetica"
 //sina weibo
 #define kSinaAppKey             @"2835958904"
 #define kSinaAppSecret          @"39331988fede149cc1120f69f2e9d440"

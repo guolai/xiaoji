@@ -129,74 +129,74 @@
     }
     return strMood;
 }
-- (NSDictionary *)covertDictionary
-{
-    NSMutableDictionary *mulDic = [NSMutableDictionary dictionaryWithCapacity:10];
-    [mulDic setObject:self.create_date forKey:@"create_date"];
-    [mulDic setObject:self.mood forKey:@"mood"];
-    [mulDic setObject:self.mood_count forKey:@"mood_count"];
-    [mulDic setObject:self.isVideo forKey:@"isVideo"];
-    if(self.title)
-        [mulDic setObject:self.title forKey:@"title"];
-    if(self.shared_type)
-        [mulDic setObject:self.shared_type forKey:@"shared_type"];
-    if(self.bg_image)
-        [mulDic setObject:self.bg_image forKey:@"bg_image"];
-    if(self.bg_color)
-        [mulDic setObject:self.bg_color forKey:@"bg_color"];
-    if(self.title_color)
-        [mulDic setObject:self.title_color forKey:@"title_color"];
-//    [mulDic setObject:self.bg_music forKey:@"bg_music"];
-//    [mulDic setObject:self.isopen_music forKey:@"isopen_music"];
-    if(self.location)
-        [mulDic setObject:self.location forKey:@"location"];
-//    [mulDic setObject:self.lookup forKey:@"lookup"];
-    [mulDic setObject:self.key forKey:@"key"];
-    return mulDic;
-}
+//- (NSDictionary *)covertDictionary
+//{
+//    NSMutableDictionary *mulDic = [NSMutableDictionary dictionaryWithCapacity:10];
+//    [mulDic setObject:self.create_date forKey:@"create_date"];
+//    [mulDic setObject:self.mood forKey:@"mood"];
+//    [mulDic setObject:self.mood_count forKey:@"mood_count"];
+//    [mulDic setObject:self.isVideo forKey:@"isVideo"];
+//    if(self.title)
+//        [mulDic setObject:self.title forKey:@"title"];
+//    if(self.shared_type)
+//        [mulDic setObject:self.shared_type forKey:@"shared_type"];
+//    if(self.bg_image)
+//        [mulDic setObject:self.bg_image forKey:@"bg_image"];
+//    if(self.bg_color)
+//        [mulDic setObject:self.bg_color forKey:@"bg_color"];
+//    if(self.title_color)
+//        [mulDic setObject:self.title_color forKey:@"title_color"];
+////    [mulDic setObject:self.bg_music forKey:@"bg_music"];
+////    [mulDic setObject:self.isopen_music forKey:@"isopen_music"];
+//    if(self.location)
+//        [mulDic setObject:self.location forKey:@"location"];
+////    [mulDic setObject:self.lookup forKey:@"lookup"];
+//    [mulDic setObject:self.key forKey:@"key"];
+//    return mulDic;
+//}
 
-- (void)saveToSandBoxPath:(NSString *)strFolder
-{
-    strFolder = [strFolder stringByAppendingPathComponent:@"note.plist"];
-    NSMutableDictionary *muldic = [NSMutableDictionary dictionaryWithCapacity:10];
-    NSDictionary *recordDic = [self covertDictionary];
-    BBINFO(@"11 %@", recordDic);
-    [muldic setObject:recordDic forKey:@"record"];
-    BB_BBText *bbtext = self.contentInRecord;
-    NSDictionary *textDic = [bbtext covertDictionary];
-    [muldic setObject:textDic forKey:@"text"];
-    BBINFO(@"22 %@", recordDic);
-    
-    NSMutableArray *mulArray = [NSMutableArray arrayWithCapacity:10];
-    for (BB_BBImage *bbimeage in [self.imageInRecord allObjects]) {
-        NSDictionary *imageDic = [bbimeage covertDictionary];
-        BBINFO(@"33 %@", imageDic);
-        [mulArray addObject:imageDic];
-    }
-    if (mulArray.count > 0) {
-        [muldic setObject:mulArray forKey:@"images"];
-    }
-    
-    [mulArray removeAllObjects];
-    for (BB_BBAudio *bbaudio in [self.audioInRecord allObjects]) {
-        NSDictionary *dic = [bbaudio covertDictionary];
-        BBINFO(@"44 %@", dic);
-        [mulArray addObject:dic];
-    }
-    if (mulArray.count > 0) {
-        [muldic setObject:mulArray forKey:@"audio"];
-    }
-    
-    [mulArray removeAllObjects];
-    for (BB_BBVideo *bbvideo in [self.videoInRecord allObjects]) {
-        NSDictionary *dic = [bbvideo covertDictionary];
-        BBINFO(@"55 %@", dic);
-        [mulArray addObject:dic];
-    }
-    if (mulArray.count > 0) {
-        [muldic setObject:mulArray forKey:@"video"];
-    }
-    
-    [muldic writeToFile:strFolder atomically:YES];
-}
+//- (void)saveToSandBoxPath:(NSString *)strFolder
+//{
+//    strFolder = [strFolder stringByAppendingPathComponent:@"note.plist"];
+//    NSMutableDictionary *muldic = [NSMutableDictionary dictionaryWithCapacity:10];
+//    NSDictionary *recordDic = [self covertDictionary];
+//    BBINFO(@"11 %@", recordDic);
+//    [muldic setObject:recordDic forKey:@"record"];
+//    BB_BBText *bbtext = self.contentInRecord;
+//    NSDictionary *textDic = [bbtext covertDictionary];
+//    [muldic setObject:textDic forKey:@"text"];
+//    BBINFO(@"22 %@", recordDic);
+//    
+//    NSMutableArray *mulArray = [NSMutableArray arrayWithCapacity:10];
+//    for (BB_BBImage *bbimeage in [self.imageInRecord allObjects]) {
+//        NSDictionary *imageDic = [bbimeage covertDictionary];
+//        BBINFO(@"33 %@", imageDic);
+//        [mulArray addObject:imageDic];
+//    }
+//    if (mulArray.count > 0) {
+//        [muldic setObject:mulArray forKey:@"images"];
+//    }
+//    
+//    [mulArray removeAllObjects];
+//    for (BB_BBAudio *bbaudio in [self.audioInRecord allObjects]) {
+//        NSDictionary *dic = [bbaudio covertDictionary];
+//        BBINFO(@"44 %@", dic);
+//        [mulArray addObject:dic];
+//    }
+//    if (mulArray.count > 0) {
+//        [muldic setObject:mulArray forKey:@"audio"];
+//    }
+//    
+//    [mulArray removeAllObjects];
+//    for (BB_BBVideo *bbvideo in [self.videoInRecord allObjects]) {
+//        NSDictionary *dic = [bbvideo covertDictionary];
+//        BBINFO(@"55 %@", dic);
+//        [mulArray addObject:dic];
+//    }
+//    if (mulArray.count > 0) {
+//        [muldic setObject:mulArray forKey:@"video"];
+//    }
+//    
+//    [muldic writeToFile:strFolder atomically:YES];
+//}
 @end

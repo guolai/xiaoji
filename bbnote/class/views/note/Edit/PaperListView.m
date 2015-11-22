@@ -84,16 +84,6 @@
 - (NSArray *)getImagePaper
 {
     NSMutableArray *array = [NSMutableArray array];
-    [array addObject:[self getImagePaperItem:@"skindefault.jpg"]];
-    for (int i = 1; i <= 7; i++)
-    {
-        NSString *str = [NSString stringWithFormat:@"skin%d-down.jpg", i];
-        [array addObject:[self getImagePaperItem:str]];
-    }
-    for (int i = 1; i <= 3; i++) {
-        NSString *str = [NSString stringWithFormat:@"skin%d.png", i];
-        [array addObject:[self getImagePaperItem:str]];
-    }
     for (int i = 1; i <= 7; i++)
     {
         NSString *str = [NSString stringWithFormat:@"%.2d.png", i];
@@ -102,6 +92,16 @@
     for (int i = 1; i <= 7; i++)
     {
         NSString *str = [NSString stringWithFormat:@"%.2d.jpg", i];
+        [array addObject:[self getImagePaperItem:str]];
+    }
+    [array addObject:[self getImagePaperItem:@"skindefault.jpg"]];
+    for (int i = 1; i <= 7; i++)
+    {
+        NSString *str = [NSString stringWithFormat:@"skin%d-down.jpg", i];
+        [array addObject:[self getImagePaperItem:str]];
+    }
+    for (int i = 1; i <= 3; i++) {
+        NSString *str = [NSString stringWithFormat:@"skin%d.png", i];
         [array addObject:[self getImagePaperItem:str]];
     }
     return array;

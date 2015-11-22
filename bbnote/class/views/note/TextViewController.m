@@ -100,9 +100,7 @@
         self.bRecord.bg_image = nil;
         self.bRecord.bg_color = noteset.strBgColor;
     }
-    self.bContent.text_color = noteset.strTextColor;
-    self.bContent.fontsize = noteset.nFontSize;
-    self.bContent.font = noteset.strFontName;
+
 }
 
 - (instancetype)initWithNote:(BB_BBRecord *)bbrecord
@@ -123,9 +121,6 @@
             }
         }
         NoteSetting *noteset = [[DataManager ShareInstance] noteSetting];
-        noteset.strFontName = self.bContent.font;
-        noteset.nFontSize = self.bContent.fontsize;
-        noteset.strTextColor = self.bContent.text_color;
         if(self.bRecord.bg_image)
         {
             noteset.isUseBgImg = YES;

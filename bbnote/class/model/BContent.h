@@ -9,16 +9,14 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class BBText;
+@class BB_BBText;
 
 @interface BContent : NSObject<NSCoding>
 
 @property (nonatomic, retain) NSString * text;
 @property (nonatomic, retain) NSDate * create_date;
 @property (nonatomic, retain) NSDate * modify_date;
-@property (nonatomic, retain) NSString * text_color;
-@property (nonatomic, retain) NSString *font;
-@property (nonatomic, retain) NSNumber *fontsize;
+@property (nonatomic, strong) NSMutableArray *arrayLine;
 
-- (instancetype)initWithBBText:(BBText *)bbtext;
+- (instancetype)initWithBBText:(BB_BBText *)bbtext;
 @end
